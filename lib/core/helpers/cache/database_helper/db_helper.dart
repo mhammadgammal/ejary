@@ -1,9 +1,10 @@
 import 'dart:async';
 import 'dart:developer';
 import 'dart:io';
+
 import 'package:ejary/core/di/di.dart';
 import 'package:ejary/core/helpers/cache/database_helper/table_name.dart';
-import 'package:ejary/core/utils/extensions/string_extenstions.dart';
+import 'package:ejary/core/utils/extensions/string_extensions.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 class DbHelper {

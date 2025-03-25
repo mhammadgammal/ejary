@@ -1,4 +1,4 @@
-import 'package:ejary/core/utils/extensions/string_extenstions.dart';
+import 'package:ejary/core/utils/extensions/string_extensions.dart';
 
 abstract class Validators {
   static String? validateName(String? name) =>
@@ -25,13 +25,13 @@ abstract class Validators {
     } else if (!RegExp(
       r"^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$",
     ).hasMatch(password)) {
-      return 'Password should contain:\n- atleast 8 characters\n- at least one digit\n- at least a special character'
+      return 'Password should contain:\n- at least 8 characters\n- at least one digit\n- at least a special character'
           .tr(context);
     }
     return null;
   }
 
-  static String? validataConfirmPassword(String? password1, String? password2) {
+  static String? validateConfirmPassword(String? password1, String? password2) {
     if (password2 == null || password2.isEmpty) {
       return 'Confirm Password is required';
     } else if (password2 != password1) {
