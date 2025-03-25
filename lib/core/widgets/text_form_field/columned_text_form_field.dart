@@ -14,6 +14,7 @@ class ColumnedTextFormField extends StatelessWidget {
     this.validate,
     this.hint,
     this.suffixIcon,
+    this.icon,
     this.maxLines = 1,
     this.hintColor,
     this.isPassword = false,
@@ -28,6 +29,7 @@ class ColumnedTextFormField extends StatelessWidget {
   final TextInputType inputType;
   final String? Function(String?)? validate;
   final IconButton? suffixIcon;
+  final Widget? icon;
   final int maxLines;
   final bool isPassword;
 
@@ -49,6 +51,7 @@ class ColumnedTextFormField extends StatelessWidget {
           inputType: inputType,
           isEnabled: enabled,
           validate: validate,
+          icon: icon,
           suffixIcon: suffixIcon,
           maxLines: maxLines,
           obSecure: isPassword,

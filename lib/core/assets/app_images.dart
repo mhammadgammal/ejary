@@ -6,4 +6,5 @@ abstract class AppImages {
   static final String wellDone = 'assets/images/svgs/well_done.svg';
   static final String profilePlaceholder =
       'assets/images/svgs/profile_placeholder.svg';
+  static final String houses = 'assets/images/svgs/houses.svg';
 }

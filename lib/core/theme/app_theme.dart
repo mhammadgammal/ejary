@@ -5,7 +5,9 @@ import 'app_color.dart';
 abstract class AppTheme {
   static double appRadius = 0.0;
 
-  static final lightTheme = ThemeData();
+  static final lightTheme = ThemeData(
+    scaffoldBackgroundColor: AppColors.background50,
+  );
 
   static TextStyle getTextFormFieldTextStyle({Color? textFieldTextColor}) =>
       TextStyle(color: textFieldTextColor ?? (AppColors.black));
