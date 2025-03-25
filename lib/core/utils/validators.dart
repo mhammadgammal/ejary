@@ -1,3 +1,5 @@
+import 'package:ejary/core/utils/extensions/string_extenstions.dart';
+
 abstract class Validators {
   static String? validateName(String? name) =>
       name == null || name.isEmpty
@@ -6,24 +8,25 @@ abstract class Validators {
           ? 'Name should be at least four characters'
           : null;
 
-  static String? validateEmail(String? email) {
+  static String? validateEmail(context, String? email) {
     if (email == null || email.isEmpty) {
-      return 'Email is required';
+      return 'Email is required'.tr(context);
     } else if (!RegExp(
-      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-z]+(.com)*$",
+      r"^[a-zA-Z0-9.a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+@[a-z]+(.com)*$",
     ).hasMatch(email)) {
-      return 'Email is invalid, Please write a valid email';
+      return 'Email is invalid, Please write a valid email'.tr(context);
     }
     return null;
   }
 
-  static String? validatePassword(String? password) {
+  static String? validatePassword(context, String? password) {
     if (password == null || password.isEmpty) {
-      return 'Password is required';
+      return 'Password is required'.tr(context);
     } else if (!RegExp(
       r"^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$",
     ).hasMatch(password)) {
-      return 'Password should contain:\n- atleast 8 characters\n- at least one digit\n- at least a special character';
+      return 'Password should contain:\n- atleast 8 characters\n- at least one digit\n- at least a special character'
+          .tr(context);
     }
     return null;
   }
