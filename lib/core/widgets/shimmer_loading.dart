@@ -27,7 +27,7 @@ class ShimmerLoading extends StatelessWidget {
         height: height ?? MediaQuery.sizeOf(context).height,
         padding: padding ?? const EdgeInsets.all(8),
         decoration: BoxDecoration(
-          color: Colors.black.withOpacity(0.3),
+          color: Colors.black.withValues(alpha: 0.3),
           borderRadius: const BorderRadius.all(Radius.circular(15)),
         ),
       ),
