@@ -40,11 +40,11 @@ abstract class Validators {
     return null;
   }
 
-  static String? validatePhone(String? phoneNumber) {
+  static String? validatePhone(context, String? phoneNumber) {
     if (phoneNumber == null || phoneNumber.isEmpty) {
-      return 'Phone Number is required';
-    } else if (!RegExp(r'^(010|011|012|015)\d{8}$').hasMatch(phoneNumber)) {
-      return 'Invalid Phone Number';
+      return 'Phone Number is required'.tr(context);
+    } else if (!RegExp(r'^(05)\d{8}$').hasMatch(phoneNumber)) {
+      return 'Invalid Phone Number'.tr(context);
     }
     return null;
   }
