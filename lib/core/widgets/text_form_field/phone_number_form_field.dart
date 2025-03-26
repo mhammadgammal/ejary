@@ -31,7 +31,7 @@ class _PhoneNumberFormFieldState extends State<PhoneNumberFormField> {
           colorFilter: ColorFilter.mode(AppColors.gray100, BlendMode.srcIn),
         ),
       ),
-      validate: (value) => Validators.validateEmail(context, value),
+      validate: (value) => Validators.validatePhone(context, value),
     );
   }
 }
