@@ -20,4 +20,5 @@ abstract class AppIcons {
   static const String searchIc = 'assets/icons/search.svg';
   static const String filterIc = 'assets/icons/adjustments.svg';
   static const String email = 'assets/icons/envelope.svg';
+  static const String arrowLeftCircle = 'assets/icons/arrow_left_circle.svg';
 }
