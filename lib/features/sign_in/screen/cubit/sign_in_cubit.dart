@@ -24,7 +24,7 @@ class SignInCubit extends Cubit<SignInState> {
 
   Future<void> signIn() async {
     emit(SignInLoadingState());
-    var userResponse = await DbHelper.getRecordByEmail(
+    var userResponse = await DbHelper.getRecordByPhoneNumber(
       phoneController.text,
       tableName: TableName.userTable,
     );
