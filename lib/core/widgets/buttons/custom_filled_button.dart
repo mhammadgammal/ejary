@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ejary/core/theme/app_color.dart';
 import 'package:ejary/core/theme/app_theme.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CustomFilledButton extends StatelessWidget {
@@ -10,6 +10,7 @@ class CustomFilledButton extends StatelessWidget {
     this.width,
     this.height,
     required this.title,
+    this.icon,
     required this.onPressed,
     this.disabled = false,
     this.fillColor,
@@ -21,6 +22,7 @@ class CustomFilledButton extends StatelessWidget {
   final double? width;
   final double? height;
   final String title;
+  final Widget? icon;
   final void Function() onPressed;
   final bool disabled;
   final Color? fillColor;
@@ -35,7 +37,7 @@ class CustomFilledButton extends StatelessWidget {
       height: height ?? 50.h,
       padding: padding,
       margin: margin,
-      child: ElevatedButton(
+      child: ElevatedButton.icon(
         onPressed: onPressed,
         style: ButtonStyle(
           backgroundColor: WidgetStatePropertyAll(
@@ -47,10 +49,12 @@ class CustomFilledButton extends StatelessWidget {
             ),
           ),
         ),
-        child: Text(
+        label: Text(
           title,
           style: GoogleFonts.cairo(color: Colors.white, fontSize: fontSize.sp),
         ),
+        icon: icon,
+        iconAlignment: IconAlignment.end,
       ),
     );
   }
