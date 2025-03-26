@@ -15,7 +15,7 @@ class SignInCubit extends Cubit<SignInState> {
   static SignInCubit get(BuildContext context) =>
       BlocProvider.of<SignInCubit>(context);
 
-  final TextEditingController emailController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
   final formKey = GlobalKey<FormState>();
@@ -25,7 +25,7 @@ class SignInCubit extends Cubit<SignInState> {
   Future<void> signIn() async {
     emit(SignInLoadingState());
     var userResponse = await DbHelper.getRecordByEmail(
-      emailController.text,
+      phoneController.text,
       tableName: TableName.userTable,
     );
 
@@ -54,6 +54,7 @@ class SignInCubit extends Cubit<SignInState> {
         id: -1,
         name: 'ejar',
         email: 'ejar@admin.com',
+        phoneNumber: '0505609026',
         password: '123456789',
         profilePicturePath: '',
       );

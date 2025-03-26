@@ -5,8 +5,8 @@ import 'package:ejary/core/theme/app_color.dart';
 import 'package:ejary/core/utils/extensions/string_extensions.dart';
 import 'package:ejary/core/utils/localization/app_localization.dart';
 import 'package:ejary/core/widgets/buttons/custom_filled_button.dart';
-import 'package:ejary/core/widgets/text_form_field/email_text_form_field.dart';
 import 'package:ejary/core/widgets/text_form_field/password_text_form_field.dart';
+import 'package:ejary/core/widgets/text_form_field/phone_number_form_field.dart';
 import 'package:ejary/features/sign_in/screen/cubit/sign_in_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -60,15 +60,9 @@ class SignInForm extends StatelessWidget {
                   height: 412.0.h,
                   AppImages.houses,
                 ),
-                EmailTextFormField(
-                  controller: cubit.emailController,
-                  label: 'Email'.tr(context),
-                ),
+                PhoneNumberFormField(controller: cubit.phoneController),
                 SizedBox(height: 10.0.h),
-                PasswordTextFormField(
-                  controller: cubit.passwordController,
-                  label: 'Password'.tr(context),
-                ),
+                PasswordTextFormField(controller: cubit.passwordController),
                 // SizedBox(height: 20.0.h),
                 // Row(
                 //   children: [
