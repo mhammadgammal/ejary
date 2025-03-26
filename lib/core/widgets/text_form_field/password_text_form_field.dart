@@ -1,6 +1,5 @@
 import 'package:ejary/core/assets/app_icons.dart';
 import 'package:ejary/core/theme/app_color.dart';
-import 'package:ejary/core/utils/validators.dart';
 import 'package:ejary/core/widgets/text_form_field/columned_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -47,7 +46,7 @@ class _PasswordTextFormFieldState extends State<PasswordTextFormField> {
           colorFilter: ColorFilter.mode(AppColors.gray100, BlendMode.srcIn),
         ),
       ),
-      validate: (value) => Validators.validatePassword(context, value),
+      // validate: (value) => Validators.validatePassword(context, value),
     );
   }
 }

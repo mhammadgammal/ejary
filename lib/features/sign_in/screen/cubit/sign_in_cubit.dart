@@ -52,8 +52,8 @@ class SignInCubit extends Cubit<SignInState> {
     if (usersMap.isEmpty) {
       final user = UserModel(
         id: -1,
-        name: 'hr',
-        email: 'hr@admin.com',
+        name: 'ejar',
+        email: 'ejar@admin.com',
         password: '123456789',
         profilePicturePath: '',
       );

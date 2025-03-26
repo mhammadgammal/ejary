@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 Map<String, Widget Function(BuildContext)> routes = {
   RouteKeys.signIn:
       (_) => BlocProvider(
-        create: (context) => SignInCubit(),
+        create: (context) => SignInCubit()..createUser(),
         child: SignInScreen(),
       ),
 };
