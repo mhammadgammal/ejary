@@ -23,4 +23,5 @@ abstract class AppIcons {
   static const String arrowLeftCircle = 'assets/icons/arrow_left_circle.svg';
   static const String arrowRightCircle = 'assets/icons/arrow_right_circle.svg';
   static const String phone = 'assets/icons/phone.svg';
+  static const String plus = 'assets/icons/plus.svg';
 }
