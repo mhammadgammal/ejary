@@ -47,7 +47,7 @@ class DbHelper {
         onConfigure: (db) async => await db.execute("PRAGMA foreign_keys = ON"),
         onCreate: _onCreate,
         // onUpgrade: _onUpgrade,
-        version: 5,
+        version: 6,
       ),
     );
   }
@@ -63,6 +63,7 @@ class DbHelper {
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name VARCHAR(255) NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
+    phone_number VARCHAR(255) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
     profile_picture_path TEXT
     );
@@ -97,6 +98,19 @@ class DbHelper {
       tableName,
       where: 'email = ?',
       whereArgs: [email],
+    );
+    return maps.firstOrNull;
+  }
+
+  static Future<Map<String, dynamic>?> getRecordByPhoneNumber(
+    String phoneNumber, {
+    required String tableName,
+  }) async {
+    final db = sl<Database>();
+    final List<Map<String, dynamic>> maps = await db.query(
+      tableName,
+      where: 'phone_number = ?',
+      whereArgs: [phoneNumber],
     );
     return maps.firstOrNull;
   }
@@ -273,14 +287,14 @@ class DbHelper {
     await db.close();
   }
 
-  // static FutureOr<void> _onUpgrade(
-  //   Database db,
-  //   int oldVersion,
-  //   int newVersion,
-  // ) async {
-  //   await db.execute('''
-  //       ALTER TABLE ${TableName.contractTable}
-  //       ADD COLUMN contract_pic_path VARCHAR(255) DEFAULT ''
-  //     ''');
-  // }
+  static FutureOr<void> _onUpgrade(
+    Database db,
+    int oldVersion,
+    int newVersion,
+  ) async {
+    await db.execute('''
+        ALTER TABLE ${TableName.userTable}
+        ADD COLUMN phone_number VARCHAR(255) UNIQUE NOT NULL
+      ''');
+  }
 }
