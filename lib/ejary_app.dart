@@ -1,3 +1,5 @@
+import 'package:ejary/core/helpers/cache/cache_keys.dart';
+import 'package:ejary/core/helpers/cache/shared_preferences/cache_helper.dart';
 import 'package:ejary/core/router/app_router.dart';
 import 'package:ejary/core/router/route_keys.dart';
 import 'package:ejary/core/theme/app_theme.dart';
@@ -20,7 +22,10 @@ class EjaryApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             theme: AppTheme.lightTheme,
             routes: routes,
-            initialRoute: RouteKeys.signIn,
+            initialRoute:
+                (sl<CacheHelper>().getBool(key: CacheKeys.isLogged) ?? false)
+                    ? RouteKeys.home
+                    : RouteKeys.signIn,
             locale: sl<AppLanguage>().appLocal,
             supportedLocales: LocalizeConstants.supportedLocales,
             localizationsDelegates: LocalizeConstants.delegates,

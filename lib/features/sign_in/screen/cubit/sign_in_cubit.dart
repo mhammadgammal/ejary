@@ -32,9 +32,7 @@ class SignInCubit extends Cubit<SignInState> {
     if (userResponse != null) {
       final UserModel user = UserModel.fromJson(userResponse);
       if (user.password == passwordController.text) {
-        if (rememberMe) {
-          sl<CacheHelper>().putBool(CacheKeys.isLogged, true);
-        }
+        sl<CacheHelper>().putBool(CacheKeys.isLogged, true);
         emit(SignInSuccessState());
       } else {
         emit(SignInFailureState('Password is incorrect'));
