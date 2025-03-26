@@ -287,14 +287,14 @@ class DbHelper {
     await db.close();
   }
 
-  static FutureOr<void> _onUpgrade(
-    Database db,
-    int oldVersion,
-    int newVersion,
-  ) async {
-    await db.execute('''
-        ALTER TABLE ${TableName.userTable}
-        ADD COLUMN phone_number VARCHAR(255) UNIQUE NOT NULL
-      ''');
-  }
+  // static FutureOr<void> _onUpgrade(
+  //   Database db,
+  //   int oldVersion,
+  //   int newVersion,
+  // ) async {
+  //   await db.execute('''
+  //       ALTER TABLE ${TableName.userTable}
+  //       ADD COLUMN phone_number VARCHAR(255) UNIQUE NOT NULL
+  //     ''');
+  // }
 }
