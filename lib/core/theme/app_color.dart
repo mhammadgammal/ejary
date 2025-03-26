@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 abstract class AppColors {
-  static const Color white = Color.fromARGB(1, 255, 255, 255);
+  static const Color white = Colors.white;
 
   static const Color black = Colors.black;
 
