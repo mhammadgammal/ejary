@@ -37,5 +37,7 @@
   "Contract start date is required": "Contract start date is required",
   "Contract end date": "Contract end date",
   "Contract end date is required": "Contract end date is required",
-  "Download Contract": "Download Contract"
+  "Download Contract": "Download Contract",
+  "add_property": "Add Property",
+  "search_hint": "Search here by phone number"
 }

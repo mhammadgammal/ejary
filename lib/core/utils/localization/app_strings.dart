@@ -13,7 +13,7 @@ abstract final class AppStrings {
   static const String purchaseOnline = 'purchase_online';
   static const String trackOrder = 'track_order';
   static const String getYourOrder = 'get_your_order';
-  
+
   //#endregion
   //#region Successful Strings
   static const String passwordChangedSuccessful = 'password_changed_success';
@@ -89,5 +89,10 @@ abstract final class AppStrings {
   static const String accountNotExit = 'acc_not_exist';
   static const String wrongCredentials = 'credentials_wrong';
   static const String invalidOtp = 'otp_invalid';
-//#endregion
+  static const String alarms = 'alarms';
+
+  static const String addProperty = 'add_property';
+
+  static const String searchHint = 'search_hint';
+  //#endregion
 }

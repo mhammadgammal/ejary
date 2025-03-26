@@ -84,5 +84,9 @@
   "Identity": "الهويه أو الإقامه",
   "Quick Access": "الوصول السريع",
   "Search": "إبحث",
-  "Iqama Number": "صورة الإقامه"
+  "Iqama Number": "صورة الإقامه",
+  "home_page": "الرئيسيه",
+  "alarms": "التنبيهات",
+  "add_property": "إضافة عقار",
+  "search_hint": "ابحث هنا برقم الهاتف"
 }
