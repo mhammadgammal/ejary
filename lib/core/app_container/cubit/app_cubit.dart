@@ -2,6 +2,7 @@ import 'package:ejary/core/assets/app_icons.dart';
 import 'package:ejary/core/utils/localization/app_strings.dart';
 import 'package:ejary/features/alarms/navigator/alarms_navigation.dart';
 import 'package:ejary/features/home/navigator/home_navigator.dart';
+import 'package:ejary/features/settings/navigator/settings_navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,7 +13,12 @@ class AppCubit extends Cubit<AppState> {
 
   int selectedIndex = 0;
 
-  List navigationKeys = [homeNavigatorKey, alarmsNavigationKey];
+  List navigationKeys = [
+    homeNavigatorKey,
+    alarmsNavigationKey,
+    alarmsNavigationKey,
+    settingsNavigationKey
+  ];
 
   static AppCubit get(BuildContext context) => BlocProvider.of(context);
 
