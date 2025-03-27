@@ -1,10 +1,6 @@
-import 'package:ejary/core/assets/app_icons.dart';
 import 'package:ejary/core/assets/app_images.dart';
-import 'package:ejary/core/di/di.dart';
-import 'package:ejary/core/theme/app_color.dart';
 import 'package:ejary/core/utils/extensions/string_extensions.dart';
-import 'package:ejary/core/utils/localization/app_localization.dart';
-import 'package:ejary/core/widgets/buttons/custom_filled_button.dart';
+import 'package:ejary/core/widgets/buttons/filled_buttons/custom_filled_button.dart';
 import 'package:ejary/core/widgets/text_form_field/password_text_form_field.dart';
 import 'package:ejary/core/widgets/text_form_field/phone_number_form_field.dart';
 import 'package:ejary/features/sign_in/screen/cubit/sign_in_cubit.dart';
@@ -91,15 +87,6 @@ class SignInForm extends StatelessWidget {
                     }
                   },
                   title: 'Sign In'.tr(context),
-                  icon: SvgPicture.asset(
-                    sl<AppLanguage>().appLocal.languageCode == 'ar'
-                        ? AppIcons.arrowLeftCircle
-                        : AppIcons.arrowRightCircle,
-                    colorFilter: ColorFilter.mode(
-                      AppColors.white,
-                      BlendMode.srcIn,
-                    ),
-                  ),
                   fontSize: 18,
                 ),
               ],

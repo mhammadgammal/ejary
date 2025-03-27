@@ -1,4 +1,4 @@
-import 'package:ejary/features/properties/all_properties/all_properties_screen.dart';
+import 'package:ejary/features/properties/presentation/all_properties/all_properties_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
