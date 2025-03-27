@@ -39,5 +39,7 @@
   "Contract end date is required": "Contract end date is required",
   "Download Contract": "Download Contract",
   "add_property": "Add Property",
-  "search_hint": "Search here by phone number"
+  "search_hint": "Search here by phone number",
+  "all_properties": "All Properties",
+  "property_details": "Property Details"
 }

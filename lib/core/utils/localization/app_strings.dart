@@ -94,5 +94,10 @@ abstract final class AppStrings {
   static const String addProperty = 'add_property';
 
   static const String searchHint = 'search_hint';
+
+  static const String allProperties = 'all_properties';
+  static const String availableProperties = 'available_properties';
+
+  static const String propertyDetails = 'property_details';
   //#endregion
 }

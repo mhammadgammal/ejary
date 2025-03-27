@@ -88,5 +88,8 @@
   "home_page": "الرئيسيه",
   "alarms": "التنبيهات",
   "add_property": "إضافة عقار",
-  "search_hint": "ابحث هنا برقم الهاتف"
+  "search_hint": "ابحث هنا برقم الهاتف",
+  "all_properties": "العقارات",
+  "available_properties": "العقارات المتاحه",
+  "property_details": "تفاصيل العقار"
 }
