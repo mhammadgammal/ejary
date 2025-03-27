@@ -25,4 +25,7 @@ abstract class AppIcons {
   static const String phone = 'assets/icons/phone.svg';
   static const String plus = 'assets/icons/plus.svg';
   static const String floppyDisk = 'assets/icons/floppy_disk.svg';
+  static const String homeModernIc = 'assets/icons/home_modern.svg';
+  static const String buildingIc = 'assets/icons/building.svg';
+  static const String streetSign = 'assets/icons/street_sign.svg';
 }
