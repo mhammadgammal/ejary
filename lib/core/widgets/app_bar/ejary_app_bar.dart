@@ -21,10 +21,10 @@ class EjaryAppBar extends StatelessWidget implements PreferredSizeWidget {
         return Container(
           height: 95.0.h,
           color: AppColors.primary100,
+          padding: EdgeInsetsDirectional.only(start: 30.0.w, end: 50.0.w),
           child: Row(
             children: [
-              SizedBox(
-                width: 525.w,
+              Expanded(
                 child: ListView.separated(
                   scrollDirection: Axis.horizontal,
                   itemBuilder:
