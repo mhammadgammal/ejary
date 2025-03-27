@@ -48,3 +48,4 @@ app.*.map.json
 /windows/flutter/generated_plugins.cmake
 /macos/Flutter/GeneratedPluginRegistrant.swift
 /test/widget_test.dart
+/devtools_options.yaml
