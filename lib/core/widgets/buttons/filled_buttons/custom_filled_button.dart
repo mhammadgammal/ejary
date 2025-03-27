@@ -1,5 +1,4 @@
 import 'package:ejary/core/theme/app_color.dart';
-import 'package:ejary/core/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -10,6 +9,7 @@ class CustomFilledButton extends StatelessWidget {
     this.width,
     this.height,
     required this.title,
+    this.titleColor,
     this.icon,
     required this.onPressed,
     this.disabled = false,
@@ -17,18 +17,23 @@ class CustomFilledButton extends StatelessWidget {
     this.fontSize = 16,
     this.padding,
     this.margin,
+    this.fontWeight,
+    this.radius = 8.0,
   });
 
   final double? width;
   final double? height;
   final String title;
+  final Color? titleColor;
   final Widget? icon;
   final void Function() onPressed;
   final bool disabled;
   final Color? fillColor;
   final double fontSize;
+  final FontWeight? fontWeight;
   final EdgeInsetsGeometry? padding;
   final EdgeInsetsGeometry? margin;
+  final double radius;
 
   @override
   Widget build(BuildContext context) {
@@ -45,13 +50,17 @@ class CustomFilledButton extends StatelessWidget {
           ),
           shape: WidgetStatePropertyAll(
             RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(AppTheme.appRadius),
+              borderRadius: BorderRadius.circular(radius.r),
             ),
           ),
         ),
         label: Text(
           title,
-          style: GoogleFonts.cairo(color: Colors.white, fontSize: fontSize.sp),
+          style: GoogleFonts.cairo(
+            color: titleColor ?? Colors.white,
+            fontSize: fontSize.sp,
+            fontWeight: fontWeight ?? FontWeight.normal,
+          ),
         ),
         icon: icon,
         iconAlignment: IconAlignment.end,
