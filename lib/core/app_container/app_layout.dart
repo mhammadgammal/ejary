@@ -1,7 +1,8 @@
 import 'package:ejary/core/app_container/cubit/app_cubit.dart';
 import 'package:ejary/core/widgets/app_bar/ejary_app_bar.dart';
-import 'package:ejary/features/alarms/alarms_screen.dart';
-import 'package:ejary/features/home/home_screen.dart';
+import 'package:ejary/features/alarms/navigator/alarms_navigation.dart';
+import 'package:ejary/features/home/navigator/home_navigator.dart';
+import 'package:ejary/features/settings/navigator/settings_navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -18,10 +19,10 @@ class AppLayout extends StatelessWidget {
           body: IndexedStack(
             index: cubit.selectedIndex,
             children: [
-              HomeScreen(),
-              AlarmsScreen(),
-              AlarmsScreen(),
-              AlarmsScreen(),
+              HomeNavigator(),
+              AlarmsNavigation(),
+              AlarmsNavigation(),
+              SettingsNavigator(),
             ],
           ),
         );
