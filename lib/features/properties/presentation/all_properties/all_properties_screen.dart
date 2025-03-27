@@ -29,23 +29,24 @@ class AllPropertiesScreen extends StatelessWidget {
                 fit: FlexFit.loose,
                 child: Padding(
                   padding: EdgeInsetsDirectional.only(
-                    start: 00.0.w,
                     end: 10.0.w,
                   ),
                   child: GridView.builder(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 4,
-                      childAspectRatio: 1,
-                      crossAxisSpacing: 20.0,
-                      mainAxisSpacing: 20.0,
+                      childAspectRatio: 1.15,
+                      crossAxisSpacing: 0.0,
+                      mainAxisSpacing: 10.0,
                     ),
                     addRepaintBoundaries: true,
                     padding: EdgeInsets.zero,
                     itemBuilder:
                         (context, index) => SizedBox(
-                          width: 248.w,
+                          width: 250.w,
                           height: 323.h,
-                          child: PropertyItem(),
+                          child: PropertyItem(
+                            index: index,
+                          ),
                         ),
                     itemCount: 10,
                   ),
