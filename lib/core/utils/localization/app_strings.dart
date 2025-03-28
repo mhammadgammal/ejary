@@ -102,5 +102,7 @@ abstract final class AppStrings {
   static const String districtName = "district_name";
   static const String enter = 'enter';
   static const String saveData = 'save_data';
+
+  static const String addPropertyImage = 'add_property_image';
   //#endregion
 }

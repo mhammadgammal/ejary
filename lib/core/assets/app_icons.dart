@@ -28,4 +28,6 @@ abstract class AppIcons {
   static const String homeModernIc = 'assets/icons/home_modern.svg';
   static const String buildingIc = 'assets/icons/building.svg';
   static const String streetSign = 'assets/icons/street_sign.svg';
+  static const String picture = 'assets/icons/picture.svg';
+  static const String pencil = 'assets/icons/pencil.svg';
 }
