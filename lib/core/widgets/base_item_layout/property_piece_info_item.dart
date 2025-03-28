@@ -18,14 +18,15 @@ class PropertyPieceInfoItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: 70.0.w,
-      height: 70.0.h,
+      height: 30.0.h,
       child: Card(
         color: AppColors.background50,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             SvgPicture.asset(infoIconPath, width: 24.0.w, height: 24.0.h),
-            SizedBox(height: 5.0),
+            // SizedBox(height: 20.0),
             Text(
               infoTitle,
               maxLines: 1,

@@ -1,13 +1,16 @@
+import 'package:ejary/core/assets/app_icons.dart';
 import 'package:ejary/core/theme/app_color.dart';
 import 'package:ejary/core/utils/extensions/string_extensions.dart';
 import 'package:ejary/core/utils/localization/app_strings.dart';
+import 'package:ejary/core/widgets/base_item_layout/domain/base_property_entity.dart';
+import 'package:ejary/core/widgets/base_item_layout/domain/base_property_piece_info_entity.dart';
 import 'package:ejary/features/properties/presentation/all_properties/cubit/all_properties_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'widgets/property_item.dart';
+import '../../../../core/widgets/base_item_layout/property_item.dart';
 
 class AllPropertiesScreen extends StatelessWidget {
   const AllPropertiesScreen({super.key});
@@ -28,9 +31,7 @@ class AllPropertiesScreen extends StatelessWidget {
               Flexible(
                 fit: FlexFit.loose,
                 child: Padding(
-                  padding: EdgeInsetsDirectional.only(
-                    end: 10.0.w,
-                  ),
+                  padding: EdgeInsetsDirectional.only(end: 10.0.w),
                   child: GridView.builder(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 4,
@@ -43,7 +44,27 @@ class AllPropertiesScreen extends StatelessWidget {
                           width: 250.w,
                           height: 350.h,
                           child: PropertyItem(
-                            index: index,
+                            property: BasePropertyEntity(
+                              id: 1,
+                              imagePath:
+                                  "C:\\Users\\m7ame\\OneDrive\\Pictures\\WallPaper\\5IKmku.jpg",
+                              detailsButtonTitle: AppStrings.propertyDetails,
+                              propertyInfo: [
+                                BasePropertyPieceInfoEntity(
+                                  infoIconPath: AppIcons.buildingIc,
+                                  infoTitle: 'رقم 12',
+                                ),
+                                BasePropertyPieceInfoEntity(
+                                  infoIconPath: AppIcons.streetSign,
+                                  infoTitle: "حي المملكة",
+                                ),
+                                BasePropertyPieceInfoEntity(
+                                  infoIconPath: AppIcons.homeModernIc,
+                                  infoTitle: '5 شقق',
+                                ),
+                              ],
+                            ),
+                            onPropertyPressed: () {},
                           ),
                         ),
                     itemCount: 10,

@@ -12,7 +12,7 @@ class PropertyPicture extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 232.w,
-      height: 159.h,
+      height: 170.h,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8.0),
         image: DecorationImage(
