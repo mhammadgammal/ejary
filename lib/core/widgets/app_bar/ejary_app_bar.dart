@@ -58,6 +58,7 @@ class EjaryAppBar extends StatelessWidget implements PreferredSizeWidget {
                   inputType: TextInputType.text,
                   onChanged: (value) {},
                   onSubmit: (_) {},
+                  fillColor: AppColors.background50,
                   suffixIcon: IconButton(
                     onPressed: () {
                       if (cubit.searchController.text.isNotEmpty) {

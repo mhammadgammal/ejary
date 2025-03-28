@@ -1,6 +1,7 @@
 import 'package:ejary/core/theme/app_color.dart';
 import 'package:ejary/core/theme/app_theme.dart';
 import 'package:flutter/material.dart';
+
 class AppTextFormField extends StatefulWidget {
   const AppTextFormField({
     super.key,
@@ -24,6 +25,7 @@ class AppTextFormField extends StatefulWidget {
     this.focusNode,
     this.onSubmit,
     this.maxLength,
+    this.fillColor = AppColors.background100,
   });
 
   final TextEditingController controller;
@@ -45,6 +47,7 @@ class AppTextFormField extends StatefulWidget {
   final Color? iconColor;
   final Color? cursorColor;
   final int? maxLength;
+  final Color fillColor;
   final void Function(String?)? onSubmit;
 
   @override
@@ -64,14 +67,15 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
       child: TextFormField(
         controller: widget.controller,
         keyboardType: widget.inputType,
-        style: AppTheme.getTextFormFieldTextStyle(),
-        decoration: AppTheme.getTextFieldDecoration(
+        style: _getTextFormFieldTextStyle(),
+        decoration: _getTextFieldDecoration(
           context,
           hintLabel: widget.hintLabel,
           hintColor: widget.hintColor,
           icon: widget.icon,
           iconColor: widget.iconColor,
           suffixIcon: widget.suffixIcon,
+          fillColor: widget.fillColor,
         ),
         textInputAction: widget.inputAction,
         focusNode: widget.focusNode,
@@ -88,4 +92,49 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
       ),
     );
   }
+
+  static TextStyle _getTextFormFieldTextStyle({Color? textFieldTextColor}) =>
+      TextStyle(color: textFieldTextColor ?? (AppColors.black));
+
+  InputDecoration _getTextFieldDecoration(
+    context, {
+    String? hintLabel,
+    Widget? icon,
+    IconButton? suffixIcon,
+    Color? hintColor,
+    Color? iconColor,
+    required Color fillColor,
+  }) => InputDecoration(
+    // labelText: widget.fieldLabel,
+    labelStyle: _getTextFormFieldTextStyle(),
+    hintText: hintLabel,
+    hintStyle: TextStyle(
+      color: hintColor ?? Theme.of(context).textTheme.bodyMedium!.color,
+    ),
+    prefixIcon: icon,
+    suffixIcon: suffixIcon,
+    prefixIconColor: iconColor,
+    fillColor: fillColor,
+    filled: true,
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(AppTheme.appRadius),
+      borderSide: BorderSide(color: AppColors.gray50, width: 1.5),
+    ),
+    enabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(AppTheme.appRadius),
+      borderSide: BorderSide(color: AppColors.gray50, width: 1.5),
+    ),
+    disabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(AppTheme.appRadius),
+      borderSide: BorderSide(color: AppColors.gray50, width: 1.5),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(AppTheme.appRadius),
+      borderSide: BorderSide(
+        color: AppColors.gray50,
+        style: BorderStyle.solid,
+        width: 3.0,
+      ),
+    ),
+  );
 }
