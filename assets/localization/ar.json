@@ -97,5 +97,6 @@
   "property_no": "رقم العقار أو المبني",
   "district_name": "إسم الحي",
   "enter": "ادخل",
-  "save_data": "حفظ البيانات"
+  "save_data": "حفظ البيانات",
+  "add_property_image": "أضف صوره للعقار من هنا"
 }
