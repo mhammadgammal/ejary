@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:ejary/core/assets/app_icons.dart';
 import 'package:ejary/core/theme/app_color.dart';
 import 'package:ejary/core/widgets/image_picker/cubit/image_picker_cubit.dart';
@@ -18,8 +20,11 @@ class ImagePicker extends StatelessWidget {
       create: (context) => ImagePickerCubit(),
       child: BlocBuilder<ImagePickerCubit, ImagePickerState>(
         builder: (context, state) {
+          var cubit = ImagePickerCubit.get(context);
           return GestureDetector(
-            onTap: () {},
+            onTap: () {
+              cubit.pickProfilePic();
+            },
             child: Padding(
               padding: const EdgeInsets.symmetric(
                 vertical: 10.0,
@@ -30,14 +35,28 @@ class ImagePicker extends StatelessWidget {
                   SizedBox(
                     width: 264.w,
                     height: 285.h,
-                    child: Card(
-                      margin: EdgeInsets.zero,
-                      child: SvgPicture.asset(
-                        AppIcons.picture,
-                        width: 48.0.w,
-                        height: 48.0.h,
-                      ),
-                    ),
+                    child:
+                        cubit.imagePath.isEmpty
+                            ? Card(
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 108.0.w,
+                                ),
+                                child: SvgPicture.asset(
+                                  AppIcons.picture,
+                                  width: 48.0.w,
+                                  height: 48.0.h,
+                                ),
+                              ),
+                            )
+                            : Container(
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: FileImage(File(cubit.imagePath)),
+                                  fit: BoxFit.fitHeight,
+                                ),
+                              ),
+                            ),
                   ),
                   SizedBox(height: 10.0.h),
                   Row(
@@ -48,7 +67,6 @@ class ImagePicker extends StatelessWidget {
                         width: 24.0.w,
                         height: 24.0.h,
                       ),
-
                       Text(
                         title,
                         style: GoogleFonts.cairo(

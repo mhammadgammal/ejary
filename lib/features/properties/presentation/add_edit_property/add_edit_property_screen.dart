@@ -84,8 +84,8 @@ class AddEditPropertyScreen extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    width: 264.w,
-                    height: 345.h,
+                    width: 280.w,
+                    height: 355.h,
                     child: ImagePicker(
                       title: AppStrings.addPropertyImage.tr(context),
                     ),
