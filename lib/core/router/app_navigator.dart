@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart' show BuildContext, Navigator;
 
 abstract class AppNavigator {
-  static Future navigateTo(BuildContext context, String routeName) async =>
-      Navigator.pushNamed(context, routeName);
+  static Future navigateTo(
+    BuildContext context,
+    String routeName, {
+    Map<String, dynamic>? arguments,
+  }) async => Navigator.pushNamed(context, routeName, arguments: arguments);
 
   static Future navigateAndFinishAll(
     BuildContext context,

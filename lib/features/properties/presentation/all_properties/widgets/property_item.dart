@@ -1,4 +1,6 @@
 import 'package:ejary/core/assets/app_icons.dart';
+import 'package:ejary/core/router/app_navigator.dart';
+import 'package:ejary/core/router/route_keys.dart';
 import 'package:ejary/core/theme/app_color.dart';
 import 'package:ejary/core/utils/extensions/string_extensions.dart';
 import 'package:ejary/core/utils/localization/app_strings.dart';
@@ -70,7 +72,13 @@ class PropertyItem extends StatelessWidget {
           fillColor: AppColors.primary100,
           fontSize: 20.0,
           fontWeight: FontWeight.w700,
-          onPressed: () {},
+          onPressed: () {
+            AppNavigator.navigateTo(
+              context,
+              RouteKeys.allApartments,
+              arguments: {'property_id': index},
+            );
+          },
         ),
       ],
     );
