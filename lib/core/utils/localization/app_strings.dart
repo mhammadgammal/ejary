@@ -90,14 +90,12 @@ abstract final class AppStrings {
   static const String wrongCredentials = 'credentials_wrong';
   static const String invalidOtp = 'otp_invalid';
   static const String alarms = 'alarms';
-
   static const String addProperty = 'add_property';
-
   static const String searchHint = 'search_hint';
-
   static const String allProperties = 'all_properties';
   static const String availableProperties = 'available_properties';
-
   static const String propertyDetails = 'property_details';
+  static const String accountSettings = 'account_settings';
+  static const String saveChanges = 'save_changes';
   //#endregion
 }

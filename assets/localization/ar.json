@@ -91,5 +91,7 @@
   "search_hint": "ابحث هنا برقم الهاتف",
   "all_properties": "العقارات",
   "available_properties": "العقارات المتاحه",
-  "property_details": "تفاصيل العقار"
+  "property_details": "تفاصيل العقار",
+  "account_settings": "إعدادات الحساب",
+  "save_changes": "حفظ التعديلات"
 }

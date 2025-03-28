@@ -41,5 +41,7 @@
   "add_property": "Add Property",
   "search_hint": "Search here by phone number",
   "all_properties": "All Properties",
-  "property_details": "Property Details"
+  "property_details": "Property Details",
+  "account_settings": "Account Settings",
+  "save_changes": "Save Changes"
 }
