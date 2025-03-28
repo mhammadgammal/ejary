@@ -63,6 +63,7 @@ class PropertyItem extends StatelessWidget {
             ),
           ),
         ),
+        SizedBox(height: 20.0.h),
         CustomFilledButtonWithArrowIcon(
           width: 248.w,
           title: AppStrings.propertyDetails.tr(context),

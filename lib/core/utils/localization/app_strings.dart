@@ -97,5 +97,10 @@ abstract final class AppStrings {
   static const String propertyDetails = 'property_details';
   static const String accountSettings = 'account_settings';
   static const String saveChanges = 'save_changes';
+
+  static const String propertyNo = "Property_no";
+  static const String districtName = "district_name";
+  static const String enter = 'enter';
+  static const String saveData = 'save_data';
   //#endregion
 }

@@ -43,5 +43,8 @@
   "all_properties": "All Properties",
   "property_details": "Property Details",
   "account_settings": "Account Settings",
-  "save_changes": "Save Changes"
+  "save_changes": "Save Changes",
+  "property_no": "Property Number",
+  "district_name": "District Name",
+  "enter": "Enter"
 }

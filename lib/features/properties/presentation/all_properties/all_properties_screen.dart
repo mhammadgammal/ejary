@@ -20,7 +20,7 @@ class AllPropertiesScreen extends StatelessWidget {
         builder: (context, state) {
           var cubit = AllPropertiesCubit.get(context);
           return Column(
-            mainAxisSize: MainAxisSize.min,
+            mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               _propertiesSummaryHeader(context, cubit.availableProperties),
@@ -34,16 +34,14 @@ class AllPropertiesScreen extends StatelessWidget {
                   child: GridView.builder(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 4,
-                      childAspectRatio: 1.15,
-                      crossAxisSpacing: 0.0,
-                      mainAxisSpacing: 10.0,
+                      childAspectRatio: 0.9,
                     ),
                     addRepaintBoundaries: true,
                     padding: EdgeInsets.zero,
                     itemBuilder:
                         (context, index) => SizedBox(
                           width: 250.w,
-                          height: 323.h,
+                          height: 350.h,
                           child: PropertyItem(
                             index: index,
                           ),

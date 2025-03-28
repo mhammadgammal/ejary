@@ -93,5 +93,8 @@
   "available_properties": "العقارات المتاحه",
   "property_details": "تفاصيل العقار",
   "account_settings": "إعدادات الحساب",
-  "save_changes": "حفظ التعديلات"
+  "save_changes": "حفظ التعديلات",
+  "property_no": "رقم العقار أو المبني",
+  "district_name": "إسم الحي",
+  "enter": "ادخل"
 }
