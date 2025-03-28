@@ -11,7 +11,7 @@ class CustomFilledButtonWithSaveIcon extends StatelessWidget {
     required this.onPressed,
     this.width,
     this.height,
-    required this.disabled,
+    this.disabled = false,
     this.fillColor,
     required this.fontSize,
     this.padding,
