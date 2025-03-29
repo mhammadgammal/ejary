@@ -95,10 +95,13 @@ class AllApartmentsScreen extends StatelessWidget {
     padding: EdgeInsetsDirectional.only(start: 45.0.w, end: 70.0.w),
     child: Row(
       children: [
-        SvgPicture.asset(
-          AppIcons.greenArrowRight,
-          width: 48.0.w,
-          height: 48.0.h,
+        IconButton(
+          onPressed: () => Navigator.pop(context),
+          icon: SvgPicture.asset(
+            AppIcons.greenArrowRight,
+            width: 48.0.w,
+            height: 48.0.h,
+          ),
         ),
         SizedBox(width: 10.0.w),
         RichText(

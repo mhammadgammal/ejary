@@ -1,3 +1,4 @@
+import 'package:ejary/core/assets/app_icons.dart';
 import 'package:ejary/core/theme/app_color.dart';
 import 'package:ejary/core/utils/extensions/string_extensions.dart';
 import 'package:ejary/core/utils/localization/app_strings.dart';
@@ -8,6 +9,7 @@ import 'package:ejary/core/widgets/text_form_field/columned_text_form_field.dart
 import 'package:ejary/features/apartments/presentation/add_edit_apartment/widgets/attach_file_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AddEditApartmentScreen extends StatelessWidget {
@@ -25,13 +27,25 @@ class AddEditApartmentScreen extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Text(
-            AppStrings.addApartment.tr(context),
-            style: GoogleFonts.tajawal(
-              fontSize: 40.0.sp,
-              fontWeight: FontWeight.w700,
-              color: AppColors.gray200,
-            ),
+          Row(
+            children: [
+              IconButton(
+                onPressed: () => Navigator.pop(context),
+                icon: SvgPicture.asset(
+                  AppIcons.greenArrowRight,
+                  width: 48.0.w,
+                  height: 48.0.h,
+                ),
+              ),
+              Text(
+                AppStrings.addApartment.tr(context),
+                style: GoogleFonts.tajawal(
+                  fontSize: 40.0.sp,
+                  fontWeight: FontWeight.w700,
+                  color: AppColors.gray200,
+                ),
+              ),
+            ],
           ),
           SizedBox(height: 20.0.h),
           Expanded(
