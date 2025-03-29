@@ -4,6 +4,7 @@ import 'package:ejary/core/theme/app_color.dart';
 import 'package:ejary/core/utils/extensions/string_extensions.dart';
 import 'package:ejary/core/utils/localization/app_strings.dart';
 import 'package:ejary/core/widgets/dialog_helper/dialog_helper.dart';
+import 'package:ejary/core/widgets/image_picker/cubit/image_picker_cubit.dart';
 import 'package:ejary/features/properties/data/mapper/property_mapper.dart';
 import 'package:ejary/features/properties/presentation/all_properties/cubit/all_properties_cubit.dart';
 import 'package:ejary/features/properties/presentation/all_properties/widgets/empty_properties_state.dart';
@@ -19,8 +20,13 @@ class AllPropertiesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AllPropertiesCubit()..getAllProperties(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => AllPropertiesCubit()..getAllProperties(),
+        ),
+        BlocProvider(create: (context) => ImagePickerCubit()),
+      ],
       child: BlocConsumer<AllPropertiesCubit, AllPropertiesState>(
         listener: (context, state) {
           if (state is GetAllPropertiesErrorState) {
