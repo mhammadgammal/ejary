@@ -62,7 +62,8 @@ class _HomeNavigatorState extends State<HomeNavigator> {
                               ..selectedPropertyNumber = propertyNumber
                               ..selectedPropertyDistrict = propertyDistrict
                               // ..rentedApartmentModel = apartment
-                              ..isEditMode = apartment != null,
+                              ..isEditMode = apartment != null
+                              ..loadApartmentData(apartment),
                   ),
                   BlocProvider(create: (_) => ImagePickerCubit()),
                   BlocProvider(create: (_) => AttachFileCubit()),

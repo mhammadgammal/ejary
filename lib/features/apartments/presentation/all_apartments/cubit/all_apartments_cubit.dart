@@ -1,5 +1,6 @@
 import 'package:ejary/core/helpers/cache/database_helper/db_helper.dart';
 import 'package:ejary/core/helpers/cache/database_helper/table_name.dart';
+import 'package:ejary/core/utils/extensions/string_extensions.dart';
 import 'package:ejary/features/apartments/data/model/apartment_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
@@ -22,13 +23,17 @@ class AllApartmentsCubit extends Cubit<AllApartmentsState> {
   Future<void> getAllApartments() async {
     emit(GetAllApartmentsLoadingState());
     try {
-      apartments = await DbHelper.getDataWhere(
+      final apartmentsResponse = await DbHelper.getDataWhere(
         TableName.apartmentTable,
-        ApartmentModel.fromJson,
         where: 'property_id = ?',
         whereArgs: [selectedPropertyId],
       );
-
+      'apartments count: ${apartmentsResponse.length}'.logger();
+      apartments =
+          apartmentsResponse
+              .map((apartment) => ApartmentModel.fromJson(apartment))
+              .toList();
+      'apartments: ${apartments!.length}'.logger();
       totalApartments = apartments!.length;
       emit(GetAllApartmentsSuccessState());
     } catch (e) {

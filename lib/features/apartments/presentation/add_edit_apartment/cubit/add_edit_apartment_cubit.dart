@@ -62,23 +62,21 @@ class AddEditApartmentCubit extends Cubit<AddEditApartmentState> {
     emit(AddRentedApartmentSuccessState());
   }
 
-  void loadApartmentData() {
-    // renterNameController.text = rentedApartmentModel.rent.renterName;
-    // rentTypeController.text = rentedApartmentModel.rent.rentType;
-    // totalRentValueController.text =
-    //     rentedApartmentModel.rent.totalRentValue.toString();
-    // paidValueController.text =
-    //     rentedApartmentModel.rent.paidRentValue.toString();
-    // remainingValueController.text =
-    //     rentedApartmentModel.rent.remainingRentValue.toString();
-    // contractStartDateController.text =
-    //     rentedApartmentModel.rent.contractStartDate;
-    // contractEndDateController.text = rentedApartmentModel.rent.contractEndDate;
-    // phoneNumberController.text = rentedApartmentModel.rent.renterPhoneNumber;
-    // idNumberController.text = rentedApartmentModel.rent.renterIdNumber;
-    // buildingNumberController.text =
-    //     rentedApartmentModel.apartment.propertyNumber.toString();
-    // floorApartmentNumberController.text =
-    //     rentedApartmentModel.apartment.floorApartmentNumber.toString();
+  void loadApartmentData(ApartmentModel? apartmentModel) {
+    if (apartmentModel != null) {
+      renterNameController.text = apartmentModel.renterName;
+      rentTypeController.text = apartmentModel.rentType;
+      totalRentValueController.text = apartmentModel.totalRentValue.toString();
+      paidValueController.text = apartmentModel.paidRentValue.toString();
+      remainingValueController.text =
+          apartmentModel.remainingRentValue.toString();
+      contractStartDateController.text = apartmentModel.contractStartDate;
+      contractEndDateController.text = apartmentModel.contractEndDate;
+      phoneNumberController.text = apartmentModel.renterPhoneNumber;
+      idNumberController.text = apartmentModel.renterIdNumber;
+      buildingNumberController.text = apartmentModel.propertyNumber.toString();
+      floorApartmentNumberController.text =
+          apartmentModel.floorApartmentNumber.toString();
+    }
   }
 }

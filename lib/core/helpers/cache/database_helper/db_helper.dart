@@ -246,9 +246,8 @@ class DbHelper {
     }
   }
 
-  static Future<List<T>> getDataWhere<T>(
-    String tableName,
-    T Function(Map<String, dynamic>) fromJson, {
+  static Future<List<Map<String, dynamic>>> getDataWhere(
+    String tableName, {
     String? where,
     List<dynamic>? whereArgs,
   }) async {
@@ -259,8 +258,8 @@ class DbHelper {
         where: where,
         whereArgs: whereArgs,
       );
-      final List<T> dataList = maps.map((map) => fromJson(map)).toList();
-      return dataList;
+      'DbHelper: getDataWhere: maps = $maps'.logger();
+      return maps;
     } catch (e) {
       log('Error retrieving data: $e');
       // return FailureDataResponse('Error retrieving data: $e');

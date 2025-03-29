@@ -14,6 +14,7 @@ class ApartmentModel {
   final String contractStartDate;
   final String contractEndDate;
   final String contractPicturePath;
+
   ApartmentModel({
     required this.id,
     required this.propertyId,
@@ -33,21 +34,21 @@ class ApartmentModel {
   });
 
   factory ApartmentModel.fromJson(Map<String, dynamic> json) => ApartmentModel(
-    id: json['id'] as int,
-    propertyId: json['property_id'] as int,
-    propertyNumber: json['property_number'] as int,
-    floorApartmentNumber: json['floor_apartment_number'] as int,
-    picturePath: json['apartment_picture_path'] as String,
-    renterName: json['renter_name'] as String,
-    renterPhoneNumber: json['renter_phone_number'] as String,
-    rentType: json['rent_type'] as String,
-    totalRentValue: json['total_rent_value'] as int,
-    paidRentValue: json['paid_rent_value'] as int,
-    remainingRentValue: json['remaining_rent_value'] as int,
-    contractStartDate: json['contract_start_date'] as String,
-    contractEndDate: json['contract_end_date'] as String,
-    contractPicturePath: json['contract_picture_path'] as String,
-    renterIdNumber: json['renter_id_number'] as String,
+    id: json['id'] ?? -1,
+    propertyId: json['property_id'] ?? -1,
+    propertyNumber: json['property_number'] ?? -1,
+    floorApartmentNumber: json['floor_apartment_number'] ?? -1,
+    picturePath: json['apartment_picture_path'] ?? '',
+    renterName: json['renter_name'] ?? '',
+    renterPhoneNumber: json['renter_phone_number'] ?? '',
+    rentType: json['rent_type'] ?? '',
+    totalRentValue: json['total_rent_value'] ?? -1,
+    paidRentValue: json['paid_rent_value'] ?? -1,
+    remainingRentValue: json['remaining_rent_value'] ?? -1,
+    contractStartDate: json['contract_start_date'] ?? '',
+    contractEndDate: json['contract_end_date'] ?? '',
+    contractPicturePath: json['contract_picture_path'] ?? '',
+    renterIdNumber: json['renter_id_number'] ?? '',
   );
 
   Map<String, dynamic> toJson() => {

@@ -96,7 +96,20 @@ class AllApartmentsScreen extends StatelessWidget {
                             property: ApartmentMapper.mapApartmentModelToEntity(
                               cubit.apartments![index],
                             ),
-                            onPropertyPressed: (int) {},
+                            onPropertyPressed: (_) {
+                              AppNavigator.navigateTo(
+                                context,
+                                RouteKeys.addEditApartment,
+                                arguments: {
+                                  'property_id': cubit.selectedPropertyId,
+                                  'property_number':
+                                      cubit.selectedPropertyNumber,
+                                  'property_district':
+                                      cubit.selectedPropertyDistrict,
+                                  'apartment': cubit.apartments![index],
+                                },
+                              ).then((_) => cubit.getAllApartments());
+                            },
                           ),
                         ),
                     itemCount:
