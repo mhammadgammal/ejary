@@ -3,6 +3,7 @@ import 'package:ejary/core/assets/app_icons.dart';
 import 'package:ejary/core/theme/app_color.dart';
 import 'package:ejary/core/utils/extensions/string_extensions.dart';
 import 'package:ejary/core/utils/localization/app_strings.dart';
+import 'package:ejary/core/widgets/buttons/custom_outlined_button_with_border.dart';
 import 'package:ejary/core/widgets/buttons/filled_buttons/custom_filled_button_with_save_icon.dart';
 import 'package:ejary/core/widgets/date_picker.dart';
 import 'package:ejary/core/widgets/dialog_helper/dialog_helper.dart';
@@ -71,6 +72,31 @@ class AddEditApartmentScreen extends StatelessWidget {
                       fontSize: 40.0.sp,
                       fontWeight: FontWeight.w700,
                       color: AppColors.gray200,
+                    ),
+                  ),
+                  Visibility(
+                    visible: AddEditApartmentCubit
+                        .get(context)
+                        .isEditMode,
+                    child: CustomOutlinedButtonWithBorder(
+                      width: 150.0.w,
+                      onPressed: () {
+                        DialogHelper.deleteDialog(
+                          context,
+                              () {
+                            AddEditApartmentCubit
+                                .get(context)
+                                .deleteApartmenmt();
+                          },
+                              () {
+                            Navigator.of(context).pop();
+                          },
+                        );
+                      },
+                      title: 'Delete apartment'.tr(context),
+                      titleColor: AppColors.failure,
+                      borderColor: AppColors.failure,
+                      icon: SvgPicture.asset(AppIcons.deleteIc),
                     ),
                   ),
                 ],

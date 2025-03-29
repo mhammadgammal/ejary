@@ -105,4 +105,6 @@ class AddEditApartmentCubit extends Cubit<AddEditApartmentState> {
 
     emit(UpdateRentedApartmentSuccessState());
   }
+
+  void deleteApartmenmt() {}
 }
