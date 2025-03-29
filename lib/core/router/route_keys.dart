@@ -7,4 +7,5 @@ abstract class RouteKeys {
   static const String propertyDetails = '/property_details';
   static const String alarmDetails = '/alarm_details';
   static const String allApartments = '/all_apartments';
+  static const String addEditApartment = '/add_edit_apartment';
 }

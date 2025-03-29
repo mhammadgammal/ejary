@@ -1,4 +1,7 @@
 import 'package:ejary/core/router/route_keys.dart';
+import 'package:ejary/core/utils/extensions/string_extensions.dart';
+import 'package:ejary/features/apartments/presentation/add_edit_apartment/add_edit_apartment_screen.dart';
+import 'package:ejary/features/apartments/presentation/add_edit_apartment/cubit/add_edit_apartment_cubit.dart';
 import 'package:ejary/features/apartments/presentation/all_apartments/all_apartments_screen.dart';
 import 'package:ejary/features/apartments/presentation/all_apartments/cubit/all_apartments_cubit.dart';
 import 'package:ejary/features/home/home_screen.dart';
@@ -23,6 +26,7 @@ class _HomeNavigatorState extends State<HomeNavigator> {
         return MaterialPageRoute(
           settings: settings,
           builder: (BuildContext context) {
+            'navigator name: ${settings.name}'.logger();
             if (settings.name == RouteKeys.allApartments) {
               var args = settings.arguments as Map<String, dynamic>;
               var propertyId = args['property_id'];
@@ -35,6 +39,11 @@ class _HomeNavigatorState extends State<HomeNavigator> {
                           ..selectedPropertyNumber = 2
                           ..selectedPropertyDistrict = "حي المملكه",
                 child: AllApartmentsScreen(),
+              );
+            } else if (settings.name == RouteKeys.addEditApartment) {
+              return BlocProvider(
+                create: (_) => AddEditApartmentCubit(),
+                child: AddEditApartmentScreen(),
               );
             }
             return const HomeScreen();

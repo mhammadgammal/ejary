@@ -129,7 +129,9 @@ class AllApartmentsScreen extends StatelessWidget {
           width: 248.w,
           height: 48.h,
           title: AppStrings.addNewApartment.tr(context),
-          onPressed: () {},
+          onPressed: () {
+            AppNavigator.navigateTo(context, RouteKeys.addEditApartment);
+          },
         ),
       ],
     ),
