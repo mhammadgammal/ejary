@@ -30,4 +30,7 @@ abstract class AppIcons {
   static const String streetSign = 'assets/icons/street_sign.svg';
   static const String picture = 'assets/icons/photo.svg';
   static const String pencil = 'assets/icons/pencil.svg';
+  static const String greenArrowRight = 'assets/icons/arrow_right.svg';
+  static const String user = 'assets/icons/user.svg';
+  static const String payment = "assets/icons/hugeicons_payment.svg";
 }
