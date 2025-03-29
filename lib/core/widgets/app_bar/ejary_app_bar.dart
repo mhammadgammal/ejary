@@ -46,11 +46,11 @@ class EjaryAppBar extends StatelessWidget implements PreferredSizeWidget {
                 margin: EdgeInsetsDirectional.only(start: 150.0.w),
                 child: AppTextFormField(
                   hintLabel: AppStrings.searchHint.tr(context),
-                  hintColor: AppColors.background50,
+                  hintColor: AppColors.gray100,
                   icon: SvgPicture.asset(
                     AppIcons.searchIc,
                     colorFilter: ColorFilter.mode(
-                      AppColors.background50,
+                      AppColors.gray100,
                       BlendMode.srcIn,
                     ),
                   ),
@@ -74,7 +74,7 @@ class EjaryAppBar extends StatelessWidget implements PreferredSizeWidget {
                             ? SvgPicture.asset(
                               AppIcons.xIc,
                               colorFilter: ColorFilter.mode(
-                                AppColors.background50,
+                                AppColors.gray100,
                                 BlendMode.srcIn,
                               ),
                             )
