@@ -1,5 +1,6 @@
 import 'package:ejary/core/router/route_keys.dart';
 import 'package:ejary/core/utils/extensions/string_extensions.dart';
+import 'package:ejary/core/widgets/image_picker/cubit/image_picker_cubit.dart';
 import 'package:ejary/features/apartments/presentation/add_edit_apartment/add_edit_apartment_screen.dart';
 import 'package:ejary/features/apartments/presentation/add_edit_apartment/cubit/add_edit_apartment_cubit.dart';
 import 'package:ejary/features/apartments/presentation/all_apartments/all_apartments_screen.dart';
@@ -41,8 +42,11 @@ class _HomeNavigatorState extends State<HomeNavigator> {
                 child: AllApartmentsScreen(),
               );
             } else if (settings.name == RouteKeys.addEditApartment) {
-              return BlocProvider(
-                create: (_) => AddEditApartmentCubit(),
+              return MultiBlocProvider(
+                providers: [
+                  BlocProvider(create: (_) => AddEditApartmentCubit()),
+                  BlocProvider(create: (_) => ImagePickerCubit()),
+                ],
                 child: AddEditApartmentScreen(),
               );
             }
