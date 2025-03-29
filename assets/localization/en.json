@@ -64,5 +64,6 @@
   "contract_start_date": "Contract Start Date",
   "contract_end_date": "Contract End Date",
   "upload_contract": "Upload Contract",
-  "upload_picture": "Upload Picture"
+  "upload_picture": "Upload Picture",
+  "property_added_successfully": "Property added successfully"
 }

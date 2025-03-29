@@ -122,5 +122,6 @@
   "upload_contract": "إرفع العقد",
   "upload_picture": "صورة العقد",
   "No properties currently..add it from here": "لا توجد عقارات حاليا.. أضفها من هنا",
-  "add_property_here": "أضف عقار هنا"
+  "add_property_here": "أضف عقار هنا",
+  "property_added_successfully": "تم إضافة العقار بنجاح"
 }
