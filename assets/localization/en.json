@@ -48,5 +48,8 @@
   "district_name": "District Name",
   "enter": "Enter",
   "save_data": "Save Data",
-  "add_property_image": "Add Property Image"
+  "add_property_image": "Add Property Image",
+  "property_number": "Property Number",
+  "add_new_apartment": "Add new apartment",
+  "apartment_details": "Apartment Details"
 }

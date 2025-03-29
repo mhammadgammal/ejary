@@ -98,5 +98,9 @@
   "district_name": "إسم الحي",
   "enter": "ادخل",
   "save_data": "حفظ البيانات",
-  "add_property_image": "أضف صوره للعقار من هنا"
+  "add_property_image": "أضف صوره للعقار من هنا",
+  "property_number": "العقار رقم",
+  "add_new_apartment": "أضف شقه جديده",
+  "Number of apartments inside building": "عدد الشقق داخل العقار",
+  "apartment_details": "تفاصيل الشقه"
 }

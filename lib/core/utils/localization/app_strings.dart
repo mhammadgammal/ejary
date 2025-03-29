@@ -102,7 +102,9 @@ abstract final class AppStrings {
   static const String districtName = "district_name";
   static const String enter = 'enter';
   static const String saveData = 'save_data';
-
   static const String addPropertyImage = 'add_property_image';
+  static const String propertyNumber = 'property_number';
+  static const String addNewApartment = 'add_new_apartment';
+  static const String apartmentDetails = 'apartment_details';
   //#endregion
 }
