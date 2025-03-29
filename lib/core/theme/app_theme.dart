@@ -7,6 +7,6 @@ abstract class AppTheme {
 
   static final lightTheme = ThemeData(
     scaffoldBackgroundColor: AppColors.background50,
+    progressIndicatorTheme: ProgressIndicatorThemeData(year2023: false),
   );
-
 }
