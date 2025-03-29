@@ -19,6 +19,7 @@ class CustomFilledButton extends StatelessWidget {
     this.margin,
     this.fontWeight,
     this.radius = 8.0,
+    this.iconAlignment,
   });
 
   final double? width;
@@ -34,6 +35,7 @@ class CustomFilledButton extends StatelessWidget {
   final EdgeInsetsGeometry? padding;
   final EdgeInsetsGeometry? margin;
   final double radius;
+  final IconAlignment? iconAlignment;
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +65,7 @@ class CustomFilledButton extends StatelessWidget {
           ),
         ),
         icon: icon,
-        iconAlignment: IconAlignment.end,
+        iconAlignment: iconAlignment ?? IconAlignment.end,
       ),
     );
   }

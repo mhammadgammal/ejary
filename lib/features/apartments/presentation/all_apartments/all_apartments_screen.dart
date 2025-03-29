@@ -24,7 +24,6 @@ class AllApartmentsScreen extends StatelessWidget {
     return BlocBuilder<AllApartmentsCubit, AllApartmentsState>(
       builder: (context, state) {
         var cubit = AllApartmentsCubit.get(context);
-
         return Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -129,6 +128,12 @@ class AllApartmentsScreen extends StatelessWidget {
           width: 248.w,
           height: 48.h,
           title: AppStrings.addNewApartment.tr(context),
+          fillColor: AppColors.secondary,
+          icon: SvgPicture.asset(
+            AppIcons.plus,
+            colorFilter: ColorFilter.mode(AppColors.white, BlendMode.srcIn),
+          ),
+          iconAlignment: IconAlignment.start,
           onPressed: () {
             AppNavigator.navigateTo(context, RouteKeys.addEditApartment);
           },

@@ -17,7 +17,7 @@ class AddEditPropertyScreen extends StatelessWidget {
   const AddEditPropertyScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext buildContext) {
     return MultiBlocProvider(
       providers: [
         BlocProvider(

@@ -6,6 +6,7 @@ import 'package:ejary/features/apartments/presentation/add_edit_apartment/cubit/
 import 'package:ejary/features/apartments/presentation/all_apartments/all_apartments_screen.dart';
 import 'package:ejary/features/apartments/presentation/all_apartments/cubit/all_apartments_cubit.dart';
 import 'package:ejary/features/home/home_screen.dart';
+import 'package:ejary/features/properties/presentation/all_properties/cubit/all_properties_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -31,14 +32,16 @@ class _HomeNavigatorState extends State<HomeNavigator> {
             if (settings.name == RouteKeys.allApartments) {
               var args = settings.arguments as Map<String, dynamic>;
               var propertyId = args['property_id'];
+              var propertyNumber = args['property_number'];
+              var propertyDistrict = args['property_district'];
               return BlocProvider(
                 lazy: false,
                 create:
                     (context) =>
                         AllApartmentsCubit()
                           ..selectedPropertyId = propertyId
-                          ..selectedPropertyNumber = 2
-                          ..selectedPropertyDistrict = "حي المملكه",
+                          ..selectedPropertyNumber = propertyNumber
+                          ..selectedPropertyDistrict = propertyDistrict,
                 child: AllApartmentsScreen(),
               );
             } else if (settings.name == RouteKeys.addEditApartment) {
@@ -50,7 +53,16 @@ class _HomeNavigatorState extends State<HomeNavigator> {
                 child: AddEditApartmentScreen(),
               );
             }
-            return const HomeScreen();
+            return MultiBlocProvider(
+              providers: [
+                BlocProvider(
+                  lazy: false,
+                  create: (context) => AllPropertiesCubit()..getAllProperties(),
+                ),
+                BlocProvider(create: (context) => ImagePickerCubit()),
+              ],
+              child: HomeScreen(),
+            );
           },
         );
       },

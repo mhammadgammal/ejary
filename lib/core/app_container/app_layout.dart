@@ -17,17 +17,22 @@ class AppLayout extends StatelessWidget {
         var cubit = AppCubit.get(context);
         return Scaffold(
           appBar: EjaryAppBar(),
-          body: IndexedStack(
-            index: cubit.selectedIndex,
-            children: [
-              HomeNavigator(),
-              AddEditPropertyScreen(),
-              AlarmsNavigation(),
-              SettingsNavigator(),
-            ],
-          ),
+          body: _switchScreen(index: cubit.selectedIndex),
         );
       },
     );
+  }
+
+  _switchScreen({required int index}) {
+    switch (index) {
+      case 0:
+        return HomeNavigator();
+      case 1:
+        return const AddEditPropertyScreen();
+      case 2:
+        return const AlarmsNavigation();
+      case 3:
+        return const SettingsNavigator();
+    }
   }
 }

@@ -4,7 +4,6 @@ import 'package:ejary/core/theme/app_color.dart';
 import 'package:ejary/core/utils/extensions/string_extensions.dart';
 import 'package:ejary/core/utils/localization/app_strings.dart';
 import 'package:ejary/core/widgets/dialog_helper/dialog_helper.dart';
-import 'package:ejary/core/widgets/image_picker/cubit/image_picker_cubit.dart';
 import 'package:ejary/features/properties/data/mapper/property_mapper.dart';
 import 'package:ejary/features/properties/presentation/all_properties/cubit/all_properties_cubit.dart';
 import 'package:ejary/features/properties/presentation/all_properties/widgets/empty_properties_state.dart';
@@ -20,77 +19,71 @@ class AllPropertiesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => AllPropertiesCubit()..getAllProperties(),
-        ),
-        BlocProvider(create: (context) => ImagePickerCubit()),
-      ],
-      child: BlocConsumer<AllPropertiesCubit, AllPropertiesState>(
-        listener: (context, state) {
-          if (state is GetAllPropertiesErrorState) {
-            DialogHelper.showFailureDialog(context, state.message);
-          }
-        },
-        builder: (context, state) {
-          var cubit = AllPropertiesCubit.get(context);
-          return Column(
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              _propertiesSummaryHeader(context, cubit.availableProperties),
-              SizedBox(height: 20.0.h),
-              state is GetAllPropertiesLoadingState
-                  ? CircularProgressIndicator()
-                  : state is GetAllPropertiesSuccessState &&
-                      cubit.properties != null &&
-                      cubit.properties!.isEmpty
-                  ? Expanded(child: EmptyPropertiesState())
-                  : Flexible(
-                    fit: FlexFit.loose,
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.only(end: 10.0.w),
-                      child: GridView.builder(
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 4,
-                          childAspectRatio: 0.9,
-                        ),
-                        addRepaintBoundaries: true,
-                        padding: EdgeInsets.zero,
-                        itemBuilder:
-                            (context, index) => SizedBox(
-                              width: 250.w,
-                              height: 350.h,
-                              child: PropertyItem(
-                                property:
-                                    PropertyMapper.mapPropertyModelToEntity(
-                                      cubit.properties![index],
-                                    ),
-                                onPropertyPressed: (propertyId) {
-                                  AppNavigator.navigateTo(
-                                    context,
-                                    RouteKeys.allApartments,
-                                    arguments: {
-                                      'property_id':
-                                          cubit.properties![index].id,
-                                    },
-                                  );
-                                },
-                              ),
-                            ),
-                        itemCount:
-                            cubit.properties == null
-                                ? 0
-                                : cubit.properties!.length,
+    return BlocConsumer<AllPropertiesCubit, AllPropertiesState>(
+      listener: (context, state) {
+        if (state is GetAllPropertiesErrorState) {
+          DialogHelper.showFailureDialog(context, state.message);
+        }
+      },
+      builder: (context, state) {
+        var cubit = AllPropertiesCubit.get(context);
+        return Column(
+          mainAxisSize: MainAxisSize.max,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            _propertiesSummaryHeader(context, cubit.availableProperties),
+            SizedBox(height: 20.0.h),
+            state is GetAllPropertiesLoadingState
+                ? CircularProgressIndicator()
+                : state is GetAllPropertiesSuccessState &&
+                    cubit.properties != null &&
+                    cubit.properties!.isEmpty
+                ? Expanded(child: EmptyPropertiesState())
+                : Flexible(
+                  fit: FlexFit.loose,
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.only(end: 10.0.w),
+                    child: GridView.builder(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 4,
+                        childAspectRatio: 0.9,
                       ),
+                      addRepaintBoundaries: true,
+                      padding: EdgeInsets.zero,
+                      itemBuilder:
+                          (context, index) => SizedBox(
+                            width: 250.w,
+                            height: 350.h,
+                            child: PropertyItem(
+                              property: PropertyMapper.mapPropertyModelToEntity(
+                                cubit.properties![index],
+                              ),
+                              onPropertyPressed: (propertyId) {
+                                AppNavigator.navigateTo(
+                                  context,
+                                  RouteKeys.allApartments,
+                                  arguments: {
+                                    'property_id': cubit.properties![index].id,
+                                    'property_number':
+                                        cubit.properties![index].propertyNumber,
+                                    'property_district':
+                                        cubit.properties![index].districtName,
+                                  },
+                                );
+                              },
+                            ),
+                          ),
+                      itemCount:
+                          cubit.properties == null
+                              ? 0
+                              : cubit.properties!.length,
                     ),
                   ),
-            ],
-          );
-        },
-      ),
+                ),
+          ],
+        );
+      },
     );
   }
 
