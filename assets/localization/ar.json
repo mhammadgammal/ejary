@@ -102,5 +102,6 @@
   "property_number": "العقار رقم",
   "add_new_apartment": "أضف شقه جديده",
   "Number of apartments inside building": "عدد الشقق داخل العقار",
-  "apartment_details": "تفاصيل الشقه"
+  "apartment_details": "تفاصيل الشقه",
+  "add_apartment": "أضف شقه"
 }

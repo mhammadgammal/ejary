@@ -106,5 +106,6 @@ abstract final class AppStrings {
   static const String propertyNumber = 'property_number';
   static const String addNewApartment = 'add_new_apartment';
   static const String apartmentDetails = 'apartment_details';
+  static const String addApartment = 'add_apartment';
   //#endregion
 }
