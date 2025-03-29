@@ -2,6 +2,7 @@ class RentModel {
   final int id;
   final int apartmentId;
   final String renterName;
+  final String renterIdNumber;
   final String renterPhoneNumber;
   final String rentType;
   final int totalRentValue;
@@ -23,6 +24,7 @@ class RentModel {
     required this.contractStartDate,
     required this.contractEndDate,
     required this.picturePath,
+    required this.renterIdNumber,
   });
 
   factory RentModel.fromJson(Map<String, dynamic> json) => RentModel(
@@ -37,6 +39,7 @@ class RentModel {
     contractStartDate: json['contract_start_date'] as String,
     contractEndDate: json['contract_end_date'] as String,
     picturePath: json['picture_path'] as String,
+    renterIdNumber: json['renter_id_number'] as String,
   );
 
   Map<String, dynamic> toJson() => {
@@ -50,5 +53,6 @@ class RentModel {
     'contract_start_date': contractStartDate,
     'contract_end_date': contractEndDate,
     'picture_path': picturePath,
+    'renter_id_number': renterIdNumber,
   };
 }

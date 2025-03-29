@@ -57,7 +57,6 @@ class DbHelper {
     _createUserTable(db);
     _createPropertyTable(db);
     _createApartmentTable(db);
-    _createRentTable(db);
   }
 
   static void _createUserTable(Database db) async {
@@ -93,16 +92,6 @@ class DbHelper {
       property_number INTEGER NOT NULL,
       floor_apartment_number INTEGER NOT NULL,
       picture_path TEXT NOT NULL,
-      FOREIGN KEY (property_id) REFERENCES ${TableName.propertyTable}(id) ON DELETE CASCADE
-    );
-  """);
-  }
-
-  static void _createRentTable(Database db) async {
-    await db.execute("""
-    CREATE TABLE IF NOT EXISTS ${TableName.rentTable} (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      apartment_id INTEGER NOT NULL,
       renter_name VARCHAR(255) NOT NULL,
       renter_phone_number VARCHAR(255) NOT NULL,
       rent_type VARCHAR(255) NOT NULL,
@@ -111,8 +100,9 @@ class DbHelper {
       remaining_rent_value INTEGER NOT NULL,
       contract_start_date TEXT NOT NULL,
       contract_end_date TEXT NOT NULL,
-      picture_path TEXT NOT NULL,
-      FOREIGN KEY (apartment_id) REFERENCES ${TableName.apartmentTable}(id) ON DELETE CASCADE
+      contract_picture_path TEXT NOT NULL,
+      renter_id_number TEXT NOT NULL,
+      FOREIGN KEY (property_id) REFERENCES ${TableName.propertyTable}(id) ON DELETE CASCADE
     );
   """);
   }
@@ -263,6 +253,7 @@ class DbHelper {
     List<dynamic>? whereArgs,
   }) async {
     try {
+      'DbHelper: getDataWhere: where = $where, whereArgs = $whereArgs'.logger();
       final List<Map<String, dynamic>> maps = await sl<Database>().query(
         tableName,
         where: where,

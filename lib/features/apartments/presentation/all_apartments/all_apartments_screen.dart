@@ -4,10 +4,9 @@ import 'package:ejary/core/router/route_keys.dart';
 import 'package:ejary/core/theme/app_color.dart';
 import 'package:ejary/core/utils/extensions/string_extensions.dart';
 import 'package:ejary/core/utils/localization/app_strings.dart';
-import 'package:ejary/core/widgets/base_item_layout/domain/base_property_entity.dart';
-import 'package:ejary/core/widgets/base_item_layout/domain/base_property_piece_info_entity.dart';
 import 'package:ejary/core/widgets/base_item_layout/property_item.dart';
 import 'package:ejary/core/widgets/buttons/filled_buttons/custom_filled_button.dart';
+import 'package:ejary/features/apartments/data/mapper/apartment_mapper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -29,57 +28,81 @@ class AllApartmentsScreen extends StatelessWidget {
           children: [
             _allApartmentsHeader(
               context,
+              cubit.selectedPropertyId,
               cubit.selectedPropertyNumber,
               cubit.selectedPropertyDistrict,
               cubit.totalApartments,
+              state is GetAllApartmentsSuccessState &&
+                  (cubit.apartments != null && cubit.apartments!.isEmpty),
+              cubit.getAllApartments,
             ),
             SizedBox(height: 20.0.h),
-            Flexible(
-              fit: FlexFit.loose,
-              child: GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 4,
-                  childAspectRatio: 0.9,
-                ),
-                addRepaintBoundaries: true,
-                padding: EdgeInsets.zero,
-                itemBuilder:
-                    (context, index) => SizedBox(
-                      width: 250.w,
-                      height: 350.h,
-                      child: PropertyItem(
-                        property: BasePropertyEntity(
-                          id: 1,
-                          imagePath:
-                              "C:\\Users\\m7ame\\OneDrive\\Pictures\\WallPaper\\5IKmku.jpg",
-                          detailsButtonTitle: AppStrings.apartmentDetails,
-                          propertyInfo: [
-                            BasePropertyPieceInfoEntity(
-                              infoIconPath: AppIcons.homeModernIc,
-                              infoTitle: 'رقم 15',
-                            ),
-                            BasePropertyPieceInfoEntity(
-                              infoIconPath: AppIcons.user,
-                              infoTitle: "أحمد السيد",
-                            ),
-                            BasePropertyPieceInfoEntity(
-                              infoIconPath: AppIcons.payment,
-                              infoTitle: "شهرياً",
-                            ),
-                          ],
-                        ),
-                        onPropertyPressed: (propertyId) {
-                          AppNavigator.navigateTo(
-                            context,
-                            RouteKeys.allApartments,
-                            arguments: {'property_id': propertyId},
-                          );
-                        },
+            state is GetAllApartmentsLoadingState
+                ? CircularProgressIndicator()
+                : state is GetAllApartmentsSuccessState &&
+                    (cubit.apartments != null && cubit.apartments!.isEmpty)
+                ? Column(
+                  spacing: 10.0.h,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SvgPicture.asset(
+                      width: 162.5.w,
+                      height: 150.0.h,
+                      AppIcons.homeModernIc,
+                      colorFilter: ColorFilter.mode(
+                        AppColors.gray50,
+                        BlendMode.srcIn,
                       ),
                     ),
-                itemCount: 10,
-              ),
-            ),
+                    Text(
+                      'No Apartments currently..add it from here'.tr(context),
+                    ),
+                    CustomFilledButton(
+                      width: 248.w,
+                      height: 48.h,
+                      title: AppStrings.addApartment.tr(context),
+                      fillColor: AppColors.secondary,
+                      onPressed: () {
+                        AppNavigator.navigateTo(
+                          context,
+                          RouteKeys.addEditApartment,
+                          arguments: {
+                            'property_id': cubit.selectedPropertyId,
+                            'property_number': cubit.selectedPropertyNumber,
+                            'property_district': cubit.selectedPropertyDistrict,
+                          },
+                        ).then((_) => cubit.getAllApartments());
+                      },
+                    ),
+                  ],
+                )
+                : state is GetAllApartmentsErrorState
+                ? Text('Failed')
+                : Flexible(
+                  fit: FlexFit.loose,
+                  child: GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 4,
+                      childAspectRatio: 0.9,
+                    ),
+                    addRepaintBoundaries: true,
+                    padding: EdgeInsets.zero,
+                    itemBuilder:
+                        (context, index) => SizedBox(
+                          width: 250.w,
+                          height: 350.h,
+                          child: PropertyItem(
+                            property: ApartmentMapper.mapApartmentModelToEntity(
+                              cubit.apartments![index],
+                            ),
+                            onPropertyPressed: (int) {},
+                          ),
+                        ),
+                    itemCount:
+                        cubit.apartments == null ? 0 : cubit.apartments!.length,
+                  ),
+                ),
           ],
         );
       },
@@ -88,9 +111,12 @@ class AllApartmentsScreen extends StatelessWidget {
 
   Widget _allApartmentsHeader(
     BuildContext context,
+    int propertyId,
     int propertyNumber,
     String propertyDistrict,
     int totalApartments,
+    bool isEmpty,
+    void Function() afterNav,
   ) => Padding(
     padding: EdgeInsetsDirectional.only(start: 45.0.w, end: 70.0.w),
     child: Row(
@@ -127,19 +153,30 @@ class AllApartmentsScreen extends StatelessWidget {
           ),
         ),
         const Spacer(),
-        CustomFilledButton(
-          width: 248.w,
-          height: 48.h,
-          title: AppStrings.addNewApartment.tr(context),
-          fillColor: AppColors.secondary,
-          icon: SvgPicture.asset(
-            AppIcons.plus,
-            colorFilter: ColorFilter.mode(AppColors.white, BlendMode.srcIn),
+        Visibility(
+          visible: !isEmpty,
+          child: CustomFilledButton(
+            width: 248.w,
+            height: 48.h,
+            title: AppStrings.addNewApartment.tr(context),
+            fillColor: AppColors.secondary,
+            icon: SvgPicture.asset(
+              AppIcons.plus,
+              colorFilter: ColorFilter.mode(AppColors.white, BlendMode.srcIn),
+            ),
+            iconAlignment: IconAlignment.start,
+            onPressed: () {
+              AppNavigator.navigateTo(
+                context,
+                RouteKeys.addEditApartment,
+                arguments: {
+                  'property_id': propertyId,
+                  'property_number': propertyNumber,
+                  'property_district': propertyDistrict,
+                },
+              ).then((_) => afterNav());
+            },
           ),
-          iconAlignment: IconAlignment.start,
-          onPressed: () {
-            AppNavigator.navigateTo(context, RouteKeys.addEditApartment);
-          },
         ),
       ],
     ),

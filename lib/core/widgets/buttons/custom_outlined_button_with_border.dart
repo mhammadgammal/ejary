@@ -58,6 +58,8 @@ class CustomOutlinedButtonWithBorder extends StatelessWidget {
             fontWeight: fontWeight,
             color: titleColor,
           ),
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
         ),
         iconAlignment: IconAlignment.end,
         icon: icon,

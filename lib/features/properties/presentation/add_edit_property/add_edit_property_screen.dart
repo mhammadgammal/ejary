@@ -20,12 +20,8 @@ class AddEditPropertyScreen extends StatelessWidget {
   Widget build(BuildContext buildContext) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (_) => AddEditPropertyCubit(),
-        ),
-        BlocProvider(
-          create: (_) => ImagePickerCubit(),
-        ),
+        BlocProvider(create: (_) => AddEditPropertyCubit()),
+        BlocProvider(create: (_) => ImagePickerCubit()),
       ],
       child: BlocConsumer<AddEditPropertyCubit, AddEditPropertyState>(
         listener: (context, state) {
@@ -120,7 +116,9 @@ class AddEditPropertyScreen extends StatelessWidget {
                                   cubit.addPropertyToDb(
                                     picturePath:
                                     ImagePickerCubit
-                                        .get(context)
+                                        .get(
+                                      context,
+                                    )
                                         .imagePath,
                                   );
                                 },
