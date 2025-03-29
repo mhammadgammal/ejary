@@ -69,6 +69,7 @@ class AllPropertiesScreen extends StatelessWidget {
                                         cubit.properties![index].propertyNumber,
                                     'property_district':
                                         cubit.properties![index].districtName,
+                                    'apartments':cubit.models
                                   },
                                 );
                               },

@@ -20,24 +20,29 @@ class AllApartmentsCubit extends Cubit<AllApartmentsState> {
 
   List<ApartmentModel>? apartments;
 
-  Future<void> getAllApartments() async {
+  Future<void> getAllApartments([List<ApartmentModel>? apartmentss]) async {;
     emit(GetAllApartmentsLoadingState());
-    try {
-      final apartmentsResponse = await DbHelper.getDataWhere(
-        TableName.apartmentTable,
-        where: 'property_id = ?',
-        whereArgs: [selectedPropertyId],
-      );
-      'apartments count: ${apartmentsResponse.length}'.logger();
-      apartments =
-          apartmentsResponse
-              .map((apartment) => ApartmentModel.fromJson(apartment))
-              .toList();
-      'apartments: ${apartments!.length}'.logger();
-      totalApartments = apartments!.length;
+    if(apartmentss != null && apartmentss.isNotEmpty){
+      apartments = apartmentss;
       emit(GetAllApartmentsSuccessState());
-    } catch (e) {
-      emit(GetAllApartmentsErrorState(e.toString()));
+    }else{
+      try {
+        final apartmentsResponse = await DbHelper.getDataWhere(
+          TableName.apartmentTable,
+          where: 'property_id = ?',
+          whereArgs: [selectedPropertyId],
+        );
+        'apartments count: ${apartmentsResponse.length}'.logger();
+        apartments =
+            apartmentsResponse
+                .map((apartment) => ApartmentModel.fromJson(apartment))
+                .toList();
+        'apartments: ${apartments!.length}'.logger();
+        totalApartments = apartments!.length;
+        emit(GetAllApartmentsSuccessState());
+      } catch (e) {
+        emit(GetAllApartmentsErrorState(e.toString()));
+      }
     }
   }
 }

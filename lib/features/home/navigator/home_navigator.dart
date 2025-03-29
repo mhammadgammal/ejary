@@ -7,7 +7,6 @@ import 'package:ejary/features/apartments/presentation/add_edit_apartment/widget
 import 'package:ejary/features/apartments/presentation/all_apartments/all_apartments_screen.dart';
 import 'package:ejary/features/apartments/presentation/all_apartments/cubit/all_apartments_cubit.dart';
 import 'package:ejary/features/home/home_screen.dart';
-import 'package:ejary/features/properties/presentation/all_properties/cubit/all_properties_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -35,6 +34,7 @@ class _HomeNavigatorState extends State<HomeNavigator> {
               var propertyId = args['property_id'];
               var propertyNumber = args['property_number'];
               var propertyDistrict = args['property_district'];
+              var apartments = args['apartments'];
               return BlocProvider(
                 lazy: false,
                 create:
@@ -43,7 +43,7 @@ class _HomeNavigatorState extends State<HomeNavigator> {
                   ..selectedPropertyId = propertyId
                   ..selectedPropertyNumber = propertyNumber
                   ..selectedPropertyDistrict = propertyDistrict
-                  ..getAllApartments(),
+                  ..getAllApartments(apartments),
                 child: AllApartmentsScreen(),
               );
             } else if (settings.name == RouteKeys.addEditApartment) {

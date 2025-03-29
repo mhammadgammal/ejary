@@ -1,6 +1,5 @@
 import 'package:ejary/core/helpers/cache/database_helper/db_helper.dart';
 import 'package:ejary/core/helpers/cache/database_helper/table_name.dart';
-import 'package:ejary/features/apartments/data/mapper/apartment_mapper.dart';
 import 'package:ejary/features/apartments/data/model/apartment_model.dart';
 import 'package:ejary/features/properties/data/model/property_model.dart';
 import 'package:flutter/material.dart' show BuildContext;
@@ -18,6 +17,8 @@ class AllPropertiesCubit extends Cubit<AllPropertiesState> {
 
   List<PropertyModel>? properties;
   List<PropertyModel>? unFilteredProperties;
+
+  List<ApartmentModel> models = [];
 
   Future<void> getAllProperties() async {
     emit(GetAllPropertiesLoadingState());
@@ -37,17 +38,18 @@ class AllPropertiesCubit extends Cubit<AllPropertiesState> {
   }
 
   Future<void> filterProperties(String value) async {
+    models.clear();
     if(value.isEmpty){
       resetFilter();
     }
     else {
       final filteredResponse = await DbHelper.getDataWhere(
         TableName.apartmentTable,
-        where: 'renter_phone_number = ? OR renter_name = ?',
-        whereArgs: [value, value],
+        where: 'renter_phone_number LIKE ? OR renter_name LIKE ?',
+        whereArgs: ['%$value%', '%$value%'],
       );
 
-      List<ApartmentModel> models = [];
+
 
       for (var model in filteredResponse) {
         models.add(ApartmentModel.fromJson(model));
@@ -68,6 +70,7 @@ class AllPropertiesCubit extends Cubit<AllPropertiesState> {
   }
 
   void resetFilter(){
+    models.clear();
     properties = unFilteredProperties;
     availableProperties = properties!.length;
     emit(FilterProperties());
