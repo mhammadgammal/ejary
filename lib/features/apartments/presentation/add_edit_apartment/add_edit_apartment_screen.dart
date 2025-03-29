@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:ejary/core/app_container/cubit/app_cubit.dart';
 import 'package:ejary/core/assets/app_icons.dart';
 import 'package:ejary/core/theme/app_color.dart';
@@ -45,6 +43,11 @@ class AddEditApartmentScreen extends StatelessWidget {
           );
           AppCubit.get(context).changeTabIndex(0);
         }
+
+        if(state is DeleteSuccessState){
+          Navigator.pop(context);
+        }
+
       },
       builder: (context, state) {
         var cubit = AddEditApartmentCubit.get(context);

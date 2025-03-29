@@ -114,14 +114,17 @@ abstract class DialogHelper {
                         child: CustomFilledButton(
                           title: 'Delete'.tr(context),
                           fillColor: AppColors.failure,
-                          onPressed: onYes,
+                          onPressed: () {
+                            onYes();
+                            Navigator.pop(context);
+                          },
                         ),
                       ),
 
                       Expanded(
                         child: CustomOutlinedButtonWithBorder(
                           title: 'Cancel'.tr(context),
-                          onPressed: onCancel,
+                          onPressed: () =>Navigator.pop(context),
                         ),
                       ),
                     ],

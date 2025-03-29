@@ -127,11 +127,11 @@ class AddEditApartmentCubit extends Cubit<AddEditApartmentState> {
   }
 
   Future<void> deleteApartment() async {
-    final success = await DbHelper.deleteData(
-      TableName.apartmentTable,
-      'id',
-      [_apartmentModel.id],
-    );
-    if (success) {}
+    final success = await DbHelper.deleteData(TableName.apartmentTable, 'id', [
+      _apartmentModel.id,
+    ]);
+    if (success) {
+      emit(DeleteSuccessState());
+    }
   }
 }
