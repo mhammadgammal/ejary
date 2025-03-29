@@ -79,4 +79,30 @@ class AddEditApartmentCubit extends Cubit<AddEditApartmentState> {
           apartmentModel.floorApartmentNumber.toString();
     }
   }
+
+  Future<void> updateApartment(String apartmentImagePath,
+      String contractImagePath,) async {
+    final apartment = ApartmentModel(
+      id: apartmentModel.id,
+      propertyId: selectedPropertyId,
+      propertyNumber: selectedPropertyNumber,
+      floorApartmentNumber:
+      int.tryParse(floorApartmentNumberController.text) ?? 0,
+      picturePath: apartmentImagePath,
+      contractPicturePath: contractImagePath,
+      renterName: renterNameController.text,
+      renterIdNumber: idNumberController.text,
+      rentType: rentTypeController.text,
+      totalRentValue: int.tryParse(totalRentValueController.text) ?? 0,
+      paidRentValue: int.tryParse(paidValueController.text) ?? 0,
+      remainingRentValue: int.tryParse(remainingValueController.text) ?? 0,
+      contractStartDate: contractStartDateController.text,
+      contractEndDate: contractEndDateController.text,
+      renterPhoneNumber: phoneNumberController.text,
+    );
+    await DbHelper.updateData(
+        TableName.apartmentTable, apartment.toJson(), 'id = ?', [apartment.id]);
+
+    emit(UpdateRentedApartmentSuccessState());
+  }
 }

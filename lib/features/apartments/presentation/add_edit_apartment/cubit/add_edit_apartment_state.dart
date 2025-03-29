@@ -5,3 +5,5 @@ sealed class AddEditApartmentState {}
 final class AddEditApartmentInitial extends AddEditApartmentState {}
 
 final class AddRentedApartmentSuccessState extends AddEditApartmentState {}
+
+final class UpdateRentedApartmentSuccessState extends AddEditApartmentState {}

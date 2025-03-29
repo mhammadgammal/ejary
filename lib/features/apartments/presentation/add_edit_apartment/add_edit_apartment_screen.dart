@@ -1,9 +1,11 @@
+import 'package:ejary/core/app_container/cubit/app_cubit.dart';
 import 'package:ejary/core/assets/app_icons.dart';
 import 'package:ejary/core/theme/app_color.dart';
 import 'package:ejary/core/utils/extensions/string_extensions.dart';
 import 'package:ejary/core/utils/localization/app_strings.dart';
 import 'package:ejary/core/widgets/buttons/filled_buttons/custom_filled_button_with_save_icon.dart';
 import 'package:ejary/core/widgets/date_picker.dart';
+import 'package:ejary/core/widgets/dialog_helper/dialog_helper.dart';
 import 'package:ejary/core/widgets/image_picker/cubit/image_picker_cubit.dart';
 import 'package:ejary/core/widgets/image_picker/image_picker.dart';
 import 'package:ejary/core/widgets/text_form_field/columned_text_form_field.dart';
@@ -23,11 +25,26 @@ class AddEditApartmentScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<AddEditApartmentCubit, AddEditApartmentState>(
       listener: (context, state) {
-        // TODO: implement listener
+        if (state is AddRentedApartmentSuccessState) {
+          // Navigator.pop(context);
+          DialogHelper.showSuccessDialog(
+            context: context,
+            header: AppStrings.saveData.tr(context),
+            message: "You will be notified before renter contract ends".tr(
+              context,
+            ),
+          );
+          AppCubit.get(context).changeTabIndex(0);
+        } else if (state is UpdateRentedApartmentSuccessState) {
+          DialogHelper.showSuccessDialog(
+            context: context,
+            header: AppStrings.saveChanges.tr(context),
+          );
+          AppCubit.get(context).changeTabIndex(0);
+        }
       },
       builder: (context, state) {
         var cubit = AddEditApartmentCubit.get(context);
-        late ImagePickerCubit imagePickerCubit;
         return Container(
           padding: EdgeInsetsDirectional.only(
             start: 45.0.w,
