@@ -1,6 +1,5 @@
+import 'package:ejary/core/app_container/cubit/app_cubit.dart';
 import 'package:ejary/core/assets/app_icons.dart';
-import 'package:ejary/core/router/app_navigator.dart';
-import 'package:ejary/core/router/route_keys.dart';
 import 'package:ejary/core/theme/app_color.dart';
 import 'package:ejary/core/utils/extensions/string_extensions.dart';
 import 'package:ejary/core/widgets/buttons/filled_buttons/custom_filled_button.dart';
@@ -31,7 +30,7 @@ class EmptyPropertiesState extends StatelessWidget {
           title: 'add_property_here'.tr(context),
           fillColor: AppColors.secondary,
           onPressed: () {
-            AppNavigator.navigateTo(context, RouteKeys.addProperty);
+            AppCubit.get(context).changeTabIndex(1);
           },
         ),
       ],

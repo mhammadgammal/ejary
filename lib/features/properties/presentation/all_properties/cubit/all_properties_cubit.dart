@@ -1,13 +1,13 @@
 import 'package:ejary/core/helpers/cache/database_helper/db_helper.dart';
 import 'package:ejary/core/helpers/cache/database_helper/table_name.dart';
 import 'package:ejary/features/properties/data/model/property_model.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/material.dart' show BuildContext;
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'all_properties_state.dart';
 
 class AllPropertiesCubit extends Cubit<AllPropertiesState> {
-  int availableProperties = 12;
+  int availableProperties = 0;
 
   AllPropertiesCubit() : super(AllPropertiesInitial());
 
@@ -23,6 +23,7 @@ class AllPropertiesCubit extends Cubit<AllPropertiesState> {
 
       properties =
           propertiesResponse.map((e) => PropertyModel.fromJson(e)).toList();
+      availableProperties = properties!.length;
 
       emit(GetAllPropertiesSuccessState());
     } catch (e) {

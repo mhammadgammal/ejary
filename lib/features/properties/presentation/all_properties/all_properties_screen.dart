@@ -1,11 +1,10 @@
-import 'package:ejary/core/assets/app_icons.dart';
 import 'package:ejary/core/router/app_navigator.dart';
 import 'package:ejary/core/router/route_keys.dart';
 import 'package:ejary/core/theme/app_color.dart';
 import 'package:ejary/core/utils/extensions/string_extensions.dart';
 import 'package:ejary/core/utils/localization/app_strings.dart';
-import 'package:ejary/core/widgets/base_item_layout/domain/base_property_entity.dart';
-import 'package:ejary/core/widgets/base_item_layout/domain/base_property_piece_info_entity.dart';
+import 'package:ejary/core/widgets/dialog_helper/dialog_helper.dart';
+import 'package:ejary/features/properties/data/mapper/property_mapper.dart';
 import 'package:ejary/features/properties/presentation/all_properties/cubit/all_properties_cubit.dart';
 import 'package:ejary/features/properties/presentation/all_properties/widgets/empty_properties_state.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +21,12 @@ class AllPropertiesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => AllPropertiesCubit()..getAllProperties(),
-      child: BlocBuilder<AllPropertiesCubit, AllPropertiesState>(
+      child: BlocConsumer<AllPropertiesCubit, AllPropertiesState>(
+        listener: (context, state) {
+          if (state is GetAllPropertiesErrorState) {
+            DialogHelper.showFailureDialog(context, state.message);
+          }
+        },
         builder: (context, state) {
           var cubit = AllPropertiesCubit.get(context);
           return Column(
@@ -54,32 +58,18 @@ class AllPropertiesScreen extends StatelessWidget {
                               width: 250.w,
                               height: 350.h,
                               child: PropertyItem(
-                                property: BasePropertyEntity(
-                                  id: 1,
-                                  imagePath:
-                                      "C:\\Users\\m7ame\\OneDrive\\Pictures\\WallPaper\\5IKmku.jpg",
-                                  detailsButtonTitle:
-                                      AppStrings.propertyDetails,
-                                  propertyInfo: [
-                                    BasePropertyPieceInfoEntity(
-                                      infoIconPath: AppIcons.buildingIc,
-                                      infoTitle: 'رقم 12',
+                                property:
+                                    PropertyMapper.mapPropertyModelToEntity(
+                                      cubit.properties![index],
                                     ),
-                                    BasePropertyPieceInfoEntity(
-                                      infoIconPath: AppIcons.streetSign,
-                                      infoTitle: "حي المملكة",
-                                    ),
-                                    BasePropertyPieceInfoEntity(
-                                      infoIconPath: AppIcons.homeModernIc,
-                                      infoTitle: '5 شقق',
-                                    ),
-                                  ],
-                                ),
                                 onPropertyPressed: (propertyId) {
                                   AppNavigator.navigateTo(
                                     context,
                                     RouteKeys.allApartments,
-                                    arguments: {'property_id': propertyId},
+                                    arguments: {
+                                      'property_id':
+                                          cubit.properties![index].id,
+                                    },
                                   );
                                 },
                               ),
