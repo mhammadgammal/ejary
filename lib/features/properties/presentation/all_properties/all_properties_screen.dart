@@ -1,4 +1,6 @@
 import 'package:ejary/core/assets/app_icons.dart';
+import 'package:ejary/core/router/app_navigator.dart';
+import 'package:ejary/core/router/route_keys.dart';
 import 'package:ejary/core/theme/app_color.dart';
 import 'package:ejary/core/utils/extensions/string_extensions.dart';
 import 'package:ejary/core/utils/localization/app_strings.dart';
@@ -64,7 +66,13 @@ class AllPropertiesScreen extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            onPropertyPressed: () {},
+                            onPropertyPressed: (propertyId) {
+                              AppNavigator.navigateTo(
+                                context,
+                                RouteKeys.allApartments,
+                                arguments: {'property_id': propertyId},
+                              );
+                            },
                           ),
                         ),
                     itemCount: 10,
