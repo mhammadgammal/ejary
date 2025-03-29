@@ -8,6 +8,8 @@ final class GetAllPropertiesLoadingState extends AllPropertiesState {}
 
 final class GetAllPropertiesSuccessState extends AllPropertiesState {}
 
+final class FilterProperties extends AllPropertiesState {}
+
 final class GetAllPropertiesErrorState extends AllPropertiesState {
   final String message;
 

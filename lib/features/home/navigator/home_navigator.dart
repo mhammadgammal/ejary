@@ -39,11 +39,11 @@ class _HomeNavigatorState extends State<HomeNavigator> {
                 lazy: false,
                 create:
                     (context) =>
-                        AllApartmentsCubit()
-                          ..selectedPropertyId = propertyId
-                          ..selectedPropertyNumber = propertyNumber
-                          ..selectedPropertyDistrict = propertyDistrict
-                          ..getAllApartments(),
+                AllApartmentsCubit()
+                  ..selectedPropertyId = propertyId
+                  ..selectedPropertyNumber = propertyNumber
+                  ..selectedPropertyDistrict = propertyDistrict
+                  ..getAllApartments(),
                 child: AllApartmentsScreen(),
               );
             } else if (settings.name == RouteKeys.addEditApartment) {
@@ -57,13 +57,13 @@ class _HomeNavigatorState extends State<HomeNavigator> {
                   BlocProvider(
                     create:
                         (_) =>
-                            AddEditApartmentCubit()
-                              ..selectedPropertyId = propertyId
-                              ..selectedPropertyNumber = propertyNumber
-                              ..selectedPropertyDistrict = propertyDistrict
-                              // ..rentedApartmentModel = apartment
-                              ..isEditMode = apartment != null
-                              ..loadApartmentData(apartment),
+                    AddEditApartmentCubit()
+                      ..selectedPropertyId = propertyId
+                      ..selectedPropertyNumber = propertyNumber
+                      ..selectedPropertyDistrict = propertyDistrict
+                    // ..rentedApartmentModel = apartment
+                      ..isEditMode = apartment != null
+                      ..loadApartmentData(apartment),
                   ),
                   BlocProvider(create: (_) => ImagePickerCubit()),
                   BlocProvider(create: (_) => AttachFileCubit()),
@@ -71,14 +71,8 @@ class _HomeNavigatorState extends State<HomeNavigator> {
                 child: AddEditApartmentScreen(),
               );
             }
-            return MultiBlocProvider(
-              providers: [
-                BlocProvider(
-                  lazy: false,
-                  create: (context) => AllPropertiesCubit()..getAllProperties(),
-                ),
-                BlocProvider(create: (context) => ImagePickerCubit()),
-              ],
+            return BlocProvider(
+              create: (context) => ImagePickerCubit(),
               child: HomeScreen(),
             );
           },

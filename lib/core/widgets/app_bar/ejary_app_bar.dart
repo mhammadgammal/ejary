@@ -5,6 +5,7 @@ import 'package:ejary/core/utils/extensions/string_extensions.dart';
 import 'package:ejary/core/utils/localization/app_strings.dart';
 import 'package:ejary/core/widgets/app_bar/widgets/app_bar_item.dart';
 import 'package:ejary/core/widgets/text_form_field/app_text_form_field.dart';
+import 'package:ejary/features/properties/presentation/all_properties/cubit/all_properties_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,6 +19,7 @@ class EjaryAppBar extends StatelessWidget implements PreferredSizeWidget {
     return BlocBuilder<AppCubit, AppState>(
       builder: (context, state) {
         var cubit = AppCubit.get(context);
+        var allProCubit = AllPropertiesCubit.get(context);
         return Container(
           height: 95.0.h,
           color: AppColors.primary100,
@@ -56,29 +58,24 @@ class EjaryAppBar extends StatelessWidget implements PreferredSizeWidget {
                   ),
                   controller: cubit.searchController,
                   inputType: TextInputType.text,
-                  onChanged: (value) {},
+                  onChanged: (value) async{
+                    await allProCubit.filterProperties(value);
+                  },
                   onSubmit: (_) {},
                   fillColor: AppColors.background50,
                   suffixIcon: IconButton(
                     onPressed: () {
-                      if (cubit.searchController.text.isNotEmpty) {
-                        cubit.searchController.clear();
-                        // get All data here
-                        // EmployeesCubit.get(
-                        //   context,
-                        // ).getAllEmployees();
-                      } else {}
+                      cubit.searchController.clear();
+                      allProCubit.resetFilter();
                     },
                     icon:
-                        cubit.searchController.text.isNotEmpty
-                            ? SvgPicture.asset(
-                              AppIcons.xIc,
-                              colorFilter: ColorFilter.mode(
-                                AppColors.gray100,
-                                BlendMode.srcIn,
-                              ),
-                            )
-                            : SizedBox(),
+                    SvgPicture.asset(
+                      AppIcons.xIc,
+                      colorFilter: ColorFilter.mode(
+                        AppColors.gray100,
+                        BlendMode.srcIn,
+                      ),
+                    ),
                   ),
                   validate: null,
                 ),
