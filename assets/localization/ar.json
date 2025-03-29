@@ -103,5 +103,22 @@
   "add_new_apartment": "أضف شقه جديده",
   "Number of apartments inside building": "عدد الشقق داخل العقار",
   "apartment_details": "تفاصيل الشقه",
-  "add_apartment": "أضف شقه"
+  "add_apartment": "أضف شقه",
+  "add_apartment_image": "أضف صورة الشقه من هنا",
+  "Annual or Monthly ?": "سنوي أو شهري ؟",
+  "rent_type": "نوع الإبجار",
+  "all_rent_value": "قيمة الإيجار الكلي",
+  "paid": "المدفوع",
+  "Write paid value from renter": "إكتب المبلغ المدفوع من المستأجر",
+  "remaining": "المتبقي",
+  "Here value of remaining rent automatically": "هنا قيمة الإيجار المتبقي تلقائيا",
+  "phone_number": "رقم الهاتف",
+  "renter_name": "إسم المستأجر",
+  "id_or_iqama_number": "رقم الهويه أو الإقامه",
+  "property_or_building_number": "رقم العقار أو المبني",
+  "floor_and_apartment_number": "رقم الدور و الشقه",
+  "write_rented_floor_and_apartment_number": "إكتب رقم الدور و الشقه المستأجره",
+  "writer_property_number": "إكتب رقم العقار",
+  "upload_contract": "إرفع العقد",
+  "upload_picture": "صورة العقد"
 }

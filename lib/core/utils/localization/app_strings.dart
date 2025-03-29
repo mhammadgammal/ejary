@@ -107,5 +107,20 @@ abstract final class AppStrings {
   static const String addNewApartment = 'add_new_apartment';
   static const String apartmentDetails = 'apartment_details';
   static const String addApartment = 'add_apartment';
+  static const String addApartmentImage = 'add_apartment_image';
+  static const String renterName = 'renter_name';
+  static const String rentType = 'rent_type';
+  static const String allRentValue = 'all_rent_value';
+  static const String paid = 'paid';
+  static const String remaining = 'remaining';
+  static const String idOrIqamaNumber = 'id_or_iqama_number';
+  static const String propertyOrBuildingNumber = 'property_or_building_number';
+  static const String floorAndApartmentNumber = 'floor_and_apartment_number';
+  static const String writeRentedFloorAndApartmentNumber =
+      'write_rented_floor_and_apartment_number';
+  static const String contractStartDate = 'contract_start_date';
+  static const String contractEndDate = 'contract_end_date';
+  static const String uploadContract = 'upload_contract';
+  static const String uploadPicture = 'upload_picture';
   //#endregion
 }

@@ -52,5 +52,17 @@
   "property_number": "Property Number",
   "add_new_apartment": "Add new apartment",
   "apartment_details": "Apartment Details",
-  "add_apartment": "Add Apartment"
+  "add_apartment": "Add Apartment",
+  "add_apartment_image": "Add Apartment Image",
+  "rent_type": "Rent Type",
+  "all_rent_value": "All Rent Value",
+  "paid": "Paid",
+  "remaining": "Remaining",
+  "id_or_iqama_number": "ID or Iqama Number",
+  "property_or_building_number": "Property or Building Number",
+  "floor_and_apartment_number": "Floor and Apartment Number",
+  "contract_start_date": "Contract Start Date",
+  "contract_end_date": "Contract End Date",
+  "upload_contract": "Upload Contract",
+  "upload_picture": "Upload Picture"
 }

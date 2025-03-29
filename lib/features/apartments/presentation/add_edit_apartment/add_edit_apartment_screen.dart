@@ -2,8 +2,10 @@ import 'package:ejary/core/theme/app_color.dart';
 import 'package:ejary/core/utils/extensions/string_extensions.dart';
 import 'package:ejary/core/utils/localization/app_strings.dart';
 import 'package:ejary/core/widgets/buttons/filled_buttons/custom_filled_button_with_save_icon.dart';
+import 'package:ejary/core/widgets/date_picker.dart';
 import 'package:ejary/core/widgets/image_picker/image_picker.dart';
 import 'package:ejary/core/widgets/text_form_field/columned_text_form_field.dart';
+import 'package:ejary/features/apartments/presentation/add_edit_apartment/widgets/attach_file_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -46,6 +48,8 @@ class AddEditApartmentScreen extends StatelessWidget {
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisSize: MainAxisSize.max,
                       children: [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -53,42 +57,204 @@ class AddEditApartmentScreen extends StatelessWidget {
                           children: [
                             Expanded(
                               child: ColumnedTextFormField(
-                                title: AppStrings.propertyNo.tr(context),
+                                title: AppStrings.renterName.tr(context),
                                 controller: TextEditingController(),
-                                inputType: TextInputType.number,
+                                inputType: TextInputType.text,
                                 hint:
-                                    '${AppStrings.enter.tr(context)} ${AppStrings.propertyNo.tr(context)}',
+                                    '${AppStrings.enter.tr(context)} ${AppStrings.renterName.tr(context)}',
                               ),
                             ),
                             SizedBox(width: 20.0.w),
                             Expanded(
                               child: ColumnedTextFormField(
-                                title: AppStrings.districtName.tr(context),
+                                title: AppStrings.phoneNumber.tr(context),
+                                controller: TextEditingController(),
+                                inputType: TextInputType.number,
+                                icon: Padding(
+                                  padding: EdgeInsets.only(
+                                    top: 8.0.h,
+                                    right: 10.0.w,
+                                  ),
+                                  child: Text(
+                                    '+996 |',
+                                    style: GoogleFonts.tajawal(
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 18.0.sp,
+                                      color: AppColors.gray100,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: ColumnedTextFormField(
+                                title: AppStrings.rentType.tr(context),
+                                controller: TextEditingController(),
+                                inputType: TextInputType.text,
+                                hint: 'Annual or Monthly ?'.tr(context),
+                              ),
+                            ),
+                            SizedBox(width: 20.0.w),
+                            Expanded(
+                              child: ColumnedTextFormField(
+                                title: AppStrings.allRentValue.tr(context),
                                 controller: TextEditingController(),
                                 inputType: TextInputType.number,
                                 hint:
-                                    '${AppStrings.enter.tr(context)} ${AppStrings.districtName.tr(context)}',
+                                    '${AppStrings.enter.tr(context)} ${AppStrings.allRentValue.tr(context)}',
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: ColumnedTextFormField(
+                                title: AppStrings.paid.tr(context),
+                                controller: TextEditingController(),
+                                inputType: TextInputType.text,
+                                hint: 'Write paid value from renter'.tr(
+                                  context,
+                                ),
+                              ),
+                            ),
+                            SizedBox(width: 20.0.w),
+                            Expanded(
+                              child: ColumnedTextFormField(
+                                title: AppStrings.remaining.tr(context),
+                                controller: TextEditingController(),
+                                inputType: TextInputType.number,
+                                hint:
+                                    'Here value of remaining rent automatically'
+                                        .tr(context),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: DatePicker(
+                                datePickerLabel: AppStrings.contractStartDate
+                                    .tr(context),
+                                datePickerController: TextEditingController(),
+                                datePickerHint: '0/0/0000',
+                                validation: null,
+                              ),
+                            ),
+                            SizedBox(width: 20.0.w),
+                            Expanded(
+                              child: DatePicker(
+                                datePickerLabel: AppStrings.contractEndDate.tr(
+                                  context,
+                                ),
+                                datePickerController: TextEditingController(),
+                                datePickerHint: '0/0/0000',
+                                validation: null,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: ColumnedTextFormField(
+                                title: AppStrings.idOrIqamaNumber.tr(context),
+                                controller: TextEditingController(),
+                                inputType: TextInputType.number,
+                                hint:
+                                    '${AppStrings.enter.tr(context)} ${AppStrings.idOrIqamaNumber.tr(context)}',
+                              ),
+                            ),
+                            SizedBox(width: 20.0.w),
+                            Expanded(
+                              child: ColumnedTextFormField(
+                                title: AppStrings.propertyOrBuildingNumber.tr(
+                                  context,
+                                ),
+                                controller: TextEditingController(),
+                                inputType: TextInputType.number,
+                                hint:
+                                    '${AppStrings.enter.tr(context)} ${AppStrings.propertyOrBuildingNumber.tr(context)}',
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: ColumnedTextFormField(
+                                title: AppStrings.floorAndApartmentNumber.tr(
+                                  context,
+                                ),
+                                controller: TextEditingController(),
+                                inputType: TextInputType.number,
+                                hint:
+                                    '${AppStrings.enter.tr(context)} ${AppStrings.idOrIqamaNumber.tr(context)}',
+                              ),
+                            ),
+                            SizedBox(width: 20.0.w),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    AppStrings.uploadPicture.tr(context),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium
+                                        ?.copyWith(fontSize: 20.sp),
+                                  ),
+                                  SizedBox(height: 10.0.h),
+                                  AttachFileButton(
+                                    title: AppStrings.uploadContract,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                    pickCallback: () {},
+                                  ),
+                                ],
                               ),
                             ),
                           ],
                         ),
                         SizedBox(height: 20.0.h),
-                        CustomFilledButtonWithSaveIcon(
-                          width: 343.w,
-                          height: 56.h,
-                          title: AppStrings.saveData.tr(context),
-                          onPressed: () {},
-                          fontSize: 18.sp,
-                        ),
                       ],
                     ),
                   ),
-                  SizedBox(
-                    width: 280.w,
-                    height: 355.h,
-                    child: ImagePicker(
-                      title: AppStrings.addPropertyImage.tr(context),
-                    ),
+                  Column(
+                    children: [
+                      SizedBox(
+                        width: 280.w,
+                        height: 355.h,
+                        child: ImagePicker(
+                          title: AppStrings.addApartmentImage.tr(context),
+                        ),
+                      ),
+                      Spacer(),
+                      CustomFilledButtonWithSaveIcon(
+                        width: 343.w,
+                        height: 56.h,
+                        title: AppStrings.saveData.tr(context),
+                        onPressed: () {},
+                        fontSize: 18.sp,
+                        padding: EdgeInsetsDirectional.only(end: 20.0.h),
+                      ),
+                      SizedBox(height: 65.0.h),
+                    ],
                   ),
                 ],
               ),

@@ -1,7 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ejary/core/theme/app_color.dart';
 import 'package:ejary/core/theme/app_theme.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CustomOutlinedButtonWithBorder extends StatelessWidget {
   const CustomOutlinedButtonWithBorder({
@@ -40,7 +41,7 @@ class CustomOutlinedButtonWithBorder extends StatelessWidget {
           backgroundColor: WidgetStatePropertyAll(Colors.transparent),
           shape: WidgetStatePropertyAll(
             RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(AppTheme.appRadius),
+              borderRadius: BorderRadius.circular(AppTheme.appRadius.r),
             ),
           ),
           side: WidgetStatePropertyAll(
@@ -52,12 +53,13 @@ class CustomOutlinedButtonWithBorder extends StatelessWidget {
         ),
         label: Text(
           title,
-          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+          style: GoogleFonts.cairo(
             fontSize: fontSize.sp,
             fontWeight: fontWeight,
             color: titleColor,
           ),
         ),
+        iconAlignment: IconAlignment.end,
         icon: icon,
       ),
     );
