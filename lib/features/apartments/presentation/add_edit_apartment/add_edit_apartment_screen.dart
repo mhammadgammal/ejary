@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:ejary/core/app_container/cubit/app_cubit.dart';
 import 'package:ejary/core/assets/app_icons.dart';
 import 'package:ejary/core/theme/app_color.dart';
@@ -75,20 +77,18 @@ class AddEditApartmentScreen extends StatelessWidget {
                     ),
                   ),
                   Visibility(
-                    visible: AddEditApartmentCubit
-                        .get(context)
-                        .isEditMode,
+                    visible: AddEditApartmentCubit.get(context).isEditMode,
                     child: CustomOutlinedButtonWithBorder(
                       width: 150.0.w,
                       onPressed: () {
                         DialogHelper.deleteDialog(
                           context,
-                              () {
-                            AddEditApartmentCubit
-                                .get(context)
-                                .deleteApartmenmt();
+                          () {
+                            AddEditApartmentCubit.get(
+                              context,
+                            ).deleteApartment();
                           },
-                              () {
+                          () {
                             Navigator.of(context).pop();
                           },
                         );
@@ -217,7 +217,7 @@ class AddEditApartmentScreen extends StatelessWidget {
                                         .contractStartDate
                                         .tr(context),
                                     datePickerController:
-                                        TextEditingController(),
+                                        cubit.contractStartDateController,
                                     datePickerHint: '0/0/0000',
                                     validation: null,
                                   ),
@@ -227,8 +227,7 @@ class AddEditApartmentScreen extends StatelessWidget {
                                   child: DatePicker(
                                     datePickerLabel: AppStrings.contractEndDate
                                         .tr(context),
-                                    datePickerController:
-                                        TextEditingController(),
+                                    datePickerController:cubit.contractEndDateController,
                                     datePickerHint: '0/0/0000',
                                     validation: null,
                                   ),
@@ -327,11 +326,22 @@ class AddEditApartmentScreen extends StatelessWidget {
                             width: 343.w,
                             height: 56.h,
                             title: AppStrings.saveData.tr(context),
-                            onPressed: () {
-                              cubit.addApartment(
-                                ImagePickerCubit.get(context).imagePath,
-                                AttachFileCubit.get(context).filePath,
-                              );
+                            onPressed: () async {
+                              if (await cubit.isUpdate()) {
+                                if(context.mounted){
+                                  cubit.updateApartment(
+                                    ImagePickerCubit.get(context).imagePath,
+                                    AttachFileCubit.get(context).filePath,
+                                  );
+                                }
+
+                              } else {
+                                if(context.mounted){
+                                cubit.addApartment(
+                                  ImagePickerCubit.get(context).imagePath,
+                                  AttachFileCubit.get(context).filePath,
+                                );}
+                              }
                             },
                             fontSize: 18.sp,
                             padding: EdgeInsetsDirectional.only(end: 20.0.h),

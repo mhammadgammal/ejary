@@ -32,7 +32,7 @@ class ImagePicker extends StatelessWidget {
               children: [
                 SizedBox(
                   width: 264.w,
-                  height: 285.h,
+                  height: 284.h,
                   child:
                       cubit.imagePath.isEmpty
                           ? Card(

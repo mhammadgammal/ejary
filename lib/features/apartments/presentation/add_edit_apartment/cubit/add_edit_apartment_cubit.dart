@@ -12,7 +12,7 @@ class AddEditApartmentCubit extends Cubit<AddEditApartmentState> {
   static AddEditApartmentCubit get(context) => BlocProvider.of(context);
 
   late final bool isEditMode;
-  late ApartmentModel apartmentModel;
+  late ApartmentModel _apartmentModel;
   late int selectedPropertyId;
   late int selectedPropertyNumber;
   late String selectedPropertyDistrict;
@@ -77,17 +77,21 @@ class AddEditApartmentCubit extends Cubit<AddEditApartmentState> {
       buildingNumberController.text = apartmentModel.propertyNumber.toString();
       floorApartmentNumberController.text =
           apartmentModel.floorApartmentNumber.toString();
+
+      _apartmentModel = apartmentModel;
     }
   }
 
-  Future<void> updateApartment(String apartmentImagePath,
-      String contractImagePath,) async {
+  Future<void> updateApartment(
+    String apartmentImagePath,
+    String contractImagePath,
+  ) async {
     final apartment = ApartmentModel(
-      id: apartmentModel.id,
+      id: _apartmentModel.id,
       propertyId: selectedPropertyId,
       propertyNumber: selectedPropertyNumber,
       floorApartmentNumber:
-      int.tryParse(floorApartmentNumberController.text) ?? 0,
+          int.tryParse(floorApartmentNumberController.text) ?? 0,
       picturePath: apartmentImagePath,
       contractPicturePath: contractImagePath,
       renterName: renterNameController.text,
@@ -101,10 +105,33 @@ class AddEditApartmentCubit extends Cubit<AddEditApartmentState> {
       renterPhoneNumber: phoneNumberController.text,
     );
     await DbHelper.updateData(
-        TableName.apartmentTable, apartment.toJson(), 'id = ?', [apartment.id]);
+      TableName.apartmentTable,
+      apartment.toJson(),
+      'id',
+      [_apartmentModel.id],
+    );
 
     emit(UpdateRentedApartmentSuccessState());
   }
 
-  void deleteApartmenmt() {}
+  Future<bool> isUpdate() async {
+    try {
+      var t = await DbHelper.getRecordById(
+        _apartmentModel.id,
+        tableName: TableName.apartmentTable,
+      );
+      return t.isNotEmpty;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  Future<void> deleteApartment() async {
+    final success = await DbHelper.deleteData(
+      TableName.apartmentTable,
+      'id',
+      [_apartmentModel.id],
+    );
+    if (success) {}
+  }
 }
