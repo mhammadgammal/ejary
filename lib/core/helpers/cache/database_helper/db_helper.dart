@@ -55,6 +55,9 @@ class DbHelper {
   static Future<void> _onCreate(Database database, int version) async {
     final db = database;
     _createUserTable(db);
+    _createPropertyTable(db);
+    _createApartmentTable(db);
+    _createRentTable(db);
   }
 
   static void _createUserTable(Database db) async {
@@ -68,6 +71,50 @@ class DbHelper {
     profile_picture_path TEXT
     );
  """);
+  }
+
+  static void _createPropertyTable(Database db) async {
+    await db.execute("""
+    CREATE TABLE IF NOT EXISTS ${TableName.propertyTable} (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      property_number INTEGER NOT NULL,
+      district_name VARCHAR(255) NOT NULL,
+      picture_path TEXT NOT NULL,
+      number_of_apartments INTEGER NOT NULL
+    );
+  """);
+  }
+
+  static void _createApartmentTable(Database db) async {
+    await db.execute("""
+    CREATE TABLE IF NOT EXISTS ${TableName.apartmentTable} (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      property_id INTEGER NOT NULL,
+      property_number INTEGER NOT NULL,
+      floor_apartment_number INTEGER NOT NULL,
+      picture_path TEXT NOT NULL,
+      FOREIGN KEY (property_id) REFERENCES ${TableName.propertyTable}(id) ON DELETE CASCADE
+    );
+  """);
+  }
+
+  static void _createRentTable(Database db) async {
+    await db.execute("""
+    CREATE TABLE IF NOT EXISTS ${TableName.rentTable} (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      apartment_id INTEGER NOT NULL,
+      renter_name VARCHAR(255) NOT NULL,
+      renter_phone_number VARCHAR(255) NOT NULL,
+      rent_type VARCHAR(255) NOT NULL,
+      total_rent_value INTEGER NOT NULL,
+      paid_rent_value INTEGER NOT NULL,
+      remaining_rent_value INTEGER NOT NULL,
+      contract_start_date TEXT NOT NULL,
+      contract_end_date TEXT NOT NULL,
+      picture_path TEXT NOT NULL,
+      FOREIGN KEY (apartment_id) REFERENCES ${TableName.apartmentTable}(id) ON DELETE CASCADE
+    );
+  """);
   }
 
   static Future<List<Map<String, dynamic>>> getAll(String tableName) async {
