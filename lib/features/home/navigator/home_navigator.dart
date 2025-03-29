@@ -30,7 +30,10 @@ class _HomeNavigatorState extends State<HomeNavigator> {
                 lazy: false,
                 create:
                     (context) =>
-                        AllApartmentsCubit()..selectedPropertyId = propertyId,
+                        AllApartmentsCubit()
+                          ..selectedPropertyId = propertyId
+                          ..selectedPropertyNumber = 2
+                          ..selectedPropertyDistrict = "حي المملكه",
                 child: AllApartmentsScreen(),
               );
             }
