@@ -16,73 +16,70 @@ class ImagePicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => ImagePickerCubit(),
-      child: BlocBuilder<ImagePickerCubit, ImagePickerState>(
-        builder: (context, state) {
-          var cubit = ImagePickerCubit.get(context);
-          return GestureDetector(
-            onTap: () {
-              cubit.pickProfilePic();
-            },
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: 10.0,
-                horizontal: 10.0,
-              ),
-              child: Column(
-                children: [
-                  SizedBox(
-                    width: 264.w,
-                    height: 285.h,
-                    child:
-                        cubit.imagePath.isEmpty
-                            ? Card(
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(
-                                  horizontal: 108.0.w,
-                                ),
-                                child: SvgPicture.asset(
-                                  AppIcons.picture,
-                                  width: 48.0.w,
-                                  height: 48.0.h,
-                                ),
+    return BlocBuilder<ImagePickerCubit, ImagePickerState>(
+      builder: (context, state) {
+        var cubit = ImagePickerCubit.get(context);
+        return GestureDetector(
+          onTap: () {
+            cubit.pickProfilePic();
+          },
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: 10.0,
+              horizontal: 10.0,
+            ),
+            child: Column(
+              children: [
+                SizedBox(
+                  width: 264.w,
+                  height: 285.h,
+                  child:
+                      cubit.imagePath.isEmpty
+                          ? Card(
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 108.0.w,
                               ),
-                            )
-                            : Container(
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  image: FileImage(File(cubit.imagePath)),
-                                  fit: BoxFit.fitHeight,
-                                ),
+                              child: SvgPicture.asset(
+                                AppIcons.picture,
+                                width: 48.0.w,
+                                height: 48.0.h,
                               ),
                             ),
-                  ),
-                  SizedBox(height: 10.0.h),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SvgPicture.asset(
-                        AppIcons.pencil,
-                        width: 24.0.w,
-                        height: 24.0.h,
+                          )
+                          : Container(
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: FileImage(File(cubit.imagePath)),
+                                fit: BoxFit.fitHeight,
+                              ),
+                            ),
+                          ),
+                ),
+                SizedBox(height: 10.0.h),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SvgPicture.asset(
+                      AppIcons.pencil,
+                      width: 24.0.w,
+                      height: 24.0.h,
+                    ),
+                    Text(
+                      title,
+                      style: GoogleFonts.cairo(
+                        fontSize: 20.0.sp,
+                        fontWeight: FontWeight.w700,
+                        color: AppColors.primary100,
                       ),
-                      Text(
-                        title,
-                        style: GoogleFonts.cairo(
-                          fontSize: 20.0.sp,
-                          fontWeight: FontWeight.w700,
-                          color: AppColors.primary100,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+                    ),
+                  ],
+                ),
+              ],
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }
