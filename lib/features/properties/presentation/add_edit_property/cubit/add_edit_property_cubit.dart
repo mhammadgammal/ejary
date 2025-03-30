@@ -1,6 +1,7 @@
 import 'package:ejary/core/helpers/cache/database_helper/db_helper.dart';
 import 'package:ejary/core/helpers/cache/database_helper/table_name.dart';
 import 'package:ejary/features/properties/data/model/property_model.dart';
+import 'package:ejary/features/properties/presentation/all_properties/cubit/all_properties_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,7 +16,7 @@ class AddEditPropertyCubit extends Cubit<AddEditPropertyState> {
       TextEditingController();
   final TextEditingController districtNameController = TextEditingController();
 
-  Future<void> addPropertyToDb({required String picturePath}) async {
+  Future<void> addPropertyToDb(BuildContext context,{required String picturePath}) async {
     final property = PropertyModel(
       id: -1,
       propertyNumber: int.tryParse(propertyNumberController.text) ?? 0,
@@ -29,11 +30,17 @@ class AddEditPropertyCubit extends Cubit<AddEditPropertyState> {
       property.toJson(),
     );
     if (propertyId > -1) {
+      addToList(context,property);
       // Property added successfully
       emit(AddEditPropertySuccess());
     } else {
       // Failed to add property
       emit(AddEditPropertyFailure());
     }
+  }
+
+  void addToList(BuildContext context,PropertyModel model){
+    AllPropertiesCubit.get(context).unFilteredProperties!.add(model);
+    AllPropertiesCubit.get(context).availableProperties++;
   }
 }

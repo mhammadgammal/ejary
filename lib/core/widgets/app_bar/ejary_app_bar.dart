@@ -5,6 +5,7 @@ import 'package:ejary/core/utils/extensions/string_extensions.dart';
 import 'package:ejary/core/utils/localization/app_strings.dart';
 import 'package:ejary/core/widgets/app_bar/widgets/app_bar_item.dart';
 import 'package:ejary/core/widgets/text_form_field/app_text_form_field.dart';
+import 'package:ejary/features/apartments/presentation/all_apartments/cubit/all_apartments_cubit.dart';
 import 'package:ejary/features/properties/presentation/all_properties/cubit/all_properties_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,6 +21,7 @@ class EjaryAppBar extends StatelessWidget implements PreferredSizeWidget {
       builder: (context, state) {
         var cubit = AppCubit.get(context);
         var allProCubit = AllPropertiesCubit.get(context);
+        var allApartmentCubit = AllApartmentsCubit.get(context);
         return Container(
           height: 95.0.h,
           color: AppColors.primary100,
@@ -60,6 +62,7 @@ class EjaryAppBar extends StatelessWidget implements PreferredSizeWidget {
                   inputType: TextInputType.text,
                   onChanged: (value) async{
                     await allProCubit.filterProperties(value);
+                    await allApartmentCubit.filterApartments(value);
                   },
                   onSubmit: (_) {},
                   fillColor: AppColors.background50,
@@ -67,6 +70,7 @@ class EjaryAppBar extends StatelessWidget implements PreferredSizeWidget {
                     onPressed: () {
                       cubit.searchController.clear();
                       allProCubit.resetFilter();
+                      allApartmentCubit.resetFilter();
                     },
                     icon:
                     SvgPicture.asset(

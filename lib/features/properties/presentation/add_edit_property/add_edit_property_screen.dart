@@ -114,6 +114,7 @@ class AddEditPropertyScreen extends StatelessWidget {
                                 title: AppStrings.saveData.tr(context),
                                 onPressed: () {
                                   cubit.addPropertyToDb(
+                                    context,
                                     picturePath:
                                     ImagePickerCubit
                                         .get(

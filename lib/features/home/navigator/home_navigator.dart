@@ -35,17 +35,12 @@ class _HomeNavigatorState extends State<HomeNavigator> {
               var propertyNumber = args['property_number'];
               var propertyDistrict = args['property_district'];
               var apartments = args['apartments'];
-              return BlocProvider(
-                lazy: false,
-                create:
-                    (context) =>
-                AllApartmentsCubit()
-                  ..selectedPropertyId = propertyId
-                  ..selectedPropertyNumber = propertyNumber
-                  ..selectedPropertyDistrict = propertyDistrict
-                  ..getAllApartments(apartments),
-                child: AllApartmentsScreen(),
-              );
+              // set data method
+              var cubit = AllApartmentsCubit.get(context);
+              cubit.setSelectedProperty(propertyId, propertyNumber, propertyDistrict);
+              cubit.getAllApartments(apartments);
+
+              return AllApartmentsScreen();
             } else if (settings.name == RouteKeys.addEditApartment) {
               var args = settings.arguments as Map<String, dynamic>;
               var propertyId = args['property_id'];

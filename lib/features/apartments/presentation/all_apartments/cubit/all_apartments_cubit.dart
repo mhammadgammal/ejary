@@ -20,12 +20,12 @@ class AllApartmentsCubit extends Cubit<AllApartmentsState> {
 
   List<ApartmentModel>? apartments;
 
-  Future<void> getAllApartments([List<ApartmentModel>? apartmentss]) async {;
+  Future<void> getAllApartments([List<ApartmentModel>? apartmentss]) async {
     emit(GetAllApartmentsLoadingState());
-    if(apartmentss != null && apartmentss.isNotEmpty){
+    if (apartmentss != null && apartmentss.isNotEmpty) {
       apartments = apartmentss;
       emit(GetAllApartmentsSuccessState());
-    }else{
+    } else {
       try {
         final apartmentsResponse = await DbHelper.getDataWhere(
           TableName.apartmentTable,
@@ -44,5 +44,40 @@ class AllApartmentsCubit extends Cubit<AllApartmentsState> {
         emit(GetAllApartmentsErrorState(e.toString()));
       }
     }
+  }
+
+  void setSelectedProperty(
+    int propertyId,
+    int propertyNumber,
+    String propertyDistrict,
+  ) {
+    selectedPropertyId = propertyId;
+    selectedPropertyNumber = propertyNumber;
+    selectedPropertyDistrict = propertyDistrict;
+  }
+
+  Future<void> filterApartments(String value) async {
+    apartments!.clear();
+    if (value.isEmpty) {
+      resetFilter();
+    }else{
+      final filteredResponse = await DbHelper.getDataWhere(
+        TableName.apartmentTable,
+        where: 'renter_phone_number LIKE ? OR renter_name LIKE ? and property_id = ?',
+        whereArgs: ['%$value%', '%$value%',selectedPropertyId],
+      );
+      for (var model in filteredResponse) {
+        apartments!.add(ApartmentModel.fromJson(model));
+      }
+      totalApartments = apartments!.length;
+      emit(FilterApartments());
+    }
+
+
+  }
+
+  void resetFilter() {
+    apartments!.clear();
+    getAllApartments();
   }
 }

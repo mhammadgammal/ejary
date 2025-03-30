@@ -9,6 +9,8 @@ final class GetAllApartmentsLoadingState extends AllApartmentsState {}
 
 final class GetAllApartmentsSuccessState extends AllApartmentsState {}
 
+final class FilterApartments extends AllApartmentsState {}
+
 final class GetAllApartmentsErrorState extends AllApartmentsState {
   final String message;
 

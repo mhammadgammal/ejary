@@ -49,8 +49,6 @@ class AllPropertiesCubit extends Cubit<AllPropertiesState> {
         whereArgs: ['%$value%', '%$value%'],
       );
 
-
-
       for (var model in filteredResponse) {
         models.add(ApartmentModel.fromJson(model));
       }
