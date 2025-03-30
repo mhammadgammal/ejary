@@ -127,5 +127,8 @@
   "contract_start_date": "تاريخ بداية العقد",
   "contract_end_date": "تاريخ إنتهاء العقد",
   "No Apartments currently..add it from here": "لا توجد شقق حاليا.. أضفها من هنا",
-  "You will be notified before renter contract ends": "سوف يصلك اشعار لتذكيرك قبل إنتهاء\n عقد المستأجر و ذلك للتواصل معه"
+  "You will be notified before renter contract ends": "سوف يصلك اشعار لتذكيرك قبل إنتهاء\n عقد المستأجر و ذلك للتواصل معه",
+  "alarm_message": "رسالة تذكير",
+  "time_message": "متبقي في عقده أقل من شهر , يرجى التواصل معه",
+  "No Alarms Yet": "لا يوجد تذكيرات حتي الان"
 }

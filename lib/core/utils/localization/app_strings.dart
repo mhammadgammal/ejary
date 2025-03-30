@@ -71,6 +71,8 @@ abstract final class AppStrings {
   static const String eveningTime = 'evening_time';
   static const String map = 'map';
   static const String search = 'search';
+  static const String alarmMessage = 'alarm_message';
+  static const String timeMessage = 'time_message';
 
   //#endregion
 
