@@ -100,23 +100,27 @@ abstract class DialogHelper {
           (context) => Dialog(
             child: Container(
               width: 600.0.w,
-              height: 250.0.h,
-              padding: EdgeInsets.all(20.0.w),
+              height: 378.0.h,
+              padding: EdgeInsets.symmetric(
+                horizontal: 24.0.w,
+                vertical: 24.0.h,
+              ),
               decoration: BoxDecoration(
-                color: AppColors.white,
+                color: AppColors.background50,
                 borderRadius: BorderRadius.circular(AppTheme.appRadius),
               ),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SizedBox(
-                    width: 43.w,
-                    height: 43.w,
-                    child: SvgPicture.asset(AppIcons.failureIc),
+                    width: 150.0.w,
+                    height: 130.0.h,
+                    child: Lottie.asset(AppLottie.warning),
                   ),
                   Text(
-                    'Are you sure you want to delete employee'.tr(context),
+                    'Are you sure you want to delete renter'.tr(context),
+                    textAlign: TextAlign.center,
                     style: Theme.of(
                       context,
                     ).textTheme.bodyMedium!.copyWith(fontSize: 24.sp),
@@ -124,29 +128,33 @@ abstract class DialogHelper {
                   Text(
                     'If you delete you won\'t restore data, and you will add data manually'
                         .tr(context),
+                    maxLines: 2,
+                    softWrap: true,
+                    textAlign: TextAlign.center,
                     style: Theme.of(
                       context,
                     ).textTheme.bodyMedium!.copyWith(fontSize: 18.sp),
                   ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     spacing: 10.0.w,
                     children: [
-                      Expanded(
-                        child: CustomFilledButton(
-                          title: 'Delete'.tr(context),
-                          fillColor: AppColors.failure,
-                          onPressed: () {
-                            onYes();
-                            Navigator.pop(context);
-                          },
-                        ),
+                      CustomOutlinedButtonWithBorder(
+                        width: 160.0.w,
+                        height: 48.0.h,
+                        title: 'Cancel'.tr(context),
+                        titleColor: AppColors.black,
+                        onPressed: () => Navigator.pop(context),
                       ),
-
-                      Expanded(
-                        child: CustomOutlinedButtonWithBorder(
-                          title: 'Cancel'.tr(context),
-                          onPressed: () => Navigator.pop(context),
-                        ),
+                      CustomFilledButton(
+                        width: 160.0.w,
+                        height: 48.0.h,
+                        title: 'Delete'.tr(context),
+                        fillColor: AppColors.failure,
+                        onPressed: () {
+                          onYes();
+                          Navigator.pop(context);
+                        },
                       ),
                     ],
                   ),
