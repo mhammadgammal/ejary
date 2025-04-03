@@ -1,4 +1,5 @@
 import 'package:ejary/core/assets/app_icons.dart';
+import 'package:ejary/core/assets/app_lottie.dart';
 import 'package:ejary/core/theme/app_color.dart';
 import 'package:ejary/core/theme/app_theme.dart';
 import 'package:ejary/core/utils/extensions/string_extensions.dart';
@@ -8,6 +9,7 @@ import 'package:ejary/core/widgets/text_form_field/columned_text_form_field.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lottie/lottie.dart';
 
 abstract class DialogHelper {
   static void showFailureDialog(BuildContext context, String message) {
@@ -40,30 +42,49 @@ abstract class DialogHelper {
     showDialog(
       context: context,
       builder:
-          (context) => AlertDialog(
-            backgroundColor: AppColors.white,
-            icon: SvgPicture.asset(AppIcons.successIc),
-            title: Text(
-              header.tr(context),
-              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                color: AppColors.black,
-                fontSize: 20.0.sp,
+          (context) => Dialog(
+            child: Container(
+              width: 556.0.w,
+              height: 341.0.h,
+              padding: EdgeInsets.symmetric(),
+              decoration: BoxDecoration(
+                color: AppColors.background50,
+                borderRadius: BorderRadius.circular(16.0.r),
+              ),
+              child: Column(
+                spacing: 20.0.h,
+                children: [
+                  SizedBox(
+                    width: 150.0.w,
+                    height: 150.0.h,
+                    child: Lottie.asset(AppLottie.success),
+                  ),
+                  Text(
+                    header.tr(context),
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                      color: AppColors.black,
+                      fontSize: 40.0.sp,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  Text(
+                    message,
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                      color: AppColors.black,
+                      fontSize: 16.0.sp,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  // CustomFilledButton(
+                  //   height: 50.0.h,
+                  //   onPressed: () => Navigator.of(context).pop(),
+                  //   title: 'OK'.tr(context),
+                  // ),
+                ],
               ),
             ),
-            content: Text(
-              message,
-              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                color: AppColors.black,
-                fontSize: 15.0.sp,
-              ),
-            ),
-            actions: [
-              CustomFilledButton(
-                height: 50.0.h,
-                onPressed: () => Navigator.of(context).pop(),
-                title: 'OK'.tr(context),
-              ),
-            ],
           ),
     );
   }
@@ -124,7 +145,7 @@ abstract class DialogHelper {
                       Expanded(
                         child: CustomOutlinedButtonWithBorder(
                           title: 'Cancel'.tr(context),
-                          onPressed: () =>Navigator.pop(context),
+                          onPressed: () => Navigator.pop(context),
                         ),
                       ),
                     ],
