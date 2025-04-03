@@ -134,4 +134,16 @@ class AddEditApartmentCubit extends Cubit<AddEditApartmentState> {
       emit(DeleteSuccessState());
     }
   }
+
+  void calcRemainingValue() {
+    if (totalRentValueController.text.isNotEmpty &&
+        paidValueController.text.isNotEmpty) {
+      final totalRentValue = int.tryParse(totalRentValueController.text) ?? 0;
+      final paidValue = int.tryParse(paidValueController.text) ?? 0;
+      final remainingValue = totalRentValue - paidValue;
+      remainingValueController.text = remainingValue.toString();
+    } else {
+      remainingValueController.clear();
+    }
+  }
 }

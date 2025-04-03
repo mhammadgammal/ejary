@@ -44,10 +44,9 @@ class AddEditApartmentScreen extends StatelessWidget {
           AppCubit.get(context).changeTabIndex(0);
         }
 
-        if(state is DeleteSuccessState){
+        if (state is DeleteSuccessState) {
           Navigator.pop(context);
         }
-
       },
       builder: (context, state) {
         var cubit = AddEditApartmentCubit.get(context);
@@ -177,6 +176,8 @@ class AddEditApartmentScreen extends StatelessWidget {
                                     title: AppStrings.allRentValue.tr(context),
                                     controller: cubit.totalRentValueController,
                                     inputType: TextInputType.number,
+                                    onChanged:
+                                        (_) => cubit.calcRemainingValue(),
                                     hint:
                                         '${AppStrings.enter.tr(context)} ${AppStrings.allRentValue.tr(context)}',
                                   ),
@@ -192,6 +193,8 @@ class AddEditApartmentScreen extends StatelessWidget {
                                     title: AppStrings.paid.tr(context),
                                     controller: cubit.paidValueController,
                                     inputType: TextInputType.text,
+                                    onChanged:
+                                        (_) => cubit.calcRemainingValue(),
                                     hint: 'Write paid value from renter'.tr(
                                       context,
                                     ),
@@ -230,7 +233,8 @@ class AddEditApartmentScreen extends StatelessWidget {
                                   child: DatePicker(
                                     datePickerLabel: AppStrings.contractEndDate
                                         .tr(context),
-                                    datePickerController:cubit.contractEndDateController,
+                                    datePickerController:
+                                        cubit.contractEndDateController,
                                     datePickerHint: '0/0/0000',
                                     validation: null,
                                   ),
@@ -331,19 +335,19 @@ class AddEditApartmentScreen extends StatelessWidget {
                             title: AppStrings.saveData.tr(context),
                             onPressed: () async {
                               if (await cubit.isUpdate()) {
-                                if(context.mounted){
+                                if (context.mounted) {
                                   cubit.updateApartment(
                                     ImagePickerCubit.get(context).imagePath,
                                     AttachFileCubit.get(context).filePath,
                                   );
                                 }
-
                               } else {
-                                if(context.mounted){
-                                cubit.addApartment(
-                                  ImagePickerCubit.get(context).imagePath,
-                                  AttachFileCubit.get(context).filePath,
-                                );}
+                                if (context.mounted) {
+                                  cubit.addApartment(
+                                    ImagePickerCubit.get(context).imagePath,
+                                    AttachFileCubit.get(context).filePath,
+                                  );
+                                }
                               }
                             },
                             fontSize: 18.sp,

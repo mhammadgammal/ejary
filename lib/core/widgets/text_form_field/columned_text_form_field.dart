@@ -18,6 +18,8 @@ class ColumnedTextFormField extends StatelessWidget {
     this.maxLines = 1,
     this.hintColor,
     this.isPassword = false,
+    this.onSubmit,
+    this.onChanged,
   });
 
   final String title;
@@ -32,6 +34,8 @@ class ColumnedTextFormField extends StatelessWidget {
   final Widget? icon;
   final int maxLines;
   final bool isPassword;
+  final void Function(String?)? onSubmit;
+  final void Function(String?)? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -56,6 +60,8 @@ class ColumnedTextFormField extends StatelessWidget {
           maxLines: maxLines,
           obSecure: isPassword,
           hintColor: hintColor ?? AppColors.gray100,
+          onSubmit: onSubmit,
+          onChanged: onChanged,
         ),
       ],
     );
