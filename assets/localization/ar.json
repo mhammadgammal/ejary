@@ -130,5 +130,6 @@
   "You will be notified before renter contract ends": "سوف يصلك اشعار لتذكيرك قبل إنتهاء\n عقد المستأجر و ذلك للتواصل معه",
   "alarm_message": "رسالة تذكير",
   "time_message": "متبقي في عقده أقل من شهر , يرجى التواصل معه",
-  "No Alarms Yet": "لا يوجد تذكيرات حتي الان"
+  "No Alarms Yet": "لا يوجد تذكيرات حتي الان",
+  "sign_out": "تسجيل الخروج"
 }

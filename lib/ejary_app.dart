@@ -10,6 +10,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'core/di/di.dart' show sl;
 
+final GlobalKey<NavigatorState> rootNavigatorKey = GlobalKey<NavigatorState>();
+
 class EjaryApp extends StatelessWidget {
   const EjaryApp({super.key});
 
@@ -19,6 +21,7 @@ class EjaryApp extends StatelessWidget {
       designSize: Size(1440, 1024),
       builder:
           (context, child) => MaterialApp(
+            navigatorKey: rootNavigatorKey,
             debugShowCheckedModeBanner: false,
             theme: AppTheme.lightTheme,
             routes: routes,

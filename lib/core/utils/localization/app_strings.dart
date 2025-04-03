@@ -124,5 +124,7 @@ abstract final class AppStrings {
   static const String contractEndDate = 'contract_end_date';
   static const String uploadContract = 'upload_contract';
   static const String uploadPicture = 'upload_picture';
+
+  static var signOut = 'sign_out';
   //#endregion
 }

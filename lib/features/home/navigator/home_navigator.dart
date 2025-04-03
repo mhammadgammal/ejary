@@ -37,7 +37,11 @@ class _HomeNavigatorState extends State<HomeNavigator> {
               var apartments = args['apartments'];
               // set data method
               var cubit = AllApartmentsCubit.get(context);
-              cubit.setSelectedProperty(propertyId, propertyNumber, propertyDistrict);
+              cubit.setSelectedProperty(
+                propertyId,
+                propertyNumber,
+                propertyDistrict,
+              );
               cubit.getAllApartments(apartments);
 
               return AllApartmentsScreen();
@@ -52,13 +56,13 @@ class _HomeNavigatorState extends State<HomeNavigator> {
                   BlocProvider(
                     create:
                         (_) =>
-                    AddEditApartmentCubit()
-                      ..selectedPropertyId = propertyId
-                      ..selectedPropertyNumber = propertyNumber
-                      ..selectedPropertyDistrict = propertyDistrict
-                    // ..rentedApartmentModel = apartment
-                      ..isEditMode = apartment != null
-                      ..loadApartmentData(apartment),
+                            AddEditApartmentCubit()
+                              ..selectedPropertyId = propertyId
+                              ..selectedPropertyNumber = propertyNumber
+                              ..selectedPropertyDistrict = propertyDistrict
+                              // ..rentedApartmentModel = apartment
+                              ..isEditMode = apartment != null
+                              ..loadApartmentData(apartment),
                   ),
                   BlocProvider(create: (_) => ImagePickerCubit()),
                   BlocProvider(create: (_) => AttachFileCubit()),
