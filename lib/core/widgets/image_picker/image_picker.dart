@@ -36,6 +36,13 @@ class ImagePicker extends StatelessWidget {
                   child:
                       cubit.imagePath.isEmpty
                           ? Card(
+                            shape: ContinuousRectangleBorder(
+                              side: BorderSide(
+                                color: AppColors.gray200,
+                                width: 1.0.w,
+                              ),
+                              borderRadius: BorderRadius.circular(4.0.r),
+                            ),
                             child: Padding(
                               padding: EdgeInsets.symmetric(
                                 horizontal: 108.0.w,
