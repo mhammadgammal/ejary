@@ -1,8 +1,10 @@
+import 'package:ejary/core/di/di.dart';
 import 'package:ejary/core/helpers/cache/database_helper/db_helper.dart';
 import 'package:ejary/core/helpers/cache/database_helper/table_name.dart';
 import 'package:ejary/features/apartments/data/model/apartment_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 part 'add_edit_apartment_state.dart';
 
@@ -57,8 +59,16 @@ class AddEditApartmentCubit extends Cubit<AddEditApartmentState> {
       contractEndDate: contractEndDateController.text,
       renterPhoneNumber: phoneNumberController.text,
     );
-    await DbHelper.insertData(TableName.apartmentTable, apartment.toJson());
-
+    int apartmentId = await DbHelper.insertData(
+      TableName.apartmentTable,
+      apartment.toJson(),
+    );
+    if (apartmentId != -1) {
+      sl<Database>().rawUpdate(
+        'UPDATE ${TableName.propertyTable} SET number_of_apartments = number_of_apartments + 1 WHERE id = ?',
+        [selectedPropertyId],
+      );
+    }
     emit(AddRentedApartmentSuccessState());
   }
 
@@ -131,6 +141,10 @@ class AddEditApartmentCubit extends Cubit<AddEditApartmentState> {
       _apartmentModel.id,
     ]);
     if (success) {
+      sl<Database>().rawUpdate(
+        'UPDATE ${TableName.propertyTable} SET number_of_apartments = number_of_apartments - 1 WHERE id = ?',
+        [selectedPropertyId],
+      );
       emit(DeleteSuccessState());
     }
   }
