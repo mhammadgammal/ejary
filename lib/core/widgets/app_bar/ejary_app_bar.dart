@@ -60,7 +60,8 @@ class EjaryAppBar extends StatelessWidget implements PreferredSizeWidget {
                   ),
                   controller: cubit.searchController,
                   inputType: TextInputType.text,
-                  onChanged: (value) async{
+                  onChanged: (value) async {
+                    cubit.changeTabIndex(0);
                     await allProCubit.filterProperties(value);
                     await allApartmentCubit.filterApartments(value);
                   },
@@ -72,8 +73,7 @@ class EjaryAppBar extends StatelessWidget implements PreferredSizeWidget {
                       allProCubit.resetFilter();
                       allApartmentCubit.resetFilter();
                     },
-                    icon:
-                    SvgPicture.asset(
+                    icon: SvgPicture.asset(
                       AppIcons.xIc,
                       colorFilter: ColorFilter.mode(
                         AppColors.gray100,
