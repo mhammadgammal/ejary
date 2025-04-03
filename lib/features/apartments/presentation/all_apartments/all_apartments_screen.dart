@@ -4,6 +4,7 @@ import 'package:ejary/core/router/route_keys.dart';
 import 'package:ejary/core/theme/app_color.dart';
 import 'package:ejary/core/utils/extensions/string_extensions.dart';
 import 'package:ejary/core/utils/localization/app_strings.dart';
+import 'package:ejary/core/widgets/base_empty_state.dart';
 import 'package:ejary/core/widgets/base_item_layout/property_item.dart';
 import 'package:ejary/core/widgets/buttons/filled_buttons/custom_filled_button.dart';
 import 'package:ejary/features/apartments/data/mapper/apartment_mapper.dart';
@@ -41,41 +42,21 @@ class AllApartmentsScreen extends StatelessWidget {
                 ? CircularProgressIndicator()
                 : state is GetAllApartmentsSuccessState &&
                     (cubit.apartments != null && cubit.apartments!.isEmpty)
-                ? Column(
-                  spacing: 10.0.h,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SvgPicture.asset(
-                      width: 162.5.w,
-                      height: 150.0.h,
-                      AppIcons.homeModernIc,
-                      colorFilter: ColorFilter.mode(
-                        AppColors.gray50,
-                        BlendMode.srcIn,
-                      ),
-                    ),
-                    Text(
-                      'No Apartments currently..add it from here'.tr(context),
-                    ),
-                    CustomFilledButton(
-                      width: 248.w,
-                      height: 48.h,
-                      title: AppStrings.addApartment.tr(context),
-                      fillColor: AppColors.secondary,
-                      onPressed: () {
-                        AppNavigator.navigateTo(
-                          context,
-                          RouteKeys.addEditApartment,
-                          arguments: {
-                            'property_id': cubit.selectedPropertyId,
-                            'property_number': cubit.selectedPropertyNumber,
-                            'property_district': cubit.selectedPropertyDistrict,
-                          },
-                        ).then((_) => cubit.getAllApartments());
+                ? BaseEmptyState(
+                  thumbnailIconPath: AppIcons.buildingIc,
+                  title: 'No Apartments currently..add it from here',
+                  buttonText: AppStrings.addApartment,
+                  onPressed: () {
+                    AppNavigator.navigateTo(
+                      context,
+                      RouteKeys.addEditApartment,
+                      arguments: {
+                        'property_id': cubit.selectedPropertyId,
+                        'property_number': cubit.selectedPropertyNumber,
+                        'property_district': cubit.selectedPropertyDistrict,
                       },
-                    ),
-                  ],
+                    ).then((_) => cubit.getAllApartments());
+                  },
                 )
                 : state is GetAllApartmentsErrorState
                 ? Text('Failed')

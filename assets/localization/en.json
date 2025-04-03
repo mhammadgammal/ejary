@@ -66,5 +66,6 @@
   "upload_contract": "Upload Contract",
   "upload_picture": "Upload Picture",
   "property_added_successfully": "Property added successfully",
-  "sign_out": "Sign Out"
+  "sign_out": "Sign Out",
+  "no_alarms_yet": "No Alarms yet"
 }

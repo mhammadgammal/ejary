@@ -10,6 +10,7 @@ import 'package:google_fonts/google_fonts.dart';
 class BaseEmptyState extends StatelessWidget {
   final String thumbnailIconPath;
   final String title;
+  final bool showButton;
   final String buttonText;
   final VoidCallback onPressed;
 
@@ -17,6 +18,7 @@ class BaseEmptyState extends StatelessWidget {
     super.key,
     required this.thumbnailIconPath,
     required this.title,
+    this.showButton = true,
     required this.buttonText,
     required this.onPressed,
   });
@@ -44,17 +46,20 @@ class BaseEmptyState extends StatelessWidget {
               fontWeight: FontWeight.w700,
             ),
           ),
-          CustomFilledButton(
-            width: 248.w,
-            height: 48.h,
-            title: buttonText.tr(context),
-            fillColor: AppColors.secondary,
-            icon: SvgPicture.asset(
-              AppIcons.plus,
-              colorFilter: ColorFilter.mode(AppColors.white, BlendMode.srcIn),
+          Visibility(
+            visible: showButton,
+            child: CustomFilledButton(
+              width: 248.w,
+              height: 48.h,
+              title: buttonText.tr(context),
+              fillColor: AppColors.secondary,
+              icon: SvgPicture.asset(
+                AppIcons.plus,
+                colorFilter: ColorFilter.mode(AppColors.white, BlendMode.srcIn),
+              ),
+              iconAlignment: IconAlignment.start,
+              onPressed: onPressed,
             ),
-            iconAlignment: IconAlignment.start,
-            onPressed: onPressed,
           ),
         ],
       ),

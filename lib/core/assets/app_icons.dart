@@ -33,4 +33,5 @@ abstract class AppIcons {
   static const String greenArrowRight = 'assets/icons/arrow_right.svg';
   static const String user = 'assets/icons/user.svg';
   static const String payment = "assets/icons/hugeicons_payment.svg";
+  static const String bellSlash = 'assets/icons/bell_slash.svg';
 }
