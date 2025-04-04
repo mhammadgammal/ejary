@@ -1,4 +1,3 @@
-import 'package:ejary/core/app_container/cubit/app_cubit.dart';
 import 'package:ejary/core/assets/app_icons.dart';
 import 'package:ejary/core/theme/app_color.dart';
 import 'package:ejary/core/utils/extensions/string_extensions.dart';
@@ -34,13 +33,12 @@ class AddEditApartmentScreen extends StatelessWidget {
               context,
             ),
           );
-          Navigator.pop(context);
         } else if (state is UpdateRentedApartmentSuccessState) {
           DialogHelper.showSuccessDialog(
             context: context,
             header: AppStrings.saveChangesSuccess.tr(context),
           );
-          AppCubit.get(context).changeTabIndex(0);
+          Navigator.pop(context);
         }
 
         if (state is DeleteSuccessState) {
