@@ -283,7 +283,10 @@ class AddEditApartmentScreen extends StatelessWidget {
                                         cubit.floorApartmentNumberController,
                                     inputType: TextInputType.number,
                                     hint:
-                                        '${AppStrings.enter.tr(context)} ${AppStrings.idOrIqamaNumber.tr(context)}',
+                                    '${AppStrings.enter.tr(
+                                        context)} ${AppStrings
+                                        .rentedFloorAndApartmentNumber.tr(
+                                        context)}',
                                   ),
                                 ),
                                 SizedBox(width: 20.0.w),

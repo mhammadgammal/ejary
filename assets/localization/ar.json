@@ -128,5 +128,6 @@
   "Are you sure you want to delete renter": "هل متأكد من مسح ملف المستأجر ؟",
   "confirm_delete_apartment": "في حالة تم المسح لن تتمكن من استرجاع البيانات مرة اخري و سنعيد ادخال بيانات المستأجر يدويا",
   "Delete apartment": "إزالة الشقة",
-  "settings_changed_success": "تم تغيير الإعدادات بنجاح!"
+  "settings_changed_success": "تم تغيير الإعدادات بنجاح!",
+  "rented_floor_and_apartment_number": "رقم الدور و الشقه المستأجره"
 }
