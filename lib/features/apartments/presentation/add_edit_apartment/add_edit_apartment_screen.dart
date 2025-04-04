@@ -27,7 +27,6 @@ class AddEditApartmentScreen extends StatelessWidget {
     return BlocConsumer<AddEditApartmentCubit, AddEditApartmentState>(
       listener: (context, state) {
         if (state is AddRentedApartmentSuccessState) {
-          // Navigator.pop(context);
           DialogHelper.showSuccessDialog(
             context: context,
             header: AppStrings.saveData.tr(context),
@@ -35,7 +34,7 @@ class AddEditApartmentScreen extends StatelessWidget {
               context,
             ),
           );
-          AppCubit.get(context).changeTabIndex(0);
+          Navigator.pop(context);
         } else if (state is UpdateRentedApartmentSuccessState) {
           DialogHelper.showSuccessDialog(
             context: context,
