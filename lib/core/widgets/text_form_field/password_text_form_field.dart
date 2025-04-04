@@ -7,8 +7,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class PasswordTextFormField extends StatefulWidget {
   const PasswordTextFormField(
-      {super.key, required this.controller, this.passwordValidation});
+      {super.key, this.title = 'Password', required this.controller, this.passwordValidation});
 
+  final String title;
   final TextEditingController controller;
 
   final String? Function(String?)? passwordValidation;
@@ -28,8 +29,8 @@ class _PasswordTextFormFieldState extends State<PasswordTextFormField> {
   @override
   Widget build(BuildContext context) {
     return ColumnedTextFormField(
-      title: 'Password'.tr(context),
-      hint: 'Password'.tr(context),
+      title: widget.title.tr(context),
+      hint: widget.title.tr(context),
       controller: widget.controller,
       inputType: TextInputType.visiblePassword,
       isPassword: !showPassword,

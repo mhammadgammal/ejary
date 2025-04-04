@@ -65,6 +65,7 @@ class SettingsScreen extends StatelessWidget {
                     padding: EdgeInsetsDirectional.only(start: 20.0.w),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
+                      spacing: 20.0.h,
                       children: [
                         SizedBox(
                           width: 551.w,
@@ -84,6 +85,7 @@ class SettingsScreen extends StatelessWidget {
                           width: 551.w,
                           height: 100.h,
                           child: PasswordTextFormField(
+                            title: AppStrings.confirmPassword,
                             controller: cubit.confirmPasswordController,
                             passwordValidation:
                                 (value) => Validators.validateConfirmPassword(
