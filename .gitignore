@@ -49,3 +49,5 @@ app.*.map.json
 /macos/Flutter/GeneratedPluginRegistrant.swift
 /test/widget_test.dart
 /devtools_options.yaml
+/installer/ejary_setup.exe
+/installer/ejary_setup_script.iss
