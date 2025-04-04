@@ -28,7 +28,7 @@ class AddEditPropertyScreen extends StatelessWidget {
           if (state is AddEditPropertySuccess) {
             DialogHelper.showSuccessDialog(
               context: context,
-              message: 'property_added_successfully'.tr(context),
+              header: 'property_added_successfully'.tr(context),
             );
             AppCubit.get(context).changeTabIndex(0);
           } else if (state is AddEditPropertyFailure) {
