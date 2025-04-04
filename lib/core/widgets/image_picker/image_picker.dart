@@ -45,7 +45,7 @@ class ImagePicker extends StatelessWidget {
                             ),
                             child: Padding(
                               padding: EdgeInsets.symmetric(
-                                horizontal: 108.0.w,
+                                horizontal: 90.0.w,
                               ),
                               child: SvgPicture.asset(
                                 AppIcons.picture,

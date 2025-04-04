@@ -6,6 +6,7 @@ import 'package:ejary/features/properties/presentation/add_edit_property/add_edi
 import 'package:ejary/features/settings/navigator/settings_navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppLayout extends StatelessWidget {
   const AppLayout({super.key});
@@ -17,13 +18,18 @@ class AppLayout extends StatelessWidget {
         var cubit = AppCubit.get(context);
         return Scaffold(
           appBar: EjaryAppBar(),
-          body: _switchScreen(index: cubit.selectedIndex),
+          body: Column(
+            children: [
+              SizedBox(height: 30.0.h),
+              Expanded(child: _switchScreen(index: cubit.selectedIndex)),
+            ],
+          ),
         );
       },
     );
   }
 
-  _switchScreen({required int index}) {
+  Widget _switchScreen({required int index}) {
     switch (index) {
       case 0:
         return HomeNavigator();
@@ -33,6 +39,8 @@ class AppLayout extends StatelessWidget {
         return const AlarmsNavigation();
       case 3:
         return const SettingsNavigator();
+      default:
+        return Placeholder();
     }
   }
 }

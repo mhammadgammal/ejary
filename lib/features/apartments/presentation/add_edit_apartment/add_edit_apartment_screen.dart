@@ -49,7 +49,6 @@ class AddEditApartmentScreen extends StatelessWidget {
         var cubit = AddEditApartmentCubit.get(context);
         return Container(
           padding: EdgeInsetsDirectional.only(
-            top: 50.0.h,
             start: 45.0.w,
             end: 70.0.w,
             bottom: 45.0.h,
@@ -105,14 +104,15 @@ class AddEditApartmentScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 20.0.h),
+              SizedBox(height: 40.0.h),
               Expanded(
                 child: Container(
                   decoration: BoxDecoration(
                     border: Border.all(color: AppColors.gray100, width: 1.0.w),
                     borderRadius: BorderRadius.circular(10.0.r),
                   ),
-                  padding: EdgeInsetsDirectional.only(start: 20.0.w),
+                  padding: EdgeInsetsDirectional.only(
+                      start: 20.0.w, top: 20.0.h),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -321,6 +321,7 @@ class AddEditApartmentScreen extends StatelessWidget {
                           ],
                         ),
                       ),
+                      SizedBox(width: 50.0.h),
                       Column(
                         children: [
                           SizedBox(
