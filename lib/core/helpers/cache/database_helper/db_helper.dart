@@ -206,7 +206,7 @@ class DbHelper {
       final updateResult = await sl<Database>().update(
         table,
         data,
-        where: '$where = ?',
+        where: where,
         whereArgs: whereArgs,
         conflictAlgorithm: ConflictAlgorithm.replace,
       );

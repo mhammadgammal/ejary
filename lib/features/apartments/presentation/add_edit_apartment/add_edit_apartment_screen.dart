@@ -39,7 +39,7 @@ class AddEditApartmentScreen extends StatelessWidget {
         } else if (state is UpdateRentedApartmentSuccessState) {
           DialogHelper.showSuccessDialog(
             context: context,
-            header: AppStrings.saveChanges.tr(context),
+            header: AppStrings.saveChangesSuccess.tr(context),
           );
           AppCubit.get(context).changeTabIndex(0);
         }

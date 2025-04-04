@@ -99,6 +99,7 @@ abstract final class AppStrings {
   static const String propertyDetails = 'property_details';
   static const String accountSettings = 'account_settings';
   static const String saveChanges = 'save_changes';
+  static const String saveChangesSuccess = 'save_changes_success';
 
   static const String propertyNo = "property_no";
   static const String districtName = "district_name";
@@ -129,5 +130,7 @@ abstract final class AppStrings {
   static const String signOut = 'sign_out';
 
   static const String editApartment = 'edit_apartment';
+
+  static const String settingsChangedSuccess = 'settings_changed_success';
   //#endregion
 }

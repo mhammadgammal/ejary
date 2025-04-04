@@ -93,7 +93,8 @@
   "available_properties": "العقارات المتاحه",
   "property_details": "تفاصيل العقار",
   "account_settings": "إعدادات الحساب",
-  "save_changes": "تم التغيير بنجاح !",
+  "save_changes": "حفظ التعديلات",
+  "save_changes_success": "تم التغيير بنجاح !",
   "property_no": "رقم العقار أو المبني",
   "district_name": "إسم الحي",
   "enter": "ادخل",
@@ -137,5 +138,6 @@
   "no_alarms_yet": "لا توجد تنبيهات بعد",
   "Are you sure you want to delete renter": "هل متأكد من مسح ملف المستأجر ؟",
   "If you delete you won\\'t restore data, and you will add data manually": "في حالة تم المسح لن تتمكن من استرجاع البيانات مرة اخري و سنعيد ادخال بيانات المستأجر يدويا",
-  "Delete apartment": "إزالة الشقة"
+  "Delete apartment": "إزالة الشقة",
+  "settings_changed_success": "تم تغيير الإعدادات بنجاح!"
 }

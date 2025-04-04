@@ -6,10 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class PasswordTextFormField extends StatefulWidget {
-  const PasswordTextFormField({super.key, required this.controller});
+  const PasswordTextFormField(
+      {super.key, required this.controller, this.passwordValidation});
 
   final TextEditingController controller;
 
+  final String? Function(String?)? passwordValidation;
   @override
   State<PasswordTextFormField> createState() => _PasswordTextFormFieldState();
 }
@@ -42,7 +44,7 @@ class _PasswordTextFormFieldState extends State<PasswordTextFormField> {
           colorFilter: ColorFilter.mode(AppColors.gray100, BlendMode.srcIn),
         ),
       ),
-      // validate: (value) => Validators.validatePassword(context, value),
+      validate: widget.passwordValidation,
     );
   }
 }
