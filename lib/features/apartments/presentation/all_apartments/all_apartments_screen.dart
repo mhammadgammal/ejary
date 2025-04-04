@@ -62,39 +62,45 @@ class AllApartmentsScreen extends StatelessWidget {
                 ? Text('Failed')
                 : Flexible(
                   fit: FlexFit.loose,
-                  child: GridView.builder(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 4,
-                      childAspectRatio: 0.9,
-                    ),
-                    addRepaintBoundaries: true,
-                    padding: EdgeInsets.zero,
-                    itemBuilder:
-                        (context, index) => SizedBox(
-                          width: 250.w,
-                          height: 350.h,
-                          child: PropertyItem(
-                            property: ApartmentMapper.mapApartmentModelToEntity(
-                              cubit.apartments![index],
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.only(end: 10.0.w),
+                    child: GridView.builder(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 4,
+                        childAspectRatio: 0.9,
+                      ),
+                      addRepaintBoundaries: true,
+                      padding: EdgeInsets.zero,
+                      itemBuilder:
+                          (context, index) => SizedBox(
+                            width: 250.w,
+                            height: 350.h,
+                            child: PropertyItem(
+                              property:
+                                  ApartmentMapper.mapApartmentModelToEntity(
+                                    cubit.apartments![index],
+                                  ),
+                              onPropertyPressed: (_) {
+                                AppNavigator.navigateTo(
+                                  context,
+                                  RouteKeys.addEditApartment,
+                                  arguments: {
+                                    'property_id': cubit.selectedPropertyId,
+                                    'property_number':
+                                        cubit.selectedPropertyNumber,
+                                    'property_district':
+                                        cubit.selectedPropertyDistrict,
+                                    'apartment': cubit.apartments![index],
+                                  },
+                                ).then((_) => cubit.getAllApartments());
+                              },
                             ),
-                            onPropertyPressed: (_) {
-                              AppNavigator.navigateTo(
-                                context,
-                                RouteKeys.addEditApartment,
-                                arguments: {
-                                  'property_id': cubit.selectedPropertyId,
-                                  'property_number':
-                                      cubit.selectedPropertyNumber,
-                                  'property_district':
-                                      cubit.selectedPropertyDistrict,
-                                  'apartment': cubit.apartments![index],
-                                },
-                              ).then((_) => cubit.getAllApartments());
-                            },
                           ),
-                        ),
-                    itemCount:
-                        cubit.apartments == null ? 0 : cubit.apartments!.length,
+                      itemCount:
+                          cubit.apartments == null
+                              ? 0
+                              : cubit.apartments!.length,
+                    ),
                   ),
                 ),
           ],
