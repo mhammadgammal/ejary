@@ -13,12 +13,20 @@ class AlarmsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
+        mainAxisSize: MainAxisSize.max,
         children: [
           AlarmsScreenHeader(),
           BlocBuilder<AlarmsCubit, AlarmsState>(
             builder: (context, state) {
-              if (context.read<AlarmsCubit>().alarms.isEmpty) {
-                return EmptyAlarmsState();
+              if (context
+                  .read<AlarmsCubit>()
+                  .alarms
+                  .isNotEmpty) {
+                return Padding(
+                    padding: EdgeInsets.only(top: MediaQuery
+                        .sizeOf(context)
+                        .height * 0.1),
+                    child: EmptyAlarmsState());
               }
               return Expanded(
                 child: ListView.builder(
