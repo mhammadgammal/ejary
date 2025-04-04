@@ -52,6 +52,7 @@ class AddEditApartmentScreen extends StatelessWidget {
         var cubit = AddEditApartmentCubit.get(context);
         return Container(
           padding: EdgeInsetsDirectional.only(
+            top: 50.0.h,
             start: 45.0.w,
             end: 70.0.w,
             bottom: 45.0.h,
@@ -71,13 +72,17 @@ class AddEditApartmentScreen extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    AppStrings.addApartment.tr(context),
+                    (AddEditApartmentCubit.get(context).isEditMode
+                            ? AppStrings.apartmentDetails
+                            : AppStrings.addApartment)
+                        .tr(context),
                     style: GoogleFonts.tajawal(
                       fontSize: 40.0.sp,
                       fontWeight: FontWeight.w700,
                       color: AppColors.gray200,
                     ),
                   ),
+                  Spacer(),
                   Visibility(
                     visible: AddEditApartmentCubit.get(context).isEditMode,
                     child: CustomOutlinedButtonWithBorder(

@@ -126,6 +126,8 @@ abstract final class AppStrings {
   static const String uploadContract = 'upload_contract';
   static const String uploadPicture = 'upload_picture';
 
-  static var signOut = 'sign_out';
+  static const String signOut = 'sign_out';
+
+  static const String editApartment = 'edit_apartment';
   //#endregion
 }
