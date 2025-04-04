@@ -21,7 +21,7 @@ class AlarmsScreen extends StatelessWidget {
               if (context
                   .read<AlarmsCubit>()
                   .alarms
-                  .isNotEmpty) {
+                  .isEmpty) {
                 return Padding(
                     padding: EdgeInsets.only(top: MediaQuery
                         .sizeOf(context)
