@@ -67,5 +67,6 @@
   "upload_picture": "Upload Picture",
   "property_added_successfully": "Property added successfully",
   "sign_out": "Sign Out",
-  "no_alarms_yet": "No Alarms yet"
+  "no_alarms_yet": "No Alarms yet",
+  "confirm_delete_apartment": "If you delete you won\\'t restore data, and you will add data manually"
 }

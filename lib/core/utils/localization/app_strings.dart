@@ -132,5 +132,6 @@ abstract final class AppStrings {
   static const String editApartment = 'edit_apartment';
 
   static const String settingsChangedSuccess = 'settings_changed_success';
+  static const String confirmDeleteApartment = 'confirm_delete_apartment';
   //#endregion
 }

@@ -3,6 +3,7 @@ import 'package:ejary/core/assets/app_lottie.dart';
 import 'package:ejary/core/theme/app_color.dart';
 import 'package:ejary/core/theme/app_theme.dart';
 import 'package:ejary/core/utils/extensions/string_extensions.dart';
+import 'package:ejary/core/utils/localization/app_strings.dart';
 import 'package:ejary/core/widgets/buttons/custom_outlined_button_with_border.dart';
 import 'package:ejary/core/widgets/buttons/filled_buttons/custom_filled_button.dart';
 import 'package:ejary/core/widgets/text_form_field/columned_text_form_field.dart';
@@ -126,8 +127,7 @@ abstract class DialogHelper {
                     ).textTheme.bodyMedium!.copyWith(fontSize: 24.sp),
                   ),
                   Text(
-                    'If you delete you won\'t restore data, and you will add data manually'
-                        .tr(context),
+                    AppStrings.confirmDeleteApartment.tr(context),
                     maxLines: 2,
                     softWrap: true,
                     textAlign: TextAlign.center,
