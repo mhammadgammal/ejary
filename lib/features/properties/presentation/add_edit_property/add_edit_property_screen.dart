@@ -65,8 +65,10 @@ class AddEditPropertyScreen extends StatelessWidget {
                       ),
                       borderRadius: BorderRadius.circular(10.0.r),
                     ),
-                    padding: EdgeInsetsDirectional.only(start: 20.0.w),
-                    child: Row(
+                    padding: EdgeInsetsDirectional.only(
+                      start: 20.0.w,
+                      top: 20.0.h,
+                    )child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [

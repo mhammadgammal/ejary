@@ -1,5 +1,5 @@
 class PropertyModel {
-  final int id;
+  late int id;
   final int propertyNumber;
   final String districtName;
   final String picturePath;

@@ -33,6 +33,7 @@ class AddEditApartmentScreen extends StatelessWidget {
               context,
             ),
           );
+          Navigator.pop(context);
         } else if (state is UpdateRentedApartmentSuccessState) {
           DialogHelper.showSuccessDialog(
             context: context,
@@ -112,7 +113,9 @@ class AddEditApartmentScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10.0.r),
                   ),
                   padding: EdgeInsetsDirectional.only(
-                      start: 20.0.w, top: 20.0.h),
+                    start: 20.0.w,
+                    top: 20.0.h,
+                  ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -263,7 +266,11 @@ class AddEditApartmentScreen extends StatelessWidget {
                                   child: ColumnedTextFormField(
                                     title: AppStrings.propertyOrBuildingNumber
                                         .tr(context),
-                                    controller: cubit.buildingNumberController,
+                                    controller:
+                                        cubit.buildingNumberController
+                                          ..text =
+                                              cubit.selectedPropertyNumber
+                                                  .toString(),
                                     inputType: TextInputType.number,
                                     hint:
                                         '${AppStrings.enter.tr(context)} ${AppStrings.propertyOrBuildingNumber.tr(context)}',
@@ -283,10 +290,7 @@ class AddEditApartmentScreen extends StatelessWidget {
                                         cubit.floorApartmentNumberController,
                                     inputType: TextInputType.number,
                                     hint:
-                                    '${AppStrings.enter.tr(
-                                        context)} ${AppStrings
-                                        .rentedFloorAndApartmentNumber.tr(
-                                        context)}',
+                                        '${AppStrings.enter.tr(context)} ${AppStrings.rentedFloorAndApartmentNumber.tr(context)}',
                                   ),
                                 ),
                                 SizedBox(width: 20.0.w),
