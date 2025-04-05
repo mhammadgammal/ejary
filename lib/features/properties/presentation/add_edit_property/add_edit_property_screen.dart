@@ -68,7 +68,8 @@ class AddEditPropertyScreen extends StatelessWidget {
                     padding: EdgeInsetsDirectional.only(
                       start: 20.0.w,
                       top: 20.0.h,
-                    )child: Row(
+                    ),
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
