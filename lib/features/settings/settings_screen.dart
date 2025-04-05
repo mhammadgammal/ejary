@@ -62,7 +62,10 @@ class SettingsScreen extends StatelessWidget {
                       ),
                       borderRadius: BorderRadius.circular(10.0.r),
                     ),
-                    padding: EdgeInsetsDirectional.only(start: 20.0.w),
+                    padding: EdgeInsetsDirectional.only(
+                      top: 20.0.h,
+                      start: 20.0.w,
+                    ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       spacing: 20.0.h,

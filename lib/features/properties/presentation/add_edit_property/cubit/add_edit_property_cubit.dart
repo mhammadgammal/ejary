@@ -30,7 +30,7 @@ class AddEditPropertyCubit extends Cubit<AddEditPropertyState> {
       property.toJson(),
     );
     if (propertyId > -1) {
-      addToList(context,property);
+      addToList(context, property..id = propertyId);
       // Property added successfully
       emit(AddEditPropertySuccess());
     } else {
