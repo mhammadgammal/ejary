@@ -16,7 +16,12 @@ class AlarmsScreen extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         children: [
           AlarmsScreenHeader(),
-          BlocBuilder<AlarmsCubit, AlarmsState>(
+          BlocConsumer<AlarmsCubit, AlarmsState>(
+            listener: (context, state) {
+              if (state is DeleteAlarmSuccess) {
+                context.read<AlarmsCubit>().getAlarms();
+              }
+            },
             builder: (context, state) {
               if (context
                   .read<AlarmsCubit>()
@@ -34,6 +39,9 @@ class AlarmsScreen extends StatelessWidget {
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
                     return AlarmWidget(
+                      alarmId: context
+                          .read<AlarmsCubit>()
+                          .alarms[index]['id'],
                       date: DateTime.now(),
                       renterName:
                           context

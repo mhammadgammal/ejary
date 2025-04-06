@@ -80,7 +80,7 @@ class SignInForm extends StatelessWidget {
                 SizedBox(height: 40.0.h),
                 CustomFilledButton(
                   width: double.infinity,
-                  height: 50.0.h,
+                  height: 55.0.h,
                   onPressed: () {
                     if (cubit.formKey.currentState!.validate()) {
                       cubit.signIn();

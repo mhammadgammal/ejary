@@ -102,6 +102,7 @@ class DbHelper {
       contract_end_date TEXT NOT NULL,
       contract_picture_path TEXT NOT NULL,
       renter_id_number TEXT NOT NULL,
+      mark_as_read INTEGER NOT NULL DEFAULT 0,
       FOREIGN KEY (property_id) REFERENCES ${TableName.propertyTable}(id) ON DELETE CASCADE
     );
   """);

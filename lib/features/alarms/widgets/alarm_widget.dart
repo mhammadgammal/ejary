@@ -1,14 +1,22 @@
 import 'package:ejary/core/theme/app_color.dart';
 import 'package:ejary/core/utils/extensions/string_extensions.dart';
 import 'package:ejary/core/utils/localization/app_strings.dart';
+import 'package:ejary/features/alarms/cubit/alarms_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
 class AlarmWidget extends StatelessWidget {
-  const AlarmWidget({super.key, required this.date, required this.renterName});
+  const AlarmWidget({
+    super.key,
+    required this.date,
+    required this.renterName,
+    required this.alarmId,
+  });
 
+  final int alarmId;
   final DateTime date;
   final String renterName;
 
@@ -23,14 +31,19 @@ class AlarmWidget extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 16.0.h),
       margin: EdgeInsets.symmetric(horizontal: 24.0.w, vertical: 10.0.h),
       child: ListTile(
-        leading: Container(
-          width: 24.0.w,
-          height: 24.0.h,
-          decoration: BoxDecoration(
-            color: AppColors.gray100,
-            borderRadius: BorderRadius.circular(2.0.r),
+        leading: GestureDetector(
+          onTap: () {
+            context.read<AlarmsCubit>().deleteAlarm(alarmId);
+          },
+          child: Container(
+            width: 24.0.w,
+            height: 24.0.h,
+            decoration: BoxDecoration(
+              color: AppColors.gray100,
+              borderRadius: BorderRadius.circular(2.0.r),
+            ),
+            child: Icon(Icons.close, color: Colors.white),
           ),
-          child: Icon(Icons.close, color: Colors.white),
         ),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
