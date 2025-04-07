@@ -1,6 +1,6 @@
 import 'package:ejary/core/assets/app_images.dart';
 import 'package:ejary/core/utils/extensions/string_extensions.dart';
-import 'package:ejary/core/widgets/buttons/filled_buttons/custom_filled_button.dart';
+import 'package:ejary/core/widgets/buttons/filled_buttons/custom_filled_button_with_arrow_icon.dart';
 import 'package:ejary/core/widgets/text_form_field/password_text_form_field.dart';
 import 'package:ejary/core/widgets/text_form_field/phone_number_form_field.dart';
 import 'package:ejary/features/sign_in/screen/cubit/sign_in_cubit.dart';
@@ -78,9 +78,9 @@ class SignInForm extends StatelessWidget {
                 //   ],
                 // ),
                 SizedBox(height: 40.0.h),
-                CustomFilledButton(
+                CustomFilledButtonWithArrowIcon(
                   width: double.infinity,
-                  height: 55.0.h,
+                  height: 50.0.h,
                   onPressed: () {
                     if (cubit.formKey.currentState!.validate()) {
                       cubit.signIn();

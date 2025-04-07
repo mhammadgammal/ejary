@@ -43,7 +43,7 @@ class AllApartmentsScreen extends StatelessWidget {
                 : state is GetAllApartmentsSuccessState &&
                     (cubit.apartments != null && cubit.apartments!.isEmpty)
                 ? BaseEmptyState(
-                  thumbnailIconPath: AppIcons.buildingIc,
+                  thumbnailIconPath: AppIcons.homeModernIc,
                   title: 'No Apartments currently..add it from here',
                   buttonText: AppStrings.addApartment,
                   onPressed: () {

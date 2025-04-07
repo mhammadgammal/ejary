@@ -9,7 +9,7 @@ class EmptyPropertiesState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseEmptyState(
-      thumbnailIconPath: AppIcons.homeModernIc,
+      thumbnailIconPath: AppIcons.buildingIc,
       title: 'No properties currently..add it from here',
       buttonText: 'add_new_property',
       onPressed: () {

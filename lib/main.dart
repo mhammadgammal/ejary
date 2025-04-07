@@ -13,7 +13,7 @@ void main() async {
   Bloc.observer = EjaryObserver();
   await init();
 
-  if (Platform.isWindows) {
+  if (Platform.isWindows || Platform.isMacOS) {
     setWindowMinSize(const Size(1440, 1024)); // Minimum width and height
   }
 
