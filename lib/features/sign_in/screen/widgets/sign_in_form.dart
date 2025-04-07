@@ -21,7 +21,11 @@ class SignInForm extends StatelessWidget {
         return Form(
           key: cubit.formKey,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40.0),
+            padding: EdgeInsets.only(
+              left: 40.0.w,
+              right: 40.0.w,
+              bottom: 20.0.h,
+            ),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.end,
@@ -53,12 +57,25 @@ class SignInForm extends StatelessWidget {
                 // ),
                 SvgPicture.asset(
                   width: 550.0.w,
-                  height: 412.0.h,
+                  // height: 412.0.h,
                   AppImages.houses,
                 ),
-                PhoneNumberFormField(controller: cubit.phoneController),
+                SizedBox(
+                  height: 10.0.h,
+                ),
+                SizedBox(
+                  width: 550.0.w,
+                  child: PhoneNumberFormField(
+                    controller: cubit.phoneController,
+                  ),
+                ),
                 SizedBox(height: 10.0.h),
-                PasswordTextFormField(controller: cubit.passwordController),
+                SizedBox(
+                  width: 550.0.w,
+                  child: PasswordTextFormField(
+                    controller: cubit.passwordController,
+                  ),
+                ),
                 // SizedBox(height: 20.0.h),
                 // Row(
                 //   children: [
@@ -79,7 +96,7 @@ class SignInForm extends StatelessWidget {
                 // ),
                 SizedBox(height: 40.0.h),
                 CustomFilledButtonWithArrowIcon(
-                  width: double.infinity,
+                  width: 550.0.w,
                   height: 50.0.h,
                   onPressed: () {
                     if (cubit.formKey.currentState!.validate()) {
