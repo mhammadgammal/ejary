@@ -31,33 +31,8 @@ class SignInForm extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // TextButton.icon(
-                //   onPressed: () {
-                //     final nextLocale =
-                //         sl<CacheHelper>().getString(
-                //                   key: CacheKeys.languageCode,
-                //                 ) ==
-                //                 'en'
-                //             ? 'ar'
-                //             : 'en';
-                //     log("SignInForm: change language to $nextLocale");
-                //     AppCubit.get(context).changeLanguage(Locale(nextLocale));
-                //   },
-                //   label: Text(
-                //     AppCubit.get(context).locale.languageCode == 'en'
-                //         ? "العربيه"
-                //         : "English",
-                //     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                //       fontSize: 22.sp,
-                //       fontWeight: FontWeight.w500
-                //     ),
-                //   ),
-                //   icon: Icon(Icons.public, color: AppColors.gray, size: 28.dm),
-                //   iconAlignment: AppCubit.get(context).locale.languageCode == 'en'? IconAlignment.start: IconAlignment.end,
-                // ),
                 SvgPicture.asset(
                   width: 550.0.w,
-                  // height: 412.0.h,
                   AppImages.houses,
                 ),
                 SizedBox(
@@ -76,24 +51,6 @@ class SignInForm extends StatelessWidget {
                     controller: cubit.passwordController,
                   ),
                 ),
-                // SizedBox(height: 20.0.h),
-                // Row(
-                //   children: [
-                //     Checkbox(
-                //       value: cubit.rememberMe,
-                //       activeColor: AppColors.primary100,
-                //       onChanged: (value) {
-                //         cubit.changeRememberMe(value);
-                //       },
-                //     ),
-                //     Text(
-                //       'Save Data for next time'.tr(context),
-                //       style: Theme.of(
-                //         context,
-                //       ).textTheme.bodyMedium!.copyWith(fontSize: 18.sp),
-                //     ),
-                //   ],
-                // ),
                 SizedBox(height: 40.0.h),
                 CustomFilledButtonWithArrowIcon(
                   width: 550.0.w,
