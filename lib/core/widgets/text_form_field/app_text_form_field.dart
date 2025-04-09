@@ -77,6 +77,7 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
           suffixIcon: widget.suffixIcon,
           fillColor: widget.fillColor,
         ),
+        scrollPhysics: NeverScrollableScrollPhysics(),
         textInputAction: widget.inputAction,
         focusNode: widget.focusNode,
         minLines: widget.minLines ?? 1,
