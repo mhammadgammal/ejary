@@ -16,7 +16,12 @@ class AddEditPropertyCubit extends Cubit<AddEditPropertyState> {
       TextEditingController();
   final TextEditingController districtNameController = TextEditingController();
 
-  Future<void> addPropertyToDb(BuildContext context,{required String picturePath}) async {
+  final formKey = GlobalKey<FormState>();
+
+  Future<void> addPropertyToDb(
+    BuildContext context, {
+    required String picturePath,
+  }) async {
     final property = PropertyModel(
       id: -1,
       propertyNumber: int.tryParse(propertyNumberController.text) ?? 0,
@@ -39,8 +44,15 @@ class AddEditPropertyCubit extends Cubit<AddEditPropertyState> {
     }
   }
 
-  void addToList(BuildContext context,PropertyModel model){
+  void addToList(BuildContext context, PropertyModel model) {
     AllPropertiesCubit.get(context).unFilteredProperties!.add(model);
     AllPropertiesCubit.get(context).availableProperties++;
+  }
+
+  String? validate(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'هذا الحقل مطلوب';
+    }
+    return null;
   }
 }

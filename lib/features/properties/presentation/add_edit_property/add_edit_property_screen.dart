@@ -43,106 +43,117 @@ class AddEditPropertyScreen extends StatelessWidget {
               end: 70.0.w,
               bottom: 45.0.h,
             ),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Text(
-                  AppStrings.addProperty.tr(context),
-                  style: GoogleFonts.tajawal(
-                    fontSize: 40.0.sp,
-                    fontWeight: FontWeight.w700,
-                    color: AppColors.gray200,
+            child: Form(
+              key: cubit.formKey,
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text(
+                    AppStrings.addProperty.tr(context),
+                    style: GoogleFonts.tajawal(
+                      fontSize: 40.0.sp,
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.gray200,
+                    ),
                   ),
-                ),
-                SizedBox(height: 20.0.h),
-                Expanded(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: AppColors.gray100,
-                        width: 1.0.w,
+                  SizedBox(height: 20.0.h),
+                  Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: AppColors.gray100,
+                          width: 1.0.w,
+                        ),
+                        borderRadius: BorderRadius.circular(10.0.r),
                       ),
-                      borderRadius: BorderRadius.circular(10.0.r),
-                    ),
-                    padding: EdgeInsetsDirectional.only(
-                      start: 20.0.w,
-                      top: 20.0.h,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Expanded(
-                                    child: ColumnedTextFormField(
-                                      title: AppStrings.propertyNo.tr(context),
-                                      controller:
-                                      cubit.propertyNumberController,
-                                      inputType: TextInputType.number,
-                                      hint:
-                                      '${AppStrings.enter.tr(
-                                          context)} ${AppStrings.propertyNo.tr(
-                                          context)}',
-                                    ),
-                                  ),
-                                  SizedBox(width: 20.0.w),
-                                  Expanded(
-                                    child: ColumnedTextFormField(
-                                      title: AppStrings.districtName.tr(
-                                        context,
+                      padding: EdgeInsetsDirectional.only(
+                        start: 20.0.w,
+                        top: 20.0.h,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Expanded(
+                                      child: ColumnedTextFormField(
+                                        title: AppStrings.propertyNo.tr(
+                                            context),
+                                        controller:
+                                        cubit.propertyNumberController,
+                                        inputType: TextInputType.number,
+                                        hint:
+                                        '${AppStrings.enter.tr(
+                                            context)} ${AppStrings.propertyNo
+                                            .tr(
+                                            context)}',
+                                        validate: cubit.validate,
                                       ),
-                                      controller: cubit.districtNameController,
-                                      inputType: TextInputType.number,
-                                      hint:
-                                      '${AppStrings.enter.tr(
-                                          context)} ${AppStrings.districtName
-                                          .tr(context)}',
                                     ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(height: 20.0.h),
-                              CustomFilledButtonWithSaveIcon(
-                                width: 343.w,
-                                height: 56.h,
-                                title: AppStrings.saveData.tr(context),
-                                onPressed: () {
-                                  cubit.addPropertyToDb(
-                                    context,
-                                    picturePath:
-                                    ImagePickerCubit
-                                        .get(
-                                      context,
-                                    )
-                                        .imagePath,
-                                  );
-                                },
-                                fontSize: 18.sp,
-                              ),
-                            ],
+                                    SizedBox(width: 20.0.w),
+                                    Expanded(
+                                      child: ColumnedTextFormField(
+                                        title: AppStrings.districtName.tr(
+                                          context,
+                                        ),
+                                        controller: cubit
+                                            .districtNameController,
+                                        inputType: TextInputType.number,
+                                        hint:
+                                        '${AppStrings.enter.tr(
+                                            context)} ${AppStrings.districtName
+                                            .tr(context)}',
+                                        validate: cubit.validate,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: 20.0.h),
+                                CustomFilledButtonWithSaveIcon(
+                                  width: 343.w,
+                                  height: 56.h,
+                                  title: AppStrings.saveData.tr(context),
+                                  onPressed: () {
+                                    if (cubit.formKey.currentState!
+                                        .validate()) {
+                                      cubit.addPropertyToDb(
+                                        context,
+                                        picturePath:
+                                        ImagePickerCubit
+                                            .get(
+                                          context,
+                                        )
+                                            .imagePath,
+                                      );
+                                    }
+                                  },
+                                  fontSize: 18.sp,
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          width: 280.w,
-                          height: 355.h,
-                          child: ImagePicker(
-                            title: AppStrings.addPropertyImage.tr(context),
+                          SizedBox(
+                            width: 280.w,
+                            height: 355.h,
+                            child: ImagePicker(
+                              title: AppStrings.addPropertyImage.tr(context),
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           );
         },
