@@ -25,9 +25,15 @@ class AddEditPropertyScreen extends StatelessWidget {
         if (state is AddEditPropertySuccess) {
           DialogHelper.showSuccessDialog(
             context: context,
-            header: 'property_added_successfully'.tr(context),
+            header: (state.isEdit
+                ? 'property_update_success'
+                : 'property_added_successfully').tr(context),
           );
-          AppCubit.get(context).changeTabIndex(0);
+          if (state.isEdit) {
+            Navigator.pop(context);
+          } else {
+            AppCubit.get(context).changeTabIndex(0);
+          }
         } else if (state is AddEditPropertyFailure) {
           DialogHelper.showFailureDialog(context, state.message);
         }
@@ -111,7 +117,9 @@ class AddEditPropertyScreen extends StatelessWidget {
                               CustomFilledButtonWithSaveIcon(
                                 width: 343.w,
                                 height: 56.h,
-                                title: AppStrings.saveData.tr(context),
+                                title: cubit.isEditMode
+                                    ? 'حقظ التعديلات'
+                                    : AppStrings.saveData.tr(context),
                                 onPressed: () {
                                   if (cubit.formKey.currentState!
                                       .validate()) {

@@ -56,7 +56,7 @@ class AddEditPropertyCubit extends Cubit<AddEditPropertyState> {
       if (propertyId > -1) {
         addToList(context, property..id = propertyId);
         // Property added successfully
-        emit(AddEditPropertySuccess());
+        emit(AddEditPropertySuccess(false));
       } else {
         // Failed to add property
         emit(AddEditPropertyFailure());
@@ -89,7 +89,7 @@ class AddEditPropertyCubit extends Cubit<AddEditPropertyState> {
           propertyModel.id,
         ])
         .then((value) {
-          emit(AddEditPropertySuccess());
+          emit(AddEditPropertySuccess(isEditMode));
         })
         .catchError((error) {
           emit(AddEditPropertyFailure());

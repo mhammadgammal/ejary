@@ -5,7 +5,11 @@ sealed class AddEditPropertyState {}
 
 final class AddEditPropertyInitial extends AddEditPropertyState {}
 
-final class AddEditPropertySuccess extends AddEditPropertyState {}
+final class AddEditPropertySuccess extends AddEditPropertyState {
+  final bool isEdit;
+
+  AddEditPropertySuccess(this.isEdit);
+}
 
 final class AddEditPropertyFailure extends AddEditPropertyState {
   final String message;
