@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:ejary/core/router/route_keys.dart';
 import 'package:ejary/core/utils/extensions/string_extensions.dart';
 import 'package:ejary/core/widgets/image_picker/cubit/image_picker_cubit.dart';
+import 'package:ejary/features/apartments/data/model/apartment_model.dart';
 import 'package:ejary/features/apartments/presentation/add_edit_apartment/add_edit_apartment_screen.dart';
 import 'package:ejary/features/apartments/presentation/add_edit_apartment/cubit/add_edit_apartment_cubit.dart';
 import 'package:ejary/features/apartments/presentation/add_edit_apartment/widgets/cubit/attach_file_cubit.dart';
@@ -50,7 +53,7 @@ class _HomeNavigatorState extends State<HomeNavigator> {
               var propertyId = args['property_id'];
               var propertyNumber = args['property_number'];
               var propertyDistrict = args['property_district'];
-              var apartment = args['apartment'];
+              var apartment = args['apartment'] as ApartmentModel?;
               return MultiBlocProvider(
                 providers: [
                   BlocProvider(
@@ -64,8 +67,23 @@ class _HomeNavigatorState extends State<HomeNavigator> {
                               ..isEditMode = apartment != null
                               ..loadApartmentData(apartment),
                   ),
-                  BlocProvider(create: (_) => ImagePickerCubit()),
-                  BlocProvider(create: (_) => AttachFileCubit()),
+                  BlocProvider(
+                    create: (_) {
+                      log((apartment?.picturePath ?? -1).toString());
+                      return ImagePickerCubit()
+                        ..imagePath = apartment?.picturePath ?? '';
+                    },
+                  ),
+                  BlocProvider(
+                    create:
+                        (_) =>
+                            AttachFileCubit()
+                              ..fileName =
+                                  apartment?.contractPicturePath
+                                      .split('/')
+                                      .last ??
+                                  '',
+                  ),
                 ],
                 child: AddEditApartmentScreen(),
               );

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:ejary/core/di/di.dart';
 import 'package:ejary/core/helpers/cache/database_helper/db_helper.dart';
 import 'package:ejary/core/helpers/cache/database_helper/table_name.dart';
@@ -96,6 +98,10 @@ class AddEditApartmentCubit extends Cubit<AddEditApartmentState> {
     String apartmentImagePath,
     String contractImagePath,
   ) async {
+    log(
+        'AddEditApartmentCubit: updateApartment: apartmentImagePath => $apartmentImagePath');
+    log(
+        'AddEditApartmentCubit: updateApartment: contractImagePath => $contractImagePath');
     final apartment = ApartmentModel(
       id: _apartmentModel.id,
       propertyId: selectedPropertyId,
@@ -113,11 +119,12 @@ class AddEditApartmentCubit extends Cubit<AddEditApartmentState> {
       contractStartDate: contractStartDateController.text,
       contractEndDate: contractEndDateController.text,
       renterPhoneNumber: phoneNumberController.text,
+      markAsRead: _apartmentModel.markAsRead,
     );
     await DbHelper.updateData(
       TableName.apartmentTable,
       apartment.toJson(),
-      'id',
+      'id = ?',
       [_apartmentModel.id],
     );
 

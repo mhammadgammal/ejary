@@ -14,7 +14,7 @@ class ApartmentModel {
   final String contractStartDate;
   final String contractEndDate;
   final String contractPicturePath;
-
+  final int markAsRead;
   ApartmentModel({
     required this.id,
     required this.propertyId,
@@ -31,6 +31,7 @@ class ApartmentModel {
     required this.contractEndDate,
     required this.contractPicturePath,
     required this.renterIdNumber,
+    this.markAsRead = 0,
   });
 
   factory ApartmentModel.fromJson(Map<String, dynamic> json) => ApartmentModel(
@@ -38,7 +39,7 @@ class ApartmentModel {
     propertyId: json['property_id'] ?? -1,
     propertyNumber: json['property_number'] ?? -1,
     floorApartmentNumber: json['floor_apartment_number'] ?? -1,
-    picturePath: json['apartment_picture_path'] ?? '',
+    picturePath: json['picture_path'] ?? '',
     renterName: json['renter_name'] ?? '',
     renterPhoneNumber: json['renter_phone_number'] ?? '',
     rentType: json['rent_type'] ?? '',
@@ -49,6 +50,7 @@ class ApartmentModel {
     contractEndDate: json['contract_end_date'] ?? '',
     contractPicturePath: json['contract_picture_path'] ?? '',
     renterIdNumber: json['renter_id_number'] ?? '',
+    markAsRead: json['mark_as_read'] ?? 0,
   );
 
   Map<String, dynamic> toJson() => {
@@ -64,7 +66,8 @@ class ApartmentModel {
     'remaining_rent_value': remainingRentValue,
     'contract_start_date': contractStartDate,
     'contract_end_date': contractEndDate,
-    'contract_picture_path': picturePath,
+    'contract_picture_path': contractPicturePath,
     'renter_id_number': renterIdNumber,
+    'mark_as_read': markAsRead,
   };
 }
