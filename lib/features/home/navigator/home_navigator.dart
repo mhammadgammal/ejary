@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:ejary/core/router/route_keys.dart';
 import 'package:ejary/core/utils/extensions/string_extensions.dart';
 import 'package:ejary/core/widgets/image_picker/cubit/image_picker_cubit.dart';
@@ -68,21 +66,18 @@ class _HomeNavigatorState extends State<HomeNavigator> {
                               ..loadApartmentData(apartment),
                   ),
                   BlocProvider(
-                    create: (_) {
-                      log((apartment?.picturePath ?? -1).toString());
-                      return ImagePickerCubit()
-                        ..imagePath = apartment?.picturePath ?? '';
-                    },
-                  ),
-                  BlocProvider(
                     create:
                         (_) =>
-                            AttachFileCubit()
-                              ..fileName =
-                                  apartment?.contractPicturePath
-                                      .split('/')
-                                      .last ??
-                                  '',
+                            ImagePickerCubit()
+                              ..imagePath = apartment?.picturePath ?? '',
+                  ),
+                  BlocProvider(
+                    create: (_) {
+                      return AttachFileCubit()
+                        ..fileName =
+                                  apartment?.contractPicturePath.split('\\').last ??
+                            '';
+                    },
                   ),
                 ],
                 child: AddEditApartmentScreen(),
