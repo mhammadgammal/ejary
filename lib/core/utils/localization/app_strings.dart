@@ -134,7 +134,9 @@ abstract final class AppStrings {
   static const String settingsChangedSuccess = 'settings_changed_success';
   static const String confirmDeleteApartment = 'confirm_delete_apartment';
 
-  static var rentedFloorAndApartmentNumber =
+  static const String rentedFloorAndApartmentNumber =
       'rented_floor_and_apartment_number';
+
+  static const String editProperty = 'edit_property';
   //#endregion
 }

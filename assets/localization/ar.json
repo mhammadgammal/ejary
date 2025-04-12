@@ -130,5 +130,6 @@
   "Delete apartment": "إزالة الشقة",
   "settings_changed_success": "تم تغيير الإعدادات بنجاح!",
   "rented_floor_and_apartment_number": "رقم الدور و الشقه المستأجره",
-  "This field is required": "هذا الحقل مطلوب"
+  "This field is required": "هذا الحقل مطلوب",
+  "edit_property": "تعديل العقار"
 }

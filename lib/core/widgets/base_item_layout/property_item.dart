@@ -10,10 +10,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class PropertyItem extends StatelessWidget {
   const PropertyItem({
     super.key,
+    this.propertyPressed,
     required this.property,
     required this.onPropertyPressed,
   });
 
+  final void Function()? propertyPressed;
   final void Function(int) onPropertyPressed;
   final BasePropertyEntity property;
 
@@ -24,39 +26,44 @@ class PropertyItem extends StatelessWidget {
         SizedBox(
           width: 250.w,
           height: 300.h,
-          child: Card(
-            color: AppColors.background50,
-            elevation: 0,
-            shape: RoundedRectangleBorder(
-              side: BorderSide(color: AppColors.gray100, width: 3.0.w),
-            ),
-            child: Padding(
-              padding: EdgeInsets.only(
-                left: 10.0.w,
-                right: 10.0.w,
-                top: 10.0.h,
-                bottom: 10.0.h,
+          child: GestureDetector(
+            onTap: () {
+              propertyPressed?.call();
+            },
+            child: Card(
+              color: AppColors.background50,
+              elevation: 0,
+              shape: RoundedRectangleBorder(
+                side: BorderSide(color: AppColors.gray100, width: 3.0.w),
               ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  PropertyPicture(imagePath: property.imagePath),
-                  SizedBox(height: 40.0.h),
-                  Expanded(
-                    child: ListView.separated(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: property.propertyInfo.length,
-                      itemBuilder:
-                          (context, index) => PropertyPieceInfoItem(
-                            infoIconPath:
-                                property.propertyInfo[index].infoIconPath,
-                            infoTitle: property.propertyInfo[index].infoTitle,
-                          ),
-                      separatorBuilder:
-                          (context, index) => SizedBox(width: 10.0.w),
+              child: Padding(
+                padding: EdgeInsets.only(
+                  left: 10.0.w,
+                  right: 10.0.w,
+                  top: 10.0.h,
+                  bottom: 10.0.h,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    PropertyPicture(imagePath: property.imagePath),
+                    SizedBox(height: 40.0.h),
+                    Expanded(
+                      child: ListView.separated(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: property.propertyInfo.length,
+                        itemBuilder:
+                            (context, index) => PropertyPieceInfoItem(
+                              infoIconPath:
+                                  property.propertyInfo[index].infoIconPath,
+                              infoTitle: property.propertyInfo[index].infoTitle,
+                            ),
+                        separatorBuilder:
+                            (context, index) => SizedBox(width: 10.0.w),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),

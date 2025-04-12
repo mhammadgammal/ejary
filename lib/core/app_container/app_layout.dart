@@ -1,8 +1,10 @@
 import 'package:ejary/core/app_container/cubit/app_cubit.dart';
 import 'package:ejary/core/widgets/app_bar/ejary_app_bar.dart';
+import 'package:ejary/core/widgets/image_picker/cubit/image_picker_cubit.dart';
 import 'package:ejary/features/alarms/navigator/alarms_navigation.dart';
 import 'package:ejary/features/home/navigator/home_navigator.dart';
 import 'package:ejary/features/properties/presentation/add_edit_property/add_edit_property_screen.dart';
+import 'package:ejary/features/properties/presentation/add_edit_property/cubit/add_edit_property_cubit.dart';
 import 'package:ejary/features/settings/navigator/settings_navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -34,7 +36,13 @@ class AppLayout extends StatelessWidget {
       case 0:
         return HomeNavigator();
       case 1:
-        return const AddEditPropertyScreen();
+        return MultiBlocProvider(
+          providers: [
+            BlocProvider(create: (_) => AddEditPropertyCubit()),
+            BlocProvider(create: (_) => ImagePickerCubit()),
+          ],
+          child: AddEditPropertyScreen(),
+        );
       case 2:
         return const AlarmsNavigation();
       case 3:

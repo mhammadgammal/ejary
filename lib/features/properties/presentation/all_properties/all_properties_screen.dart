@@ -56,6 +56,16 @@ class AllPropertiesScreen extends StatelessWidget {
                             width: 250.w,
                             height: 350.h,
                             child: PropertyItem(
+                              propertyPressed: () {
+                                AppNavigator.navigateTo(
+                                  context,
+                                  RouteKeys.addProperty,
+                                  arguments: {
+                                    'property': cubit.properties![index],
+                                    'is_edit': true,
+                                  },
+                                ).then((_) => cubit.getAllProperties());
+                              },
                               property: PropertyMapper.mapPropertyModelToEntity(
                                 cubit.properties![index],
                               ),
