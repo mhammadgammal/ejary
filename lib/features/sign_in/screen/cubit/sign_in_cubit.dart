@@ -56,6 +56,8 @@ class SignInCubit extends Cubit<SignInState> {
         password: '123456789',
         profilePicturePath: '',
       );
+      phoneController.text = user.phoneNumber;
+      passwordController.text = user.password;
       DbHelper.insertData(TableName.userTable, user.toJson());
     }
   }
