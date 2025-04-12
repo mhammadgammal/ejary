@@ -49,7 +49,7 @@ class AddEditApartmentCubit extends Cubit<AddEditApartmentState> {
       propertyId: selectedPropertyId,
       propertyNumber: selectedPropertyNumber,
       floorApartmentNumber:
-          int.tryParse(floorApartmentNumberController.text) ?? 0,
+      floorApartmentNumberController.text,
       picturePath: apartmentImagePath,
       contractPicturePath: contractImagePath,
       renterName: renterNameController.text,
@@ -108,7 +108,7 @@ class AddEditApartmentCubit extends Cubit<AddEditApartmentState> {
       propertyId: selectedPropertyId,
       propertyNumber: selectedPropertyNumber,
       floorApartmentNumber:
-          int.tryParse(floorApartmentNumberController.text) ?? 0,
+      floorApartmentNumberController.text,
       picturePath: apartmentImagePath,
       contractPicturePath: contractImagePath,
       renterName: renterNameController.text,

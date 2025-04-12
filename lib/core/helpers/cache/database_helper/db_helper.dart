@@ -90,7 +90,7 @@ class DbHelper {
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       property_id INTEGER NOT NULL,
       property_number INTEGER NOT NULL,
-      floor_apartment_number INTEGER NOT NULL,
+      floor_apartment_number VARCHAR(255) NOT NULL,
       picture_path TEXT NOT NULL,
       renter_name VARCHAR(255) NOT NULL,
       renter_phone_number VARCHAR(255) NOT NULL,

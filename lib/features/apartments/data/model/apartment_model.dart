@@ -2,7 +2,7 @@ class ApartmentModel {
   final int id;
   final int propertyId;
   final int propertyNumber;
-  final int floorApartmentNumber;
+  final String floorApartmentNumber;
   final String picturePath;
   final String renterName;
   final String renterIdNumber;
