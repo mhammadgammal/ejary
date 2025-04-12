@@ -129,5 +129,6 @@
   "confirm_delete_apartment": "في حالة تم المسح لن تتمكن من استرجاع البيانات مرة اخري و سنعيد ادخال بيانات المستأجر يدويا",
   "Delete apartment": "إزالة الشقة",
   "settings_changed_success": "تم تغيير الإعدادات بنجاح!",
-  "rented_floor_and_apartment_number": "رقم الدور و الشقه المستأجره"
+  "rented_floor_and_apartment_number": "رقم الدور و الشقه المستأجره",
+  "This field is required": "هذا الحقل مطلوب"
 }

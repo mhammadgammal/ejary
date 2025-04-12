@@ -21,6 +21,7 @@ class AddEditApartmentCubit extends Cubit<AddEditApartmentState> {
   late int selectedPropertyNumber;
   late String selectedPropertyDistrict;
 
+  final formKey = GlobalKey<FormState>();
   final TextEditingController renterNameController = TextEditingController();
   final TextEditingController phoneNumberController = TextEditingController();
   final TextEditingController rentTypeController = TextEditingController();
@@ -166,5 +167,12 @@ class AddEditApartmentCubit extends Cubit<AddEditApartmentState> {
     } else {
       remainingValueController.clear();
     }
+  }
+
+  String? validate(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'هذا الحقل مطلوب';
+    }
+    return null;
   }
 }
