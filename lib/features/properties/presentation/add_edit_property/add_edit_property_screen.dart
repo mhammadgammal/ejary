@@ -118,7 +118,7 @@ class AddEditPropertyScreen extends StatelessWidget {
                                 width: 343.w,
                                 height: 56.h,
                                 title: cubit.isEditMode
-                                    ? 'حقظ التعديلات'
+                                    ? 'حفظ التعديلات'
                                     : AppStrings.saveData.tr(context),
                                 onPressed: () {
                                   if (cubit.formKey.currentState!
