@@ -60,11 +60,12 @@ class AllApartmentsCubit extends Cubit<AllApartmentsState> {
     apartments!.clear();
     if (value.isEmpty) {
       resetFilter();
-    }else{
+    } else {
       final filteredResponse = await DbHelper.getDataWhere(
         TableName.apartmentTable,
-        where: 'renter_phone_number LIKE ? OR renter_name LIKE ? and property_id = ?',
-        whereArgs: ['%$value%', '%$value%',selectedPropertyId],
+        where:
+            'renter_phone_number LIKE ? OR renter_name LIKE ? and property_id = ?',
+        whereArgs: ['%$value%', '%$value%', selectedPropertyId],
       );
       for (var model in filteredResponse) {
         apartments!.add(ApartmentModel.fromJson(model));
@@ -72,8 +73,6 @@ class AllApartmentsCubit extends Cubit<AllApartmentsState> {
       totalApartments = apartments!.length;
       emit(FilterApartments());
     }
-
-
   }
 
   void resetFilter() {
