@@ -38,7 +38,7 @@ class ApartmentModel {
     id: json['id'] ?? -1,
     propertyId: json['property_id'] ?? -1,
     propertyNumber: json['property_number'] ?? -1,
-    floorApartmentNumber: json['floor_apartment_number'] ?? -1,
+    floorApartmentNumber: json['floor_apartment_number'].toString(),
     picturePath: json['picture_path'] ?? '',
     renterName: json['renter_name'] ?? '',
     renterPhoneNumber: json['renter_phone_number'] ?? '',
