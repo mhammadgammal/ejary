@@ -82,14 +82,14 @@ class AddEditPropertyScreen extends StatelessWidget {
                                 children: [
                                   Expanded(
                                     child: ColumnedTextFormField(
-                                      title: AppStrings.propertyNo.tr(
+                                      title: AppStrings.propertyName.tr(
                                           context),
                                       controller:
-                                      cubit.propertyNumberController,
-                                      inputType: TextInputType.number,
+                                      cubit.propertyNameController,
+                                      inputType: TextInputType.text,
                                       hint:
                                       '${AppStrings.enter.tr(
-                                          context)} ${AppStrings.propertyNo
+                                          context)} ${AppStrings.propertyName
                                           .tr(
                                           context)}',
                                       validate: cubit.validate,

@@ -286,16 +286,16 @@ class AddEditApartmentScreen extends StatelessWidget {
                                   SizedBox(width: 20.0.w),
                                   Expanded(
                                     child: ColumnedTextFormField(
-                                      title: AppStrings.propertyOrBuildingNumber
+                                      title: AppStrings.propertyOrBuildingName
                                           .tr(context),
                                       controller:
                                           cubit.buildingNumberController
                                             ..text =
-                                                cubit.selectedPropertyNumber
+                                                cubit.selectedPropertyName
                                                     .toString(),
                                       inputType: TextInputType.number,
                                       hint:
-                                          '${AppStrings.enter.tr(context)} ${AppStrings.propertyOrBuildingNumber.tr(context)}',
+                                          '${AppStrings.enter.tr(context)} ${AppStrings.propertyOrBuildingName.tr(context)}',
                                       validate: cubit.validate,
                                     ),
                                   ),

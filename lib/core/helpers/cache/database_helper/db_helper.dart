@@ -76,7 +76,7 @@ class DbHelper {
     await db.execute("""
     CREATE TABLE IF NOT EXISTS ${TableName.propertyTable} (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
-      property_number INTEGER NOT NULL,
+      property_name VARCHAR(255) NOT NULL,
       district_name VARCHAR(255) NOT NULL,
       picture_path TEXT NOT NULL,
       number_of_apartments INTEGER NOT NULL
@@ -89,7 +89,7 @@ class DbHelper {
     CREATE TABLE IF NOT EXISTS ${TableName.apartmentTable} (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       property_id INTEGER NOT NULL,
-      property_number INTEGER NOT NULL,
+      property_name VARCHAR(255) NOT NULL,
       floor_apartment_number VARCHAR(255) NOT NULL,
       picture_path TEXT NOT NULL,
       renter_name VARCHAR(255) NOT NULL,

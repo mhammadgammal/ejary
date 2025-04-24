@@ -38,14 +38,14 @@ class _HomeNavigatorState extends State<HomeNavigator> {
             if (settings.name == RouteKeys.allApartments) {
               var args = settings.arguments as Map<String, dynamic>;
               var propertyId = args['property_id'];
-              var propertyNumber = args['property_number'];
+              var propertyName = args['property_name'];
               var propertyDistrict = args['property_district'];
               var apartments = args['apartments'];
               // set data method
               var cubit = AllApartmentsCubit.get(context);
               cubit.setSelectedProperty(
                 propertyId,
-                propertyNumber,
+                propertyName,
                 propertyDistrict,
               );
               cubit.getAllApartments(apartments);
@@ -54,7 +54,7 @@ class _HomeNavigatorState extends State<HomeNavigator> {
             } else if (settings.name == RouteKeys.addEditApartment) {
               var args = settings.arguments as Map<String, dynamic>;
               var propertyId = args['property_id'];
-              var propertyNumber = args['property_number'];
+              var propertyName = args['property_name'];
               var propertyDistrict = args['property_district'];
               var apartment = args['apartment'] as ApartmentModel?;
               return MultiBlocProvider(
@@ -64,7 +64,7 @@ class _HomeNavigatorState extends State<HomeNavigator> {
                         (_) =>
                             AddEditApartmentCubit()
                               ..selectedPropertyId = propertyId
-                              ..selectedPropertyNumber = propertyNumber
+                              ..selectedPropertyName = propertyName
                               ..selectedPropertyDistrict = propertyDistrict
                               // ..rentedApartmentModel = apartment
                               ..isEditMode = apartment != null

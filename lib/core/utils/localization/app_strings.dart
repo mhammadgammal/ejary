@@ -138,5 +138,9 @@ abstract final class AppStrings {
       'rented_floor_and_apartment_number';
 
   static const String editProperty = 'edit_property';
+
+  static const String propertyName = 'property_name';
+
+  static const String propertyOrBuildingName = 'property_or_building_name';
   //#endregion
 }

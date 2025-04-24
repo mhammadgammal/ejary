@@ -14,7 +14,7 @@ class AddEditPropertyCubit extends Cubit<AddEditPropertyState> {
 
   static AddEditPropertyCubit get(context) => BlocProvider.of(context);
 
-  final TextEditingController propertyNumberController =
+  final TextEditingController propertyNameController =
       TextEditingController();
   final TextEditingController districtNameController = TextEditingController();
 
@@ -27,9 +27,9 @@ class AddEditPropertyCubit extends Cubit<AddEditPropertyState> {
   void loadPropertyData(PropertyModel property) {
     propertyModel = property;
     log(
-      'AddEditPropertyCubit: loadPropertyData: ${property.propertyNumber.toString()}',
+      'AddEditPropertyCubit: loadPropertyData: ${property.propertyName}',
     );
-    propertyNumberController.text = property.propertyNumber.toString();
+    propertyNameController.text = property.propertyName;
     districtNameController.text = property.districtName;
     isEditMode = true;
   }
@@ -43,7 +43,7 @@ class AddEditPropertyCubit extends Cubit<AddEditPropertyState> {
     } else {
       final property = PropertyModel(
         id: -1,
-        propertyNumber: int.tryParse(propertyNumberController.text) ?? 0,
+        propertyName: propertyNameController.text,
         districtName: districtNameController.text,
         picturePath: picturePath,
         numberOfApartments: 0,
@@ -79,7 +79,7 @@ class AddEditPropertyCubit extends Cubit<AddEditPropertyState> {
   void _updateProperty({required String picturePath}) {
     final property = PropertyModel(
       id: propertyModel.id,
-      propertyNumber: int.tryParse(propertyNumberController.text) ?? 0,
+      propertyName: propertyNameController.text,
       districtName: districtNameController.text,
       picturePath: picturePath,
       numberOfApartments: propertyModel.numberOfApartments,

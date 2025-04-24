@@ -15,7 +15,7 @@ abstract class ApartmentMapper {
       propertyInfo: [
         BasePropertyPieceInfoEntity(
           infoIconPath: AppIcons.homeModernIc,
-          infoTitle: '${apartment.propertyNumber}رقم ',
+          infoTitle: apartment.propertyName,
         ),
         BasePropertyPieceInfoEntity(
           infoIconPath: AppIcons.user,

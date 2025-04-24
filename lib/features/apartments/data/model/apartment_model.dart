@@ -1,7 +1,7 @@
 class ApartmentModel {
   final int id;
   final int propertyId;
-  final int propertyNumber;
+  final String propertyName;
   final String floorApartmentNumber;
   final String picturePath;
   final String renterName;
@@ -18,7 +18,7 @@ class ApartmentModel {
   ApartmentModel({
     required this.id,
     required this.propertyId,
-    required this.propertyNumber,
+    required this.propertyName,
     required this.floorApartmentNumber,
     required this.picturePath,
     required this.renterName,
@@ -37,7 +37,7 @@ class ApartmentModel {
   factory ApartmentModel.fromJson(Map<String, dynamic> json) => ApartmentModel(
     id: json['id'] ?? -1,
     propertyId: json['property_id'] ?? -1,
-    propertyNumber: json['property_number'] ?? -1,
+    propertyName: json['property_name'] ?? -1,
     floorApartmentNumber: json['floor_apartment_number'].toString(),
     picturePath: json['picture_path'] ?? '',
     renterName: json['renter_name'] ?? '',
@@ -55,7 +55,7 @@ class ApartmentModel {
 
   Map<String, dynamic> toJson() => {
     'property_id': propertyId,
-    'property_number': propertyNumber,
+    'property_name': propertyName,
     'floor_apartment_number': floorApartmentNumber,
     'picture_path': picturePath,
     'renter_name': renterName,

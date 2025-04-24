@@ -13,7 +13,7 @@ abstract class PropertyMapper {
       propertyInfo: [
         BasePropertyPieceInfoEntity(
           infoIconPath: AppIcons.buildingIc,
-          infoTitle: '${property.propertyNumber}رقم ',
+          infoTitle: property.propertyName,
         ),
         BasePropertyPieceInfoEntity(
           infoIconPath: AppIcons.streetSign,

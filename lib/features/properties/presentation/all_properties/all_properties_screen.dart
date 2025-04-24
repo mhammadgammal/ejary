@@ -75,8 +75,8 @@ class AllPropertiesScreen extends StatelessWidget {
                                   RouteKeys.allApartments,
                                   arguments: {
                                     'property_id': cubit.properties![index].id,
-                                    'property_number':
-                                        cubit.properties![index].propertyNumber,
+                                    'property_name':
+                                        cubit.properties![index].propertyName,
                                     'property_district':
                                         cubit.properties![index].districtName,
                                     'apartments': cubit.models,

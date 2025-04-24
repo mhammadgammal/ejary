@@ -30,7 +30,7 @@ class AllApartmentsScreen extends StatelessWidget {
             _allApartmentsHeader(
               context,
               cubit.selectedPropertyId,
-              cubit.selectedPropertyNumber,
+              cubit.selectedPropertyName,
               cubit.selectedPropertyDistrict,
               cubit.totalApartments,
               state is GetAllApartmentsSuccessState &&
@@ -52,7 +52,7 @@ class AllApartmentsScreen extends StatelessWidget {
                       RouteKeys.addEditApartment,
                       arguments: {
                         'property_id': cubit.selectedPropertyId,
-                        'property_number': cubit.selectedPropertyNumber,
+                        'property_name': cubit.selectedPropertyName,
                         'property_district': cubit.selectedPropertyDistrict,
                       },
                     ).then((_) => cubit.getAllApartments());
@@ -86,8 +86,7 @@ class AllApartmentsScreen extends StatelessWidget {
                                   RouteKeys.addEditApartment,
                                   arguments: {
                                     'property_id': cubit.selectedPropertyId,
-                                    'property_number':
-                                        cubit.selectedPropertyNumber,
+                                    'property_name': cubit.selectedPropertyName,
                                     'property_district':
                                         cubit.selectedPropertyDistrict,
                                     'apartment': cubit.apartments![index],
@@ -112,7 +111,7 @@ class AllApartmentsScreen extends StatelessWidget {
   Widget _allApartmentsHeader(
     BuildContext context,
     int propertyId,
-    int propertyNumber,
+    String propertyName,
     String propertyDistrict,
     int totalApartments,
     bool isEmpty,
@@ -132,8 +131,7 @@ class AllApartmentsScreen extends StatelessWidget {
         SizedBox(width: 10.0.w),
         RichText(
           text: TextSpan(
-            text:
-                '${AppStrings.propertyNumber.tr(context)}$propertyNumber / $propertyDistrict\t',
+            text: 'عقار $propertyName $propertyDistrict\t',
             style: GoogleFonts.tajawal(
               fontSize: 40.sp,
               fontWeight: FontWeight.w700,
@@ -171,7 +169,7 @@ class AllApartmentsScreen extends StatelessWidget {
                 RouteKeys.addEditApartment,
                 arguments: {
                   'property_id': propertyId,
-                  'property_number': propertyNumber,
+                  'property_name': propertyName,
                   'property_district': propertyDistrict,
                 },
               ).then((_) => afterNav());

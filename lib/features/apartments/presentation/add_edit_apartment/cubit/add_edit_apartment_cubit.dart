@@ -18,7 +18,7 @@ class AddEditApartmentCubit extends Cubit<AddEditApartmentState> {
   late final bool isEditMode;
   late ApartmentModel _apartmentModel;
   late int selectedPropertyId;
-  late int selectedPropertyNumber;
+  late String selectedPropertyName;
   late String selectedPropertyDistrict;
 
   final formKey = GlobalKey<FormState>();
@@ -47,7 +47,7 @@ class AddEditApartmentCubit extends Cubit<AddEditApartmentState> {
     final apartment = ApartmentModel(
       id: -1,
       propertyId: selectedPropertyId,
-      propertyNumber: selectedPropertyNumber,
+      propertyName: selectedPropertyName,
       floorApartmentNumber:
       floorApartmentNumberController.text,
       picturePath: apartmentImagePath,
@@ -87,7 +87,7 @@ class AddEditApartmentCubit extends Cubit<AddEditApartmentState> {
       contractEndDateController.text = apartmentModel.contractEndDate;
       phoneNumberController.text = apartmentModel.renterPhoneNumber;
       idNumberController.text = apartmentModel.renterIdNumber;
-      buildingNumberController.text = apartmentModel.propertyNumber.toString();
+      buildingNumberController.text = apartmentModel.propertyName.toString();
       floorApartmentNumberController.text =
           apartmentModel.floorApartmentNumber.toString();
 
@@ -106,7 +106,7 @@ class AddEditApartmentCubit extends Cubit<AddEditApartmentState> {
     final apartment = ApartmentModel(
       id: _apartmentModel.id,
       propertyId: selectedPropertyId,
-      propertyNumber: selectedPropertyNumber,
+      propertyName: selectedPropertyName,
       floorApartmentNumber:
       floorApartmentNumberController.text,
       picturePath: apartmentImagePath,

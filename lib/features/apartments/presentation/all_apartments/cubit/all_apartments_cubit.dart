@@ -13,17 +13,17 @@ class AllApartmentsCubit extends Cubit<AllApartmentsState> {
   static AllApartmentsCubit get(context) => BlocProvider.of(context);
 
   late int selectedPropertyId;
-  late int selectedPropertyNumber;
+  late String selectedPropertyName;
   late String selectedPropertyDistrict;
 
   int totalApartments = 0;
 
   List<ApartmentModel>? apartments;
 
-  Future<void> getAllApartments([List<ApartmentModel>? apartmentss]) async {
+  Future<void> getAllApartments([List<ApartmentModel>? apartments]) async {
     emit(GetAllApartmentsLoadingState());
-    if (apartmentss != null && apartmentss.isNotEmpty) {
-      apartments = apartmentss;
+    if (apartments != null && apartments.isNotEmpty) {
+      this.apartments = apartments;
       emit(GetAllApartmentsSuccessState());
     } else {
       try {
@@ -33,12 +33,12 @@ class AllApartmentsCubit extends Cubit<AllApartmentsState> {
           whereArgs: [selectedPropertyId],
         );
         'apartments count: ${apartmentsResponse.length}'.logger();
-        apartments =
+        this.apartments =
             apartmentsResponse
                 .map((apartment) => ApartmentModel.fromJson(apartment))
                 .toList();
-        'apartments: ${apartments!.length}'.logger();
-        totalApartments = apartments!.length;
+        'apartments: ${this.apartments!.length}'.logger();
+        totalApartments = this.apartments!.length;
         emit(GetAllApartmentsSuccessState());
       } catch (e) {
         emit(GetAllApartmentsErrorState(e.toString()));
@@ -48,11 +48,11 @@ class AllApartmentsCubit extends Cubit<AllApartmentsState> {
 
   void setSelectedProperty(
     int propertyId,
-    int propertyNumber,
+    String propertyName,
     String propertyDistrict,
   ) {
     selectedPropertyId = propertyId;
-    selectedPropertyNumber = propertyNumber;
+    selectedPropertyName = propertyName;
     selectedPropertyDistrict = propertyDistrict;
   }
 
