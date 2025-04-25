@@ -5,6 +5,8 @@ sealed class AttachFileState {}
 
 final class AttachFileInitial extends AttachFileState {}
 
+final class ChangeContractVisibilityState extends AttachFileState {}
+
 final class FilePickedState extends AttachFileState {
   final String filePath;
 

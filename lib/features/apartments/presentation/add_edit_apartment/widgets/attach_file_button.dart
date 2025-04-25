@@ -51,17 +51,50 @@ class AttachFileButton extends StatelessWidget {
                 ),
               ),
             )
-            : CustomFilledButton(
-              width: (width ?? 250.0).w,
-              height: (height ?? 50.0).h,
-              fontSize: fontSize,
-              fontWeight: fontWeight,
-              title: AttachFileCubit.get(context).fileName,
-              fillColor: AppColors.success,
-              icon: Lottie.asset(AppLottie.success, repeat: false),
-              onPressed: () {
-                AttachFileCubit.get(context).pickProfilePic();
-              },
+            : Row(
+              children: [
+                CustomFilledButton(
+                  width: (width ?? 250.0).w,
+                  height: (height ?? 50.0).h,
+                  fontSize: fontSize,
+                  fontWeight: fontWeight,
+                  title: AttachFileCubit.get(context).fileName,
+                  fillColor: AppColors.success,
+                  icon: Lottie.asset(AppLottie.success, repeat: false),
+                  onPressed: () {
+                    AttachFileCubit.get(context).pickProfilePic();
+                  },
+                ),
+                SizedBox(width: 20.0.w),
+                IconButton(
+                  onPressed: () {
+                    AttachFileCubit.get(context).changeContractVisibility();
+                  },
+                  style: ButtonStyle(
+                    backgroundBuilder:
+                        (context, states, child) => Container(
+                          width: 48.0.w,
+                          height: 48.0.h,
+                          decoration: BoxDecoration(
+                            // color: Colors.transparent,
+                            borderRadius: BorderRadius.circular(8.0.r),
+                            border: Border.all(
+                              color: AppColors.primary100,
+                              width: 1.0.w,
+                            ),
+                          ),
+                          child: child,
+                        ),
+                  ),
+                  icon: SvgPicture.asset(
+                    AppIcons.showPasswordIc,
+                    colorFilter: ColorFilter.mode(
+                      AppColors.primary100,
+                      BlendMode.srcIn,
+                    ),
+                  ),
+                ),
+              ],
             );
       },
     );

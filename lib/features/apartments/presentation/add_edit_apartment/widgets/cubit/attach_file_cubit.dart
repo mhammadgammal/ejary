@@ -13,8 +13,10 @@ class AttachFileCubit extends Cubit<AttachFileState> {
   String filePath = '';
   String fileName = '';
 
-  Future<FilePickerResult?> _openPicker() async =>
-      await FilePicker.platform.pickFiles();
+  Future<FilePickerResult?> _openPicker() async => await FilePicker.platform
+      .pickFiles(allowedExtensions: ['pdf', 'jpg', 'jpeg', 'png']);
+
+  bool showContract = false;
 
   Future<void> pickProfilePic() async {
     final result = await _openPicker();
@@ -24,5 +26,10 @@ class AttachFileCubit extends Cubit<AttachFileState> {
       'AddEmployeeCubit: pickProfilePic: $filePath'.logger();
       emit(FilePickedState(filePath));
     }
+  }
+
+  void changeContractVisibility() {
+    showContract = !showContract;
+    emit(ChangeContractVisibilityState());
   }
 }

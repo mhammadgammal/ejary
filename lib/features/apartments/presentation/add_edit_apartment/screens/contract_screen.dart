@@ -1,6 +1,3 @@
-import 'dart:io';
-
-import 'package:ejary/core/assets/app_icons.dart';
 import 'package:ejary/core/theme/app_color.dart';
 import 'package:ejary/core/utils/extensions/string_extensions.dart';
 import 'package:ejary/core/utils/localization/app_strings.dart';
@@ -8,13 +5,12 @@ import 'package:ejary/core/widgets/buttons/filled_buttons/custom_filled_button_w
 import 'package:ejary/core/widgets/image_picker/cubit/image_picker_cubit.dart';
 import 'package:ejary/features/apartments/presentation/add_edit_apartment/cubit/add_edit_apartment_cubit.dart';
 import 'package:ejary/features/apartments/presentation/add_edit_apartment/widgets/attach_file_button.dart';
+import 'package:ejary/features/apartments/presentation/add_edit_apartment/widgets/contract_viewer.dart';
 import 'package:ejary/features/apartments/presentation/add_edit_apartment/widgets/cubit/attach_file_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class ContractScreen extends StatelessWidget {
   const ContractScreen({super.key});
@@ -38,45 +34,10 @@ class ContractScreen extends StatelessWidget {
                     ).textTheme.bodyMedium?.copyWith(fontSize: 20.sp),
                   ),
                   SizedBox(height: 10.0.h),
-                  Row(
-                    children: [
-                      AttachFileButton(
-                        title: AppStrings.uploadContract,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                      ),
-                      SizedBox(width: 10.0.w),
-                      Visibility(
-                        visible:
-                            AttachFileCubit.get(context).filePath.isNotEmpty,
-                        child: IconButton(
-                          onPressed: () {},
-                          style: ButtonStyle(
-                            backgroundBuilder:
-                                (context, states, child) => Container(
-                                  width: 48.0.w,
-                                  height: 48.0.h,
-                                  decoration: BoxDecoration(
-                                    // color: Colors.transparent,
-                                    borderRadius: BorderRadius.circular(8.0.r),
-                                    border: Border.all(
-                                      color: AppColors.primary100,
-                                      width: 1.0.w,
-                                    ),
-                                  ),
-                                  child: child,
-                                ),
-                          ),
-                          icon: SvgPicture.asset(
-                            AppIcons.showPasswordIc,
-                            colorFilter: ColorFilter.mode(
-                              AppColors.primary100,
-                              BlendMode.srcIn,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
+                  AttachFileButton(
+                    title: AppStrings.uploadContract,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
                   ),
                   SizedBox(height: 50.0.h),
                   CustomFilledButtonWithSaveIcon(
@@ -126,15 +87,8 @@ class ContractScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(width: 20.0.w),
-
-              AttachFileCubit.get(context).filePath.isEmpty
-                  ? Text('No Data')
-                  : Expanded(
-                    child: SfPdfViewer.file(
-                      File(AttachFileCubit.get(context).filePath),
-                    ),
-                  ),
+              if (AttachFileCubit.get(context).filePath.isEmpty) Spacer(),
+              Expanded(child: ContractViewer()),
             ],
           ),
         );
