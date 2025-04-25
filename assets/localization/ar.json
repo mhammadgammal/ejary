@@ -134,5 +134,7 @@
   "edit_property": "تعديل العقار",
   "property_update_success": "تم تعديل العقار بنجاح",
   "property_name": "إسم العقار",
-  "property_or_building_name": "إسم العقار أو المبني"
+  "property_or_building_name": "إسم العقار أو المبني",
+  "nationality": "الجنسية"
+
 }

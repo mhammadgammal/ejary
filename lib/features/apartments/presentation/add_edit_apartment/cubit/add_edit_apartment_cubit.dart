@@ -39,6 +39,9 @@ class AddEditApartmentCubit extends Cubit<AddEditApartmentState> {
       TextEditingController();
   final TextEditingController floorApartmentNumberController =
       TextEditingController();
+  final TextEditingController nationalityController = TextEditingController();
+
+  var currentIndex = 0;
 
   Future<void> addApartment(
     String apartmentImagePath,
@@ -48,8 +51,7 @@ class AddEditApartmentCubit extends Cubit<AddEditApartmentState> {
       id: -1,
       propertyId: selectedPropertyId,
       propertyName: selectedPropertyName,
-      floorApartmentNumber:
-      floorApartmentNumberController.text,
+      floorApartmentNumber: floorApartmentNumberController.text,
       picturePath: apartmentImagePath,
       contractPicturePath: contractImagePath,
       renterName: renterNameController.text,
@@ -100,15 +102,16 @@ class AddEditApartmentCubit extends Cubit<AddEditApartmentState> {
     String contractImagePath,
   ) async {
     log(
-        'AddEditApartmentCubit: updateApartment: apartmentImagePath => $apartmentImagePath');
+      'AddEditApartmentCubit: updateApartment: apartmentImagePath => $apartmentImagePath',
+    );
     log(
-        'AddEditApartmentCubit: updateApartment: contractImagePath => $contractImagePath');
+      'AddEditApartmentCubit: updateApartment: contractImagePath => $contractImagePath',
+    );
     final apartment = ApartmentModel(
       id: _apartmentModel.id,
       propertyId: selectedPropertyId,
       propertyName: selectedPropertyName,
-      floorApartmentNumber:
-      floorApartmentNumberController.text,
+      floorApartmentNumber: floorApartmentNumberController.text,
       picturePath: apartmentImagePath,
       contractPicturePath: contractImagePath,
       renterName: renterNameController.text,
@@ -174,5 +177,10 @@ class AddEditApartmentCubit extends Cubit<AddEditApartmentState> {
       return 'هذا الحقل مطلوب';
     }
     return null;
+  }
+
+  void changeCurrentIndex(int i) {
+    currentIndex = i;
+    emit(ChangeCurrentIndexState());
   }
 }

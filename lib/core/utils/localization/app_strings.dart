@@ -142,5 +142,7 @@ abstract final class AppStrings {
   static const String propertyName = 'property_name';
 
   static const String propertyOrBuildingName = 'property_or_building_name';
+
+  static var nationality = 'nationality';
   //#endregion
 }

@@ -71,5 +71,6 @@
   "confirm_delete_apartment": "If you delete you won\\'t restore data, and you will add data manually",
   "rented_floor_and_apartment_number": "rented floor and apartment number",
   "property_name": "Property Name",
-  "property_or_building_name": "Property or Building Name"
+  "property_or_building_name": "Property or Building Name",
+  "nationality": "Nationality"
 }
