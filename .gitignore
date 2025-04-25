@@ -51,3 +51,4 @@ app.*.map.json
 /devtools_options.yaml
 /installer/ejary_setup.exe
 /installer/ejary_setup_script.iss
+/ejary_setup_script.iss
