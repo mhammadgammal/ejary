@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:ejary/core/assets/app_icons.dart';
 import 'package:ejary/core/theme/app_color.dart';
 import 'package:ejary/core/utils/extensions/string_extensions.dart';
 import 'package:ejary/core/utils/localization/app_strings.dart';
@@ -9,7 +12,9 @@ import 'package:ejary/features/apartments/presentation/add_edit_apartment/widget
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class ContractScreen extends StatelessWidget {
   const ContractScreen({super.key});
@@ -21,67 +26,115 @@ class ContractScreen extends StatelessWidget {
         var cubit = AddEditApartmentCubit.get(context);
         return Padding(
           padding: EdgeInsets.only(bottom: 10.0.h),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: Row(
             children: [
-              Text(
-                AppStrings.uploadPicture.tr(context),
-                style: Theme.of(
-                  context,
-                ).textTheme.bodyMedium?.copyWith(fontSize: 20.sp),
-              ),
-              SizedBox(height: 10.0.h),
-              AttachFileButton(
-                title: AppStrings.uploadContract,
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-              ),
-              SizedBox(height: 50.0.h),
-              CustomFilledButtonWithSaveIcon(
-                width: 343.w,
-                height: 56.h,
-                title: AppStrings.saveData.tr(context),
-                onPressed: () async {
-                  if (cubit.formKey.currentState!.validate()) {
-                    if (await cubit.isUpdate()) {
-                      if (context.mounted) {
-                        cubit.updateApartment(
-                          ImagePickerCubit.get(context).imagePath,
-                          AttachFileCubit.get(context).filePath,
-                        );
-                      }
-                    } else {
-                      if (context.mounted) {
-                        cubit.addApartment(
-                          ImagePickerCubit.get(context).imagePath,
-                          AttachFileCubit.get(context).filePath,
-                        );
-                      }
-                    }
-                  }
-                },
-                fontSize: 18.sp,
-                padding: EdgeInsetsDirectional.only(end: 20.0.h),
-              ),
-              Spacer(),
-              TextButton.icon(
-                onPressed: () {
-                  cubit.changeCurrentIndex(0);
-                },
-                icon: Icon(
-                  Icons.arrow_back,
-                  size: 24.0.sp,
-                  color: AppColors.primary100,
-                ),
-                label: Text(
-                  "العوده",
-                  style: GoogleFonts.tajawal(
-                    fontSize: 24.0.sp,
-                    fontWeight: FontWeight.w700,
-                    color: AppColors.primary100,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    AppStrings.uploadPicture.tr(context),
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodyMedium?.copyWith(fontSize: 20.sp),
                   ),
-                ),
+                  SizedBox(height: 10.0.h),
+                  Row(
+                    children: [
+                      AttachFileButton(
+                        title: AppStrings.uploadContract,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      SizedBox(width: 10.0.w),
+                      Visibility(
+                        visible:
+                            AttachFileCubit.get(context).filePath.isNotEmpty,
+                        child: IconButton(
+                          onPressed: () {},
+                          style: ButtonStyle(
+                            backgroundBuilder:
+                                (context, states, child) => Container(
+                                  width: 48.0.w,
+                                  height: 48.0.h,
+                                  decoration: BoxDecoration(
+                                    // color: Colors.transparent,
+                                    borderRadius: BorderRadius.circular(8.0.r),
+                                    border: Border.all(
+                                      color: AppColors.primary100,
+                                      width: 1.0.w,
+                                    ),
+                                  ),
+                                  child: child,
+                                ),
+                          ),
+                          icon: SvgPicture.asset(
+                            AppIcons.showPasswordIc,
+                            colorFilter: ColorFilter.mode(
+                              AppColors.primary100,
+                              BlendMode.srcIn,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 50.0.h),
+                  CustomFilledButtonWithSaveIcon(
+                    width: 343.w,
+                    height: 56.h,
+                    title: AppStrings.saveData.tr(context),
+                    onPressed: () async {
+                      if (cubit.formKey.currentState!.validate()) {
+                        if (await cubit.isUpdate()) {
+                          if (context.mounted) {
+                            cubit.updateApartment(
+                              ImagePickerCubit.get(context).imagePath,
+                              AttachFileCubit.get(context).filePath,
+                            );
+                          }
+                        } else {
+                          if (context.mounted) {
+                            cubit.addApartment(
+                              ImagePickerCubit.get(context).imagePath,
+                              AttachFileCubit.get(context).filePath,
+                            );
+                          }
+                        }
+                      }
+                    },
+                    fontSize: 18.sp,
+                    padding: EdgeInsetsDirectional.only(end: 20.0.h),
+                  ),
+                  Spacer(),
+                  TextButton.icon(
+                    onPressed: () {
+                      cubit.changeCurrentIndex(0);
+                    },
+                    icon: Icon(
+                      Icons.arrow_back,
+                      size: 24.0.sp,
+                      color: AppColors.primary100,
+                    ),
+                    label: Text(
+                      "العوده",
+                      style: GoogleFonts.tajawal(
+                        fontSize: 24.0.sp,
+                        fontWeight: FontWeight.w700,
+                        color: AppColors.primary100,
+                      ),
+                    ),
+                  ),
+                ],
               ),
+              SizedBox(width: 20.0.w),
+
+              AttachFileCubit.get(context).filePath.isEmpty
+                  ? Text('No Data')
+                  : Expanded(
+                    child: SfPdfViewer.file(
+                      File(AttachFileCubit.get(context).filePath),
+                    ),
+                  ),
             ],
           ),
         );

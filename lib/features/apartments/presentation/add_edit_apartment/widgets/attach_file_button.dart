@@ -57,7 +57,7 @@ class AttachFileButton extends StatelessWidget {
               fontSize: fontSize,
               fontWeight: fontWeight,
               title: AttachFileCubit.get(context).fileName,
-              fillColor: AppColors.primary100,
+              fillColor: AppColors.success,
               icon: Lottie.asset(AppLottie.success, repeat: false),
               onPressed: () {
                 AttachFileCubit.get(context).pickProfilePic();

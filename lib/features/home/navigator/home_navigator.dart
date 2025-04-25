@@ -79,10 +79,9 @@ class _HomeNavigatorState extends State<HomeNavigator> {
                   BlocProvider(
                     create: (_) {
                       return AttachFileCubit()
+                        ..filePath = apartment?.contractPicturePath ?? ''
                         ..fileName =
-                            apartment?.contractPicturePath
-                                .split('\\')
-                                .last ??
+                            apartment?.contractPicturePath.split('\\').last ??
                             '';
                     },
                   ),
@@ -92,31 +91,28 @@ class _HomeNavigatorState extends State<HomeNavigator> {
             } else if (settings.name == RouteKeys.addProperty) {
               var args = settings.arguments as Map<String, dynamic>;
               var property = args['property'] as PropertyModel;
-              log('HomeNavigator: RouteKeys.addProperty: property: ${property
-                  .id}');
-              var isEdit = args['is_edit'];
+              log(
+                'HomeNavigator: RouteKeys.addProperty: property: ${property.id}',
+              );
               return MultiBlocProvider(
                 providers: [
                   BlocProvider(
                     create:
                         (_) =>
-                    AddEditPropertyCubit()
-                      ..loadPropertyData(property),
+                            AddEditPropertyCubit()..loadPropertyData(property),
                   ),
                   BlocProvider(
                     create:
                         (_) =>
-                    ImagePickerCubit()
-                      ..imagePath = property.picturePath,
+                            ImagePickerCubit()
+                              ..imagePath = property.picturePath,
                   ),
                   BlocProvider(
                     create:
                         (_) =>
-                    AttachFileCubit()
-                      ..fileName =
-                          property.picturePath
-                              .split('\\')
-                              .last,
+                            AttachFileCubit()
+                              ..fileName =
+                                  property.picturePath.split('\\').last,
                   ),
                 ],
                 child: AddEditPropertyScreen(),
