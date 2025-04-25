@@ -103,6 +103,16 @@ class DbHelper {
       contract_picture_path TEXT NOT NULL,
       renter_id_number TEXT NOT NULL,
       mark_as_read INTEGER NOT NULL DEFAULT 0,
+      nationality	TEXT DEFAULT '',
+      payment_2_date	TEXT,
+      payment_2_amount	INTEGER,
+      payment_2_message_sent	INTEGER,
+      payment_3_date TEXT,
+      payment_3_amount	INTEGER,
+      payment_3_message_sent	INTEGER,
+      payment_4_date TEXT,
+      payment_4_amount INTEGER,
+      payment_4_message_sent INTEGER,
       FOREIGN KEY (property_id) REFERENCES ${TableName.propertyTable}(id) ON DELETE CASCADE
     );
   """);

@@ -56,6 +56,7 @@ class AddEditApartmentCubit extends Cubit<AddEditApartmentState> {
       contractPicturePath: contractImagePath,
       renterName: renterNameController.text,
       renterIdNumber: idNumberController.text,
+      renterNationality: nationalityController.text,
       rentType: rentTypeController.text,
       totalRentValue: int.tryParse(totalRentValueController.text) ?? 0,
       paidRentValue: int.tryParse(paidValueController.text) ?? 0,
@@ -92,7 +93,7 @@ class AddEditApartmentCubit extends Cubit<AddEditApartmentState> {
       buildingNumberController.text = apartmentModel.propertyName.toString();
       floorApartmentNumberController.text =
           apartmentModel.floorApartmentNumber.toString();
-
+      nationalityController.text = apartmentModel.renterNationality;
       _apartmentModel = apartmentModel;
     }
   }
@@ -116,6 +117,7 @@ class AddEditApartmentCubit extends Cubit<AddEditApartmentState> {
       contractPicturePath: contractImagePath,
       renterName: renterNameController.text,
       renterIdNumber: idNumberController.text,
+      renterNationality: nationalityController.text,
       rentType: rentTypeController.text,
       totalRentValue: int.tryParse(totalRentValueController.text) ?? 0,
       paidRentValue: int.tryParse(paidValueController.text) ?? 0,

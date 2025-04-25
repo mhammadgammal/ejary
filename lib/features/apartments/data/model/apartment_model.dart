@@ -7,6 +7,7 @@ class ApartmentModel {
   final String renterName;
   final String renterIdNumber;
   final String renterPhoneNumber;
+  final String renterNationality;
   final String rentType;
   final int totalRentValue;
   final int paidRentValue;
@@ -15,6 +16,7 @@ class ApartmentModel {
   final String contractEndDate;
   final String contractPicturePath;
   final int markAsRead;
+
   ApartmentModel({
     required this.id,
     required this.propertyId,
@@ -23,6 +25,7 @@ class ApartmentModel {
     required this.picturePath,
     required this.renterName,
     required this.renterPhoneNumber,
+    required this.renterNationality,
     required this.rentType,
     required this.totalRentValue,
     required this.paidRentValue,
@@ -42,6 +45,7 @@ class ApartmentModel {
     picturePath: json['picture_path'] ?? '',
     renterName: json['renter_name'] ?? '',
     renterPhoneNumber: json['renter_phone_number'] ?? '',
+    renterNationality: json['nationality'] ?? '',
     rentType: json['rent_type'] ?? '',
     totalRentValue: json['total_rent_value'] ?? -1,
     paidRentValue: json['paid_rent_value'] ?? -1,
@@ -69,5 +73,6 @@ class ApartmentModel {
     'contract_picture_path': contractPicturePath,
     'renter_id_number': renterIdNumber,
     'mark_as_read': markAsRead,
+    'nationality': renterNationality,
   };
 }
