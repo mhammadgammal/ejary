@@ -21,6 +21,7 @@ class AttachFileCubit extends Cubit<AttachFileState> {
   Future<void> pickProfilePic() async {
     final result = await _openPicker();
     if (result != null) {
+      showContract = true;
       filePath = result.files.single.path!;
       fileName = result.files.single.name;
       'AddEmployeeCubit: pickProfilePic: $filePath'.logger();

@@ -21,7 +21,7 @@ class ContractScreen extends StatelessWidget {
       builder: (context, state) {
         var cubit = AddEditApartmentCubit.get(context);
         return Padding(
-          padding: EdgeInsets.only(bottom: 10.0.h),
+          padding: EdgeInsetsDirectional.only(bottom: 10.0.h, end: 10.0.w),
           child: Row(
             children: [
               Column(

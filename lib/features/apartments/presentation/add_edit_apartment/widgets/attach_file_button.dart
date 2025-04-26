@@ -87,7 +87,9 @@ class AttachFileButton extends StatelessWidget {
                         ),
                   ),
                   icon: SvgPicture.asset(
-                    AppIcons.showPasswordIc,
+                    AttachFileCubit.get(context).showContract
+                        ? AppIcons.hidePasswordIc
+                        : AppIcons.showPasswordIc,
                     colorFilter: ColorFilter.mode(
                       AppColors.primary100,
                       BlendMode.srcIn,

@@ -3,7 +3,7 @@ import 'dart:io' show File;
 import 'package:ejary/features/apartments/presentation/add_edit_apartment/widgets/cubit/attach_file_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart' show SfPdfViewer;
+import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class ContractViewer extends StatelessWidget {
   const ContractViewer({super.key});

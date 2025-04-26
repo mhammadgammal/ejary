@@ -619,7 +619,7 @@ packages:
     source: hosted
     version: "29.1.39"
   syncfusion_pdfviewer_windows:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: syncfusion_pdfviewer_windows
       sha256: e1cb825165ee76707ed4b4f97d83edffeee4ba8f03ad0c1da67d1be3a46f3173
