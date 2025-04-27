@@ -61,7 +61,8 @@ class ApartmentDetailsScreen extends StatelessWidget {
                           controller: cubit.renterNameController,
                           inputType: TextInputType.text,
                           hint:
-                              '${AppStrings.enter.tr(context)} ${AppStrings.renterName.tr(context)}',
+                          '${AppStrings.enter.tr(context)} ${AppStrings
+                              .renterName.tr(context)}',
                           validate: cubit.validate,
                         ),
                       ),
@@ -108,7 +109,8 @@ class ApartmentDetailsScreen extends StatelessWidget {
                           inputType: TextInputType.number,
                           onChanged: (_) => cubit.calcRemainingValue(),
                           hint:
-                              '${AppStrings.enter.tr(context)} ${AppStrings.allRentValue.tr(context)}',
+                          '${AppStrings.enter.tr(context)} ${AppStrings
+                              .allRentValue.tr(context)}',
                           validate: cubit.validate,
                         ),
                       ),
@@ -119,13 +121,16 @@ class ApartmentDetailsScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Expanded(
-                        child: ColumnedTextFormField(
-                          title: AppStrings.paid.tr(context),
-                          controller: cubit.paidValueController,
-                          inputType: TextInputType.text,
-                          onChanged: (_) => cubit.calcRemainingValue(),
-                          hint: 'Write paid value from renter'.tr(context),
-                          validate: cubit.validate,
+                        child: DropdownButtonFormField(
+                          value: 1,
+                          onChanged: (_) {},
+                          items: List.generate(
+                            6,
+                                (index) =>
+                                DropdownMenuItem(
+                                    value: index + 1,
+                                    child: Text('${index + 1}')),
+                          ),
                         ),
                       ),
                       SizedBox(width: 20.0.w),
@@ -152,7 +157,7 @@ class ApartmentDetailsScreen extends StatelessWidget {
                             context,
                           ),
                           datePickerController:
-                              cubit.contractStartDateController,
+                          cubit.contractStartDateController,
                           datePickerHint: '0/0/0000',
                           validation: "هذا الحقل مطلوب",
                         ),
@@ -180,7 +185,8 @@ class ApartmentDetailsScreen extends StatelessWidget {
                           controller: cubit.idNumberController,
                           inputType: TextInputType.number,
                           hint:
-                              '${AppStrings.enter.tr(context)} ${AppStrings.idOrIqamaNumber.tr(context)}',
+                          '${AppStrings.enter.tr(context)} ${AppStrings
+                              .idOrIqamaNumber.tr(context)}',
                           validate: cubit.validate,
                         ),
                       ),
@@ -204,7 +210,8 @@ class ApartmentDetailsScreen extends StatelessWidget {
                           controller: cubit.floorApartmentNumberController,
                           inputType: TextInputType.number,
                           hint:
-                              '${AppStrings.enter.tr(context)} ${AppStrings.rentedFloorAndApartmentNumber.tr(context)}',
+                          '${AppStrings.enter.tr(context)} ${AppStrings
+                              .rentedFloorAndApartmentNumber.tr(context)}',
                           validate: cubit.validate,
                         ),
                       ),
@@ -213,11 +220,12 @@ class ApartmentDetailsScreen extends StatelessWidget {
                         child: ColumnedTextFormField(
                           title: AppStrings.propertyOrBuildingName.tr(context),
                           controller:
-                              cubit.buildingNumberController
-                                ..text = cubit.selectedPropertyName.toString(),
+                          cubit.buildingNumberController
+                            ..text = cubit.selectedPropertyName.toString(),
                           inputType: TextInputType.number,
                           hint:
-                              '${AppStrings.enter.tr(context)} ${AppStrings.propertyOrBuildingName.tr(context)}',
+                          '${AppStrings.enter.tr(context)} ${AppStrings
+                              .propertyOrBuildingName.tr(context)}',
                           validate: cubit.validate,
                         ),
                       ),
