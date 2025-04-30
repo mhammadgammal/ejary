@@ -181,10 +181,9 @@ class AddEditApartmentCubit extends Cubit<AddEditApartmentState> {
 
   void calcRemainingValue() {
     if (totalRentValueController.text.isNotEmpty &&
-        paidValueController.text.isNotEmpty) {
+        selectedPaymentType != null) {
       final totalRentValue = int.tryParse(totalRentValueController.text) ?? 0;
-      final paidValue = int.tryParse(paidValueController.text) ?? 0;
-      final remainingValue = totalRentValue - paidValue;
+      final remainingValue = totalRentValue ~/ selectedPaymentType!;
       remainingValueController.text = remainingValue.toString();
     } else {
       remainingValueController.clear();
@@ -251,8 +250,12 @@ class AddEditApartmentCubit extends Cubit<AddEditApartmentState> {
   }
 
   void onContractEndDatePick(DateTime? value) {
-    if (value != null && selectedPaymentType != null) {
-      final startDate = DateTime.parse(contractStartDateController.text);
+    if (value != null &&
+        selectedPaymentType != null &&
+        contractStartDateController.text.isNotEmpty) {
+      final startDate = DateTime.parse(
+        '${contractStartDateController.text} 00:00:00',
+      );
       final endDate = value;
       final batches = _dividePeriodAcrossBatches(
         startDate,
@@ -269,9 +272,13 @@ class AddEditApartmentCubit extends Cubit<AddEditApartmentState> {
   }
 
   void onContractStartDatePick(DateTime? value) {
-    if (value != null && selectedPaymentType != null) {
+    if (value != null &&
+        selectedPaymentType != null &&
+        contractEndDateController.text.isNotEmpty) {
       final startDate = value;
-      final endDate = DateTime.parse(contractEndDateController.text);
+      final endDate = DateTime.parse(
+        '${contractEndDateController.text} 00:00:00',
+      );
       final batches = _dividePeriodAcrossBatches(
         startDate,
         endDate,

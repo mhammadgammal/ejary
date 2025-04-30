@@ -30,44 +30,51 @@ class PaymentsDropDown extends StatelessWidget {
             context,
           ).textTheme.bodyMedium?.copyWith(fontSize: 20.sp),
         ),
-        DropdownButtonFormField(
-          value: selectedPaymentType,
-          onChanged: onPaymentTypeChanged,
-          dropdownColor: AppColors.background100,
-          icon: const Icon(Icons.keyboard_arrow_down, color: AppColors.gray100),
-          decoration: InputDecoration(
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(AppTheme.appRadius),
-              borderSide: BorderSide(color: AppColors.gray50, width: 1.5),
+        SizedBox(
+          height: 50.0.h,
+          child: DropdownButtonFormField(
+            value: selectedPaymentType,
+            onChanged: onPaymentTypeChanged,
+            dropdownColor: AppColors.background100,
+            icon: const Icon(
+              Icons.keyboard_arrow_down,
+              color: AppColors.gray100,
+              size: 24.0,
             ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(AppTheme.appRadius),
-              borderSide: BorderSide(color: AppColors.gray50, width: 1.5),
-            ),
-            // focusColor: AppColors.background100,
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(AppTheme.appRadius),
-              borderSide: BorderSide(
-                color: AppColors.gray50,
-                style: BorderStyle.solid,
-                width: 1.5.w,
+            decoration: InputDecoration(
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(AppTheme.appRadius),
+                borderSide: BorderSide(color: AppColors.gray50, width: 1.5),
               ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(AppTheme.appRadius),
+                borderSide: BorderSide(color: AppColors.gray50, width: 1.5),
+              ),
+              // focusColor: AppColors.background100,
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(AppTheme.appRadius),
+                borderSide: BorderSide(
+                  color: AppColors.gray50,
+                  style: BorderStyle.solid,
+                  width: 1.5.w,
+                ),
+              ),
+              hintText: 'select your payment type'.tr(context),
+              hintStyle: TextStyle(color: AppColors.gray50, fontSize: 16.sp),
+              fillColor: AppColors.background100,
+              filled: true,
             ),
-            hintText: 'select your payment type'.tr(context),
-            hintStyle: TextStyle(color: AppColors.gray50, fontSize: 16.sp),
-            fillColor: AppColors.background100,
-            filled: true,
-          ),
-          items: List.generate(
-            paymentsList.length,
-            (index) => DropdownMenuItem(
-              value: index + 1,
-              child: Text(
-                paymentsList[index].tr(context),
-                style: GoogleFonts.tajawal(
-                  color: AppColors.gray200,
-                  fontSize: 18.0.sp,
-                  fontWeight: FontWeight.w500,
+            items: List.generate(
+              paymentsList.length,
+              (index) => DropdownMenuItem(
+                value: index + 1,
+                child: Text(
+                  paymentsList[index].tr(context),
+                  style: GoogleFonts.tajawal(
+                    color: AppColors.gray200,
+                    fontSize: 15.0.sp,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ),
             ),
