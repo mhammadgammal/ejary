@@ -6,6 +6,7 @@ import 'package:ejary/core/widgets/dialog_helper/dialog_helper.dart';
 import 'package:ejary/core/widgets/image_picker/image_picker.dart';
 import 'package:ejary/core/widgets/text_form_field/columned_text_form_field.dart';
 import 'package:ejary/features/apartments/presentation/add_edit_apartment/cubit/add_edit_apartment_cubit.dart';
+import 'package:ejary/features/apartments/presentation/add_edit_apartment/widgets/payments_drop_down.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -61,8 +62,7 @@ class ApartmentDetailsScreen extends StatelessWidget {
                           controller: cubit.renterNameController,
                           inputType: TextInputType.text,
                           hint:
-                          '${AppStrings.enter.tr(context)} ${AppStrings
-                              .renterName.tr(context)}',
+                              '${AppStrings.enter.tr(context)} ${AppStrings.renterName.tr(context)}',
                           validate: cubit.validate,
                         ),
                       ),
@@ -109,8 +109,7 @@ class ApartmentDetailsScreen extends StatelessWidget {
                           inputType: TextInputType.number,
                           onChanged: (_) => cubit.calcRemainingValue(),
                           hint:
-                          '${AppStrings.enter.tr(context)} ${AppStrings
-                              .allRentValue.tr(context)}',
+                              '${AppStrings.enter.tr(context)} ${AppStrings.allRentValue.tr(context)}',
                           validate: cubit.validate,
                         ),
                       ),
@@ -121,16 +120,10 @@ class ApartmentDetailsScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Expanded(
-                        child: DropdownButtonFormField(
-                          value: 1,
-                          onChanged: (_) {},
-                          items: List.generate(
-                            6,
-                                (index) =>
-                                DropdownMenuItem(
-                                    value: index + 1,
-                                    child: Text('${index + 1}')),
-                          ),
+                        child: PaymentsDropDown(
+                          paymentsList: cubit.paymentsList,
+                          selectedPaymentType: cubit.selectedPaymentType,
+                          onPaymentTypeChanged: cubit.onPaymentTypeChanged,
                         ),
                       ),
                       SizedBox(width: 20.0.w),
@@ -147,32 +140,61 @@ class ApartmentDetailsScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Expanded(
-                        child: DatePicker(
-                          datePickerLabel: AppStrings.contractStartDate.tr(
-                            context,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: DatePicker(
+                              datePickerLabel: AppStrings.contractStartDate.tr(
+                                context,
+                              ),
+                              onDatePicked: cubit.onContractStartDatePick,
+                              datePickerController:
+                                  cubit.contractStartDateController,
+                              datePickerHint: '0/0/0000',
+                              validation: "هذا الحقل مطلوب",
+                            ),
                           ),
-                          datePickerController:
-                          cubit.contractStartDateController,
-                          datePickerHint: '0/0/0000',
-                          validation: "هذا الحقل مطلوب",
-                        ),
-                      ),
-                      SizedBox(width: 20.0.w),
-                      Expanded(
-                        child: DatePicker(
-                          datePickerLabel: AppStrings.contractEndDate.tr(
-                            context,
+                          SizedBox(width: 20.0.w),
+                          Expanded(
+                            child: DatePicker(
+                              datePickerLabel: AppStrings.contractEndDate.tr(
+                                context,
+                              ),
+                              datePickerController:
+                                  cubit.contractEndDateController,
+                              onDatePicked: cubit.onContractEndDatePick,
+                              datePickerHint: '0/0/0000',
+                              validation: "هذا الحقل مطلوب",
+                            ),
                           ),
-                          datePickerController: cubit.contractEndDateController,
-                          datePickerHint: '0/0/0000',
-                          validation: "هذا الحقل مطلوب",
-                        ),
+                        ],
                       ),
+                      if (cubit.nextPaymentDate.isNotEmpty)
+                        RichText(
+                          text: TextSpan(
+                            text: 'next payment will be on'.tr(context),
+                            style: GoogleFonts.tajawal(
+                              fontSize: 16.0.sp,
+                              fontWeight: FontWeight.w500,
+                              color: AppColors.failure,
+                            ),
+                            children: [
+                              TextSpan(
+                                text: '  ${cubit.nextPaymentDate}',
+                                style: GoogleFonts.tajawal(
+                                  fontSize: 16.0.sp,
+                                  fontWeight: FontWeight.w700,
+                                  color: AppColors.failure,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                     ],
                   ),
                   Row(
@@ -185,8 +207,7 @@ class ApartmentDetailsScreen extends StatelessWidget {
                           controller: cubit.idNumberController,
                           inputType: TextInputType.number,
                           hint:
-                          '${AppStrings.enter.tr(context)} ${AppStrings
-                              .idOrIqamaNumber.tr(context)}',
+                              '${AppStrings.enter.tr(context)} ${AppStrings.idOrIqamaNumber.tr(context)}',
                           validate: cubit.validate,
                         ),
                       ),
@@ -210,8 +231,7 @@ class ApartmentDetailsScreen extends StatelessWidget {
                           controller: cubit.floorApartmentNumberController,
                           inputType: TextInputType.number,
                           hint:
-                          '${AppStrings.enter.tr(context)} ${AppStrings
-                              .rentedFloorAndApartmentNumber.tr(context)}',
+                              '${AppStrings.enter.tr(context)} ${AppStrings.rentedFloorAndApartmentNumber.tr(context)}',
                           validate: cubit.validate,
                         ),
                       ),
@@ -220,12 +240,11 @@ class ApartmentDetailsScreen extends StatelessWidget {
                         child: ColumnedTextFormField(
                           title: AppStrings.propertyOrBuildingName.tr(context),
                           controller:
-                          cubit.buildingNumberController
-                            ..text = cubit.selectedPropertyName.toString(),
+                              cubit.buildingNumberController
+                                ..text = cubit.selectedPropertyName.toString(),
                           inputType: TextInputType.number,
                           hint:
-                          '${AppStrings.enter.tr(context)} ${AppStrings
-                              .propertyOrBuildingName.tr(context)}',
+                              '${AppStrings.enter.tr(context)} ${AppStrings.propertyOrBuildingName.tr(context)}',
                           validate: cubit.validate,
                         ),
                       ),

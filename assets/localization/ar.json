@@ -135,6 +135,14 @@
   "property_update_success": "تم تعديل العقار بنجاح",
   "property_name": "إسم العقار",
   "property_or_building_name": "إسم العقار أو المبني",
-  "nationality": "الجنسية"
-
+  "nationality": "الجنسية",
+  "Payments": "نظام الدفعات",
+  "select your payment type": "أختر عدد الدفعات",
+  "one payment": "دفعه واحده",
+  "two payments": "دفعتين",
+  "three payments": "ثلاث دفعات",
+  "four payments": "أربع دفعات",
+  "five payments": "خمس دفعات",
+  "six payments": "ست دفعات",
+  "next payment will be on": "تاريخ الدفعه القادمه"
 }

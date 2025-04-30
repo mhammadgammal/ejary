@@ -15,6 +15,7 @@ class DatePicker extends StatelessWidget {
     this.labelColor,
     this.iconColor,
     this.dateColor,
+    this.onDatePicked,
   });
 
   TextEditingController datePickerController;
@@ -24,6 +25,7 @@ class DatePicker extends StatelessWidget {
   final Color? labelColor;
   final Color? iconColor;
   final Color? dateColor;
+  final void Function(DateTime?)? onDatePicked;
 
   @override
   Widget build(BuildContext context) {
@@ -31,15 +33,17 @@ class DatePicker extends StatelessWidget {
       onTap:
           () => showDatePicker(
             context: context,
-            initialDate: DateTime.now(),
+            initialDate: datePickerController.text.isEmpty
+                ? DateTime.now()
+                : DateTime.parse(datePickerController.text),
             firstDate: DateTime.parse('1950-01-01'),
             lastDate: DateTime.parse('2030-12-31'),
-          ).then(
-            (value) => //DateFormat.yMMMMd().format(value!)
-                datePickerController.text = DateFormat(
-                  'yyyy-MM-dd',
-                ).format(value!),
-          ),
+          ).then((value) {
+            onDatePicked?.call(value);
+            datePickerController.text = DateFormat(
+              'yyyy-MM-dd',
+            ).format(value!);
+          }),
       child: ColumnedTextFormField(
         controller: datePickerController,
         inputType: TextInputType.datetime,

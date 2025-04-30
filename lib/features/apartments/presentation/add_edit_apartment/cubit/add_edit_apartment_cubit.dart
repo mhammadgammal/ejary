@@ -43,6 +43,19 @@ class AddEditApartmentCubit extends Cubit<AddEditApartmentState> {
 
   var currentIndex = 0;
 
+  List<String> paymentsList = [
+    "one payment",
+    "two payments",
+    "three payments",
+    "four payments",
+    "five payments",
+    "six payments",
+  ];
+
+  int? selectedPaymentType;
+
+  String nextPaymentDate = '';
+
   Future<void> addApartment(
     String apartmentImagePath,
     String contractImagePath,
@@ -64,6 +77,7 @@ class AddEditApartmentCubit extends Cubit<AddEditApartmentState> {
       contractStartDate: contractStartDateController.text,
       contractEndDate: contractEndDateController.text,
       renterPhoneNumber: phoneNumberController.text,
+      numberOfPayments: selectedPaymentType!,
     );
     int apartmentId = await DbHelper.insertData(
       TableName.apartmentTable,
@@ -95,6 +109,8 @@ class AddEditApartmentCubit extends Cubit<AddEditApartmentState> {
           apartmentModel.floorApartmentNumber.toString();
       nationalityController.text = apartmentModel.renterNationality;
       _apartmentModel = apartmentModel;
+      selectedPaymentType = apartmentModel.numberOfPayments;
+      onPaymentTypeChanged(selectedPaymentType);
     }
   }
 
@@ -126,6 +142,7 @@ class AddEditApartmentCubit extends Cubit<AddEditApartmentState> {
       contractEndDate: contractEndDateController.text,
       renterPhoneNumber: phoneNumberController.text,
       markAsRead: _apartmentModel.markAsRead,
+      numberOfPayments: selectedPaymentType!,
     );
     await DbHelper.updateData(
       TableName.apartmentTable,
@@ -184,5 +201,88 @@ class AddEditApartmentCubit extends Cubit<AddEditApartmentState> {
   void changeCurrentIndex(int i) {
     currentIndex = i;
     emit(ChangeCurrentIndexState());
+  }
+
+  void onPaymentTypeChanged(int? x) {
+    selectedPaymentType = x;
+    if (contractStartDateController.text.isNotEmpty &&
+        contractEndDateController.text.isNotEmpty) {
+      final startDate = DateTime.parse(contractStartDateController.text);
+      final endDate = DateTime.parse(contractEndDateController.text);
+      final batches = _dividePeriodAcrossBatches(
+        startDate,
+        endDate,
+        selectedPaymentType!,
+      );
+      nextPaymentDate =
+          batches[0]['end']!.toIso8601String().split('T').first.toString();
+      log(
+        'AddEditApartmentCubit: onPaymentTypeChanged: nextPaymentDate => $nextPaymentDate',
+      );
+    }
+    emit(ChangePaymentTypeState());
+  }
+
+  List<Map<String, DateTime>> _dividePeriodAcrossBatches(
+    DateTime startDate,
+    DateTime endDate,
+    int numberOfBatches,
+  ) {
+    final totalDuration = endDate.difference(startDate);
+    final durationPerBatch = Duration(
+      microseconds: totalDuration.inMicroseconds ~/ numberOfBatches,
+    );
+
+    List<Map<String, DateTime>> batches = [];
+
+    for (int i = 0; i < numberOfBatches; i++) {
+      DateTime batchStart = startDate.add(durationPerBatch * i);
+      DateTime batchEnd =
+          (i == numberOfBatches - 1)
+              ? endDate
+              : startDate.add(durationPerBatch * (i + 1));
+      log(
+        'AddEditApartmentCubit: _dividePeriodAcrossBatches: batch #${i + 1}: {\'start\': ${batchStart.toIso8601String().split('T').first}, \'end\': ${batchEnd.toIso8601String().split('T').first}}',
+      );
+      batches.add({'start': batchStart, 'end': batchEnd});
+    }
+
+    return batches;
+  }
+
+  void onContractEndDatePick(DateTime? value) {
+    if (value != null && selectedPaymentType != null) {
+      final startDate = DateTime.parse(contractStartDateController.text);
+      final endDate = value;
+      final batches = _dividePeriodAcrossBatches(
+        startDate,
+        endDate,
+        selectedPaymentType!,
+      );
+      nextPaymentDate =
+          batches[0]['end']!.toIso8601String().split('T').first.toString();
+      log(
+        'AddEditApartmentCubit: onContractEndDatePick: nextPaymentDate => $nextPaymentDate',
+      );
+      emit(NextPaymentSelectedState());
+    }
+  }
+
+  void onContractStartDatePick(DateTime? value) {
+    if (value != null && selectedPaymentType != null) {
+      final startDate = value;
+      final endDate = DateTime.parse(contractEndDateController.text);
+      final batches = _dividePeriodAcrossBatches(
+        startDate,
+        endDate,
+        selectedPaymentType!,
+      );
+      nextPaymentDate =
+          batches[0]['end']!.toIso8601String().split('T').first.toString();
+      log(
+        'AddEditApartmentCubit: onContractEndDatePick: nextPaymentDate => $nextPaymentDate',
+      );
+      emit(NextPaymentSelectedState());
+    }
   }
 }

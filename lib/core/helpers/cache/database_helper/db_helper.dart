@@ -105,6 +105,7 @@ class DbHelper {
       renter_id_number TEXT NOT NULL,
       mark_as_read INTEGER NOT NULL DEFAULT 0,
       nationality	TEXT DEFAULT '',
+      number_of_payment	INTEGER NOT NULL DEFAULT 1,
       FOREIGN KEY (property_id) REFERENCES ${TableName.propertyTable}(id) ON DELETE CASCADE
     );
   """);

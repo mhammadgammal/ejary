@@ -8,7 +8,7 @@
 //       FOREIGN KEY(apartment_id) REFERENCES ${TableName.paymentTable}(id) ON DELETE CASCADE
 //     );
 class PaymentModel {
-  final String id;
+  final int id;
   final String apartmentId;
   final String userId;
   final double amount;

@@ -15,6 +15,7 @@ class ApartmentModel {
   final String contractStartDate;
   final String contractEndDate;
   final String contractPicturePath;
+  final int numberOfPayments;
   final int markAsRead;
 
   ApartmentModel({
@@ -34,6 +35,7 @@ class ApartmentModel {
     required this.contractEndDate,
     required this.contractPicturePath,
     required this.renterIdNumber,
+    required this.numberOfPayments,
     this.markAsRead = 0,
   });
 
@@ -54,6 +56,7 @@ class ApartmentModel {
     contractEndDate: json['contract_end_date'] ?? '',
     contractPicturePath: json['contract_picture_path'] ?? '',
     renterIdNumber: json['renter_id_number'] ?? '',
+    numberOfPayments: json['number_of_payment'] ?? 1,
     markAsRead: json['mark_as_read'] ?? 0,
   );
 
@@ -74,5 +77,6 @@ class ApartmentModel {
     'renter_id_number': renterIdNumber,
     'mark_as_read': markAsRead,
     'nationality': renterNationality,
+    'number_of_payment': numberOfPayments,
   };
 }
