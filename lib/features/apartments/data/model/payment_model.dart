@@ -11,7 +11,8 @@ class PaymentModel {
   final int id;
   final String apartmentId;
   final String userId;
-  final double amount;
+  final int amount;
+  final int reminderSent;
   final DateTime startDate;
   final DateTime endDate;
 
@@ -21,15 +22,17 @@ class PaymentModel {
     required this.userId,
     required this.amount,
     required this.startDate,
+    this.reminderSent = 0,
     required this.endDate,
   });
 
   factory PaymentModel.fromJson(Map<String, dynamic> json) {
     return PaymentModel(
       id: json['id'],
-      apartmentId: json['apartmentId'],
+      apartmentId: json['apartment_id'],
       userId: json['userId'],
       amount: json['amount'],
+      reminderSent: json['reminder_sent'] ?? 0,
       startDate: DateTime.parse(json['start']),
       endDate: DateTime.parse(json['end']),
     );
@@ -37,10 +40,9 @@ class PaymentModel {
 
   Map<String, dynamic> toJson() {
     return {
-      'id': id,
-      'apartmentId': apartmentId,
-      'userId': userId,
+      'apartment_id': apartmentId,
       'amount': amount,
+      'reminder_sent': 0,
       'start': startDate.toIso8601String(),
       'end': endDate.toIso8601String(),
     };

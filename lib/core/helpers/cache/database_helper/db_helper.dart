@@ -119,8 +119,8 @@ class DbHelper {
       end	TEXT NOT NULL,
       amount	INTEGER NOT NULL,
       reminder_sent	INTEGER DEFAULT 0,
-      apartment_id	INTEGER NOT NULL UNIQUE,
-      FOREIGN KEY(apartment_id) REFERENCES ${TableName.paymentTable}(id) ON DELETE CASCADE
+      apartment_id	INTEGER NOT NULL,
+      FOREIGN KEY(apartment_id) REFERENCES ${TableName.apartmentTable}(id) ON DELETE CASCADE
     );
   """);
   }
@@ -202,6 +202,8 @@ class DbHelper {
     List<dynamic> whereArgs,
   ) async {
     try {
+      'DbHelper: deleteData: table = $table, where = $where, whereArgs = $whereArgs'
+          .logger();
       await sl<Database>().delete(
         table,
         where: '$where = ?',
